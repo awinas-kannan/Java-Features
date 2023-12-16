@@ -1,0 +1,83 @@
+https://www.digitalocean.com/community/tutorials/java-9-features-with-examples
+https://javagoal.com/immutable-collection-in-java/
+
+
+1)Factory Methods for Immutable List, Set, Map and Map.Entry
+
+What is the immutable collection in java?
+
+
+1. Immutable collections in java are those collections that can’t be modified once they are created.  
+An instance/object of immutable collection holds the same data as long as a reference to it exists, 
+you can’t modify it after creation.
+
+2. Immutable collections are thread-safe because any thread can’t modify it. 
+So multiple threads can read it but can’t modify it because the structure doesn’t support the mutation.
+  
+3. Immutable collections are more space-efficient generally the instance of an immutable collection 
+consumes much less memory than their mutable collection.
+List<String> x = 
+
+** Java 8's Unmodified List is not Immutable.Its is created out of Some original List. Any change made in original list 
+will reflect in Unmodifed list
+ 
+UnmodifiedList.java
+
+** What is the Difference Between List.of and Arrays.asList?
+
+ListofvsArraysAsList.java
+
+Arrays.asList :
+ -> Mutable
+ -> Allow null Element
+
+List.of :
+ -> Immutable
+ -> does not Allow Null Element  {Will throw NPE)
+ 
+ Immutable and Unmodifiable Are Not the Same:
+ An immutable collection can’t be modified if we try to modify it, it throws exceptions and it’s truly immutable. 
+ But an unmodifiable collection can be modified using the original collection.
+ 
+ 
+Characteristics Of Java 9 Immutable Collections
+In immutable collections the modifications are not allowed, If you try to modify them, UnsupportedOperationException will be thrown.
+It doesn’t allow null elements and gives NullPointerException at run time.
+These immutable collections are thread-safe. You can use them in a multi-threaded environment without synchronization.
+ 
+ 
+2)Private Methods in Interface
+https://howtodoinjava.com/java9/java9-private-interface-methods/
+PrivateMethodInterfaceMain.java
+
+3)Try With Resources Improvement
+
+TryWithResJava9.java
+
+Before Java 7, we manually used the try-finally block to ensure that resources were closed.
+
+In Java 7, we can use try-with-resources to ensure resources after the try block are automatically closed. 
+And any exceptions thrown from the try-with-resources statement will be suppressed.
+
+Java 9 – final or effectively final variables
+What is effectively final variable?
+In Java, Any variable that is assigned once and only once, is effectively final.
+
+4)Java 9 Stream API Improvements
+SreamAPIImprovements.java
+
+takeWhile
+DropWhile
+Overloaded Stream iterate method
+
+	The iterate method in Java 8 has the signature:
+		static Stream iterate(final T seed, final UnaryOperator f)
+	In Java 9, new overloaded version of iterate takes a Predicate as the second argument:
+		static Stream iterate(T seed, Predicate hasNext, UnaryOperator next)
+
+New Stream ofNullable() method
+
+5)@Deprecated Tag Changes
+
+6)HTTP/2 Client	
+	

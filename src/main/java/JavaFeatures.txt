@@ -1,0 +1,26 @@
+Java 8:
+unmodifiableList
+Static and defaults methods  in interface (forEach in Iterable)
+
+
+***********************************************
+Java 9:
+
+
+https://www.digitalocean.com/community/tutorials/java-9-features-with-examples
+
+1)REPL Shell # Read Evaluate Print Loop
+2)Factory Methods for Immutable List, Set, Map and Map.Entry
+3)Private Methods in Interface
+4)Try with resources
+5)Stream API Improvements
+6)@Deprecated Tag Changes
+7)HTTP/2 Client
+Java platform module system
+
+**************************************************
+Java 10:
+
+1) Local Variable Type Inference (var - LVTI)
+2) Immutable collection -> CopyOf / Collector.unmodifiedList
+

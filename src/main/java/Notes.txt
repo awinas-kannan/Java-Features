@@ -1,0 +1,976 @@
+https://howtodoinjava.com/java/basics/java-classes-objects/
+
+Instance variables in Java are non-static variables which are defined in a class outside any method, 
+constructor or a block
+Instance variables are declared without static keyword.
+Class variables (Static variable) are declared with keyword static
+
+
+<<<<<<<<<<<<Instance Initialization Block: InstanceInitialization.java
+
+All initializers are executed automatically in textual order for every object we create.
+Code for all instance initializers are executed before any constructor.
+An instance initializer cannot have a return statement.
+
+<<<<<<<<<<<<Static Initialization Block: StaticInstanceInitialization.java
+An instance initializer is executed once per object whereas a static initializer is executed only once
+for a class when the class definition is loaded into JVM.
+All static initializers are executed in textual order in which they appear, 
+and execute before any instance initializers.
+
+<<<<<<<<<<<Java Operators  https://howtodoinjava.com/java/basics/operators-in-java/
+An operator is a symbol that performs a specific kind of operation on one, two, or three operands, and 
+produces a result
+
+Arithmetic Operators:
+These operators cannot have operands of boolean primitive type and reference type.
+The string concatenation operator is also used to concatenate a primitive and a reference data type 
+value to a string.
+
+
+BitWise Operator :
+
+Bitwise Complement Operator:
+It is important to note that the bitwise complement of any integer N is equal to - (N + 1)
+
+https://medium.com/@mirandarevans/why-does-the-twos-complement-represent-negative-numbers-244dcc327809
+
+Sum of Number from 1 to n ==  n (n+1) /2  ##can me used in find one missing number
+Eg : 1,2,3,4,6,7,8,9,10
+10*11/2 = 55
+
+
+<<<<<<<<<<<<<<<<<<<Java Data types >>>>>>>>>>>>..
+#####stack vs heap
+* Stack memory contains primitive data type of methods and reference variables.While Heap memory contains object
+* Whenever new key word is used. memory is created in HEAP and it is assigned to the reference variabe using assignment operator(=)
+*A reference variable refers to where the actual object resides in heap memory
+
+** when assigning higher data type value to smaller one (type-mismatch error and explicitly asks for type casting)
+** Casting from bigger data type to smaller one may result in data loss
+
+#####Auto boxing
+In Java, you can assign a primitive type value to a wrapper class, directly. 
+For example, you can assign a int value to Interger class reference.
+
+Integer counter = 20;
+static Float PI = 3.14f;
+
+######Auto Unboxing
+Unboxing happens when the conversion happens from wrapper class to its corresponding primitive type
+Integer x = new Interger (10)
+int xx = x; // wrapper to primitive
+
+<<<<<<<<<<<<<<<<<Variable type>>>>>>>>>>>>>>>>
+Instance variable
+Static Variable
+Local variable
+method args
+
+Instance variables in Java are non-static variables which are defined in a class outside any method, 
+constructor or a block
+Instance variables are declared without static keyword.
+Class variables (Static variable) are declared with keyword static
+Local variable are declared inside methods
+
+<<<<<<<<<<<<<<<<<Public static void main>>>>>>>>>>>>>>>>
+https://howtodoinjava.com/java/basics/main-method/
+
+Public ::  Because it can be invoked from any where. If private it cant be invoked.
+Static ::  If its not static , we have to create an instance of this object.
+And What if we dont have a default constrctor (without args in out class) . If we have constructor with some args
+how will the jvm know the values..That y its made static.. We can  call it just with class name
+
+Void :: We are not going to call this main method in our program. ONly JVM calls this method
+So it does not require any return value
+
+<<<<<<<<<<<<<<<<<When to use Wrapper Class>>>>>>>>>>>>>>>>
+https://howtodoinjava.com/java/basics/java-wrapper-classes/
+1)Generics & Collecetion work with Wrapper classer
+2)When you want to assign null value . Cant set null value for primitives
+3)When two method wanna refer same instance of primitive type ,then pass wrapper class as arg
+
+
+<<<<<<<<<<<<<<<<<JAVA - PASS BY VALUE>>>>>>>>>>>>>>>>
+https://howtodoinjava.com/java/basics/java-is-pass-by-value-lets-see-how/
+Java is passby value..
+When you pass an instance to a method, its memory address are copied bit by bit to new reference variable, 
+thus both pointing to same instance. But if you change the reference inside method, original reference will not get change. 
+If it was pass by reference, then it would have got changed also.
+
+*** When you assign a new instance to formal parameter , then only formal param reference is changed..
+The actual param will have the same reference..
+
+
+<<<<<<<<<<<<<<<<<HASH CODE AND EQUALS>>>>>>>>>>>>>>>>
+https://howtodoinjava.com/java/basics/java-hashcode-equals-methods/
+Equals::::
+It’s default implementation simply check the object references of two objects to verify their equality. 
+By default,two objects are equal if and only if they are stored in the same memory address.
+
+
+Why override both ??
+It is generally necessary to override the hashCode() method whenever equals() method is overridden, 
+so as to maintain the general contract for the hashCode() method, 
+which states that equal objects must have equal hash codes.
+
+hashcode() Used in hashing Algorithm.. Like hashset (Which adds  unique value using hash map put)
+
+* If two objects have the same hash code, it doesn't mean that they are equal. 
+check EqualsOverridenInStringClass.java (==)
+
+// If two objects  have the same hash code, it doesn't mean that they are equal. 
+// If two objects are equal , they must have same hashcode
+
+#####serialization / deserialization -->  https://stackoverflow.com/questions/285793/what-is-a-serialversionuid-and-why-should-i-use-it
+--- When sending an object from servlet to JSP (req.setattribute) then the object is utilized in JSP by req.getattribute and assigned to a Object
+--- This serial version id is used to check whether sent object and loaded object in jsp are same
+https://www.baeldung.com/java-serial-version-uid#:~:text=The%20serialVersionUID%20attribute%20is%20an,object%20of%20a%20Serializable%20class.
+
+If we don't define a serialVersionUID state for a Serializable class, 
+then Java will define one based on some properties of the class itself such as the class name, instance fields, 
+and so on.
+This will create problem if any new field is added to class
+
+#####immutable class
+
+https://howtodoinjava.com/java/basics/how-to-make-a-java-class-immutable/
+https://www.journaldev.com/129/how-to-create-immutable-class-in-java
+ImmutableClass.java/TestMain.java 
+* Final class .. So that it cant be Extended
+* Don’t provide “setter” methods 
+* Make all fields final and private
+* Special attention when having mutable instance variables
+* Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+Immutable object is simple, thread-safe (no need synchronization), less prone to error and more secure. 
+If possible, make all objects immutable.
+
+
+Other Reference :
+https://www.interviewcake.com/concept/java/mutable
+https://www.mkyong.com/java/java-mutable-and-immutable-objects/
+
+//Read -- https://howtodoinjava.com/java/collections/hashmap/shallow-deep-copy-hashmap/
+//https://stackoverflow.com/questions/28288546/how-to-copy-hashmap-not-shallow-copy-in-java/28288729
+
+String pool is possible only because String is immutable in Java.
+
+<<<<<<<<<<<<<<<<OOPS>>>>>>>>>>>>>>>>>
+
+Class -> state & behaviour
+
+** If we do not provide any constructor, JVM assigns a default constructor to the class. 
+This default constructor does not accept any parameter.
+
+** if we assign a constructor to any class then JVM does not assign the default constructor to it. 
+If needed, we need to specify the default constructor explicitly to the class.
+
+
+###Access Modifier / Access Specifier
+Refer : Java note & https://howtodoinjava.com/java/oops/java-access-modifiers/
+
+public – accessible everywhere
+protected – accessible in the same package and in sub-classes
+default – accessible only in the same package
+private – accessible only in the same class
+public > protected > package-private (or default) > private
+
+//A Top level class can be  either public or default
+//A Top level class cannot be protected or private
+//But an inner class can be protected or private
+
+### Constructors
+https://howtodoinjava.com/java/oops/java-constructors/
+If no constructor is declared inside class ,then jvm creates a default constructor
+Once we declare a parametirized constructor and if the class dont have defalut constructor
+then object cant be created with default constructor
+Default constructor
+Parameterized constructor
+Private constructor-- in singleton
+
+Constructor chaining ::
+Calling same class constructor
+Calling Super class constructor
+
+If you want to use super() i.e. 
+super class constructor then it must be first statement inside constructor.
+
+<<<<<<<<<<<<<<<<<<<<<OOPS>>>>>>>>>>>>>>>>>>>
+#####Abstraction
+--Instance cant be created for an abstract class
+Abstraction is more about hiding the implementation details. 
+In Java abstraction is achieved through abstract classes and interfaces.
+
+Ex: Creating contracts. The clients is saying like he need to have two methods.
+one is get and then put() . put() should insert data and get should retrieve the data.
+He doesnt care about the internal implementation
+Ex: Map
+What we mostly use in out program is get() and put() method of map
+We dont care about what it internally does (Hashmap). This is abstraction
+
+Ex: In sella ,using two diff servlet INTERNET and INTRANET
+In one servlet we use one channel id to create token
+In other servlert, we use diff channel id to create token
+
+#####Encapsulation
+--Must read last para
+https://howtodoinjava.com/java/oops/encapsulation-in-java-and-its-relation-with-abstraction/
+
+A Java class, where all instance variables are private and only the methods within the class 
+can manipulate those variables, is an example of an encapsulated class.
+Wrapping data and methods within classes in combination with 
+implementation hiding (through access control) is often called encapsulation. 
+Encapsulation essentially has both i.e. information hiding and implementation hiding.
+
+Private variables and public method
+Whatever changes , Encapsulate it..
+
+Abstraction is more about ‘What‘ a class can do. [Idea] {{get and put method in MAP}}
+Encapsulation is more about ‘How‘ to achieve that functionality. [Implementation]
+{{{Hashmaps logic to store using put() and retrieve using get() }}}
+ArrayList is also an example of Encapsulation.
+
+Putting getter method and setter method in seperate interface and implementing
+in encapsualteion class
+
+
+For ex :age may differ every year..
+So we have a dob variable in Class and to get age we invent a method getAge()
+Which has the logic of getting age from dob..
+
+Ex 2:
+Decoding and Encoding password in getPwd and set pwd methods
+
+
+#####Inheritance (IS-A relationship) InheritanceMain.java
+Inheritance in java (IS-A relationship) is referred to the ability where child objects inherit 
+or acquire all the properties and behaviors from parent object. 
+In object oriented programming, inheritance is used to promote the code re-usability.
+A sub class (child class) can inherit all non-private members from super class, by default.
+
+
+{{{{{{{ReferenceClass variable = new ActualClass();}}}}}}}}
+### java fields cannot be overridden
+//Parent fields can't be over ridden {{Based on reference the field value will be fetched}}
+//Parent methods will be overridden
+
+Member fields are accessed from reference type class.
+Member methods are accessed from actual instance types.
+
+
+#####Polymorphism PolyMain.java
+One name multiple form
+1)Compile time polymorphism (static binding or method overloading)
+2)Runtime polymorphism (dynamic binding or method overriding)
+
+operator overloading is also there, 
+e.g. “+” operator can be used to add two integers as well as concat two sub-strings.
+
+Check Overloading Rules & Overriding Rules.
+Super class : overridden method
+Child class : overriding method
+
+Method Overloading Rules :
+1)Signature must vary (no.args, arg types ,order of args)
+2)changing return type is not considerd as overloading
+3)Exception also not matter in overloading
+
+Method Overriding Rules:
+1)argument list in both methods are same
+2)return type of overriding method can be child class of return type declared in overridden method.
+3)private, static and final methods can not be overridden
+4)Overriding method can not throw checked Exception higher in hierarchy than thrown by overridden method.
+5)Cannot reduce the scope of overriding method (public to protected )
+but can be (protected to public)
+
+$$$$Child to Parent in overriding class is not possible
+
+###### Interface vs abstract class 
+https://howtodoinjava.com/java/oops/exploring-interfaces-and-abstract-classes-in-java/
+1)In interface all methods are public abstract .But the case is different in abstract class
+(accessibility cant be reduced)
+2)Interface can be utilised with implements key word & and abstract class can be utilized with extends keyword
+
+
+Example of abstract Class:
+Abstract classes let you define some behaviors;
+HttpServelet is abstract class which defines all life cycle methods( i.e. initialization, service, and destruction)
+So that we can concentrate only on business
+Example of Interface :
+Map is an interface implemented by Hashmap ,treemap, hashtable, weekhashmap
+
+$$$$Interface vs abstract class  (After java 8:)
+THe interface are started supporting default methods
+So the diff between absrtact & interface are made thin
+Now, only one big difference remains that you cannot extend multiple classes 
+whereas you can implement multiple interfaces. 
+
+######Default Methods in Interface : (In Java 8)
+In Java 7 and all earlier versions, interfaces were very simple. 
+They could only contain public abstract methods. 
+These interface methods MUST be implemented by classes which choose to implement the interface.
+
+-->Default methods can be overridden 
+-->Default can be public and cannot be protected ,private
+--> only public, abstract, default, static and strictfp are permitted in interfaces
+For Ex : ForEach feature is introduced as default method in java 8
+
+######Private Methods in Interface – Java 9
+These private methods will improve code re-usability inside interfaces. 
+For example, if two default methods needed to share code, a private interface method would allow them to do so, 
+but without exposing that private method to it’s implementing classes.
+
+PrivateMethodInterfaceMain.java
+https://howtodoinjava.com/java9/java9-private-interface-methods/
+
+Method Type		Since When
+public abstract	Java 7
+public default	Java 8
+public static	Java 8
+private			Java 9
+private static	Java 9
+
+`
+
+######Multiple Inheritance
+
+ConstantsAndAbstraceMethod.java class
+**If both interface has same param name ,it cant be used as-such in child class
+It should be used with interfacename. {{Interface.param}} since its static final we can call
+with interface name itself
+Error thrown :The field param is ambiguous
+This is not possible with Classes ,as it may or may-not have static field.
+
+CONSTANTS::
+Same constants name from multiple interfaces  is allowed provided that calls are not ambigious
+
+ABSTRACT METHOD:
+Same abstract method names are allowed provides that they are properly loaded or 
+they have same signature (return type , same type of input params)
+
+DEFAULT METHODS:
+1)If both interface has default method with same name and signature
+and both are implemented in  a class. Then it should be over ridden.
+
+Idefault1 & Idefault2 has default method work()
+When both are implemented in DefaultRules.java class.
+Then it must be over ridden.
+2)Over loaded version works
+
+STATIC METHODS:
+Cannot be over ridden. So no problem
+
+<<<<Other Oops concepts>>>
+https://howtodoinjava.com/java/oops/association-aggregation-composition/
+######Association
+->objects have an independent lifecycle {Two object are independent of each other}
+->Mutliple student for single teacher // Single student for many teacher
+-> if the student leave the school , we dont need to delete teacher and vice versa...
+
+/There are two forms of association
+//Composition
+//Aggregation
+
+######Aggregation
+->Objects have an independent lifecycle, but there is ownership, 
+and child objects cannot belong to another parent object.
+Ex : mobile phone and mobile battery
+
+######Composition
+->Object don’t have an independent lifecycle, 
+Composition is an association represents a part of a whole relationship
+where a part cannot exist without a whole. 
+If a whole is deleted then all parts are deleted. It has a stronger relationship.
+--If we delete the order object , the line items will be deleted
+
+<<<<<Inner classes>>>>>>
+-> Non static nested classes ( inner class)
+-> Static nested class
+-> Anonymous inner class (Classes created with $1 , $2)
+Why can't we have static method in a (non-static) inner class?
+The field instance cannot be declared static in a non-static inner type, 
+unless initialized with a constant expression
+
+Double brace init is example for using anonymous inner class 
+https://howtodoinjava.com/java/inner-classes/double-brace-initialization-in-java/
+
+######Enumeration
+//https://howtodoinjava.com/java/enum/enum-tutorial/
+public enum Direction 
+{
+   EAST, WEST, NORTH, SOUTH;
+}
+-> JVM internally adds ordinal and value methods
+final class Direction extends Enum&lt;Direction&gt; 
+{
+    public final static Direction EAST = new Direction();
+    public final static Direction WEST = new Direction();
+    public final static Direction NORTH = new Direction();
+    public final static Direction SOUTH = new Direction();
+}
+ Also, all enum types in Java are singleton by default.
+
+######Collection
+//Refer Ganesh innovative note book 
+https://howtodoinjava.com/java-collections/ --- Check all the collections
+https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java
+https://stackoverflow.com/questions/948194/difference-between-java-enumeration-and-iterator#:~:text=1)%20The%20main%20difference%20between,not%20have%20remove()%20method.&text=Iterator%20is%20not%20a%20legacy%20interface.
+https://www.geeksforgeeks.org/fail-fast-fail-safe-iterators-java/#:~:text=Iterator%20on%20ArrayList%2C%20HashMap%20classes,examples%20of%20fail%2Dfast%20Iterator.&text=This%20is%20because%2C%20they%20operate,examples%20of%20fail%2Dsafe%20Iterator.
+
+PECS (Producer extends and Consumer super)
+mnemonic -> Get and Put principle.
+This principle states that:
+Use an extends wildcard when you only get values out of a structure.
+Use a super wildcard when you only put values into a structure.
+And don’t use a wildcard when you both get and put.
+
+"PECS" is from the collection's point of view. 
+If you are only pulling items from a generic collection, it is a producer and you should use extends; 
+if you are only stuffing items in, it is a consumer and you should use super. 
+If you do both with the same collection, you shouldn't use either extends or super.
+Array List :
+Size is incremented  by 50% once reached threshold.
+
+###########ConcurrentModificationException
+#####"FAIL FAST"::"FAIL SAFE"
+
+https://www.geeksforgeeks.org/fail-fast-fail-safe-iterators-java/#:~:text=Iterator%20on%20ArrayList%2C%20HashMap%20classes,examples%20of%20fail%2Dfast%20Iterator.&text=This%20is%20because%2C%20they%20operate,examples%20of%20fail%2Dsafe%20Iterator.
+https://www.baeldung.com/java-fail-safe-vs-fail-fast-iterator
+
+Concurrent Modification in programming means to modify an object concurrently when another task is 
+already running over it. For example, in Java to modify a collection(add / put/ remove) when another thread is iterating over it.
+Some Iterator implementations (including those of all the general purpose collection implementations
+provided by the JRE) may choose to throw ConcurrentModificationException if this behavior is detected.
+
+
+Iterators are fail-fast . i.e. when one thread changes the collection by add / remove operations ,
+while another thread is traversing it through an Iterator using hasNext() or next() method,
+the iterator fails quickly by throwing ConcurrentModificationExceptiom
+
+Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
+Iterators on Collections from java.util.concurrent package 
+such as ConcurrentHashMap, CopyOnWriteArrayList, etc. are Fail-Safe in nature.
+
+
+
+(Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. 
+This is because, they operate on the clone of the collection, 
+not on the original collection and that’s why they are called fail-safe iterators)
+
+Enumeration are not fail fast as they used in hash table .. which are synchronized
+
+
+
+######## Ways to avoid concurrent modification exception in list
+https://www.journaldev.com/378/java-util-concurrentmodificationexception
+https://stackoverflow.com/questions/18448671/how-to-avoid-concurrentmodificationexception-while-removing-elements-from-arr
+AvoidConcurrentModificationExceptionList.java
+
+It’s clear that the concurrent modification exception is thrown when we call iterator next() function.
+ 
+1) Using temp list to remove
+2) iter.remove();
+3) Java 8 Approach -> Internally uses iterator
+
+ArrayList -> iterator -> next () -> checkForComodification
+final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+ }
+  
+  
+Check --> https://stackoverflow.com/questions/29723458/why-doesnt-this-code-throw-a-concurrentmodificationexception  
+*******
+
+**********************************************************************************************************
+**********************************************************************************************************
+
+
+####Sorting
+Array sorting , List sorting , map sorting based on key , values
+parallel sorting
+
+
+
+####Cloning (TestCloning.java)
+https://howtodoinjava.com/java/cloning/a-guide-to-object-cloning-in-java/
+Original object & cloned object will have different memory address (hashcode)
+
+JVM when called for cloning, do following things:
+
+1) If the class has only primitive data type members then a completely new copy of the object will be created 
+and the reference to the new object copy will be returned.
+2) If the class contains members of any class type then only the object references to those members are copied and 
+hence the member references in both the original object as well as the cloned object refer to the same object.
+
+In java, if a class needs to support cloning it has to do following things:
+You must implement Cloneable interface.
+You must override clone() method from Object class.
+[Its weird. clone() method should have been in Cloneable interface.]
+
+
+**deep copy & shallow copy in cloning**
+In the deep copy, we create a clone which is independent of original object and making changes 
+in the cloned object should not affect original object.
+
+Clones with Immutable vs Mutable instance objects !
+*)If its immutable object (String , Integer .. ) , it do not have setter mthod
+so changing in cloned object will not affect the original object ( As while instance in 
+cloned is chnaged)
+*)If its Mutable (having setter method ) , the both original & cloned value
+will be changed.  ( This can be avoided by cloning the mutable field )
+//Check employee object commented lined
+//
+(changing the value inside the date's address ) 
+
+#####No constructor is called on the object being cloned. As a result, it is your responsibility, 
+to make sure all the members have been properly set. Also, if you are keeping track of the 
+number of objects in the system by counting the invocation of constructors, 
+you got a new additional place to increment the counter.
+
+####Check Sigleton breaking with clone ,serilizable ,reflection
+check in design patterns com.concepts.dp.creational.singletondp.destroyAndPrevent 
+***********************************************************************************************
+***********************************************************************************************
+
+###################  Multi Threading And Concurrency ###############
+https://howtodoinjava.com/java-concurrency-tutorial/
+
+System.out.println(Runtime.getRuntime().availableProcessors());  // Available number of processor
+
+Concurrency is the ability to run several programs or several parts of a program in parallel.
+Completing task much before in time in comparison to sequential processing.
+
+1 ) MainThread1.java -> shows diffrence b/w normal sequential execution vs two thread process
+
+2 ) Two threads working with shared data
+MainThread2.java -> Counter variable share between multiple threads 
+
+******Thread Safety:
+A piece of code is thread-safe if it only manipulates 
+shared data structures in a manner that guarantees safe execution by multiple threads at the same time.
+A class is thread-safe when it continues to behave correctly when accessed from multiple threads.
+
+******Concurrency vs. parallelism
+Concurrency : Multiple task in over lapping time
+Parrellism : eg: sorting ( It processes multiple sub-tasks of a task in multi-core CPU at same time.)
+Concurrency is the composition of independently executing processes, (logging data in database)
+while parallelism is the simultaneous execution of (possibly related) computations.(parallel sorting)
+Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.
+
+******The synchronized keyword can be use with –
+A) code block ( Using lock object )
+B) method
+MainThread3_SyncInBlockWithLockObject.java
+******object-vs-class-level-locking
+https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
+Object level lock  : non-static method or non-static code block 
+class level lock  : Static method or static block (Single ton class )
+
+**Classlevel sync on method
+public static AuParamDao getInstance() {
+		if(instance==null) {
+			synchronized (AuParamDao.class) {
+				if(instance==null) {
+					instance = new AuParamDao();
+				}
+			}
+		}
+		return instance;
+	}
+	
+***Sync with shared object	 (point no 10)
+create a new private scoped Object instance (private Object lock = new Object())
+OR
+ lock on the shared variable itself which we want to protect. 
+private static Cache<String,ServizioEsterno> serviziEsterni=CacheFactory.getInstance(ServiziEsterniGateway.class).getCacheInstance(cacheInfo);
+synchronized (serviziEsterni) {
+//code
+}	
+
+Executor framework::https://howtodoinjava.com/java/multi-threading/executor-framework-tutorial/
+https://www.youtube.com/watch?v=mGjlWrhhNF0&list=PLZkgjBpLveVTz629oAvG5_N7RRc0kLX1Y
+It is used to run the Runnable objects without creating new threads every time and
+ mostly re-using the already created threads. 
+--- Manage number of threads that can be executed concurrently
+
+In28Mins:::
+1) ExecuterServiceSingleThreadMain.java
+Executors.newSingleThreadExecutor(); -> Runs one thread at time
+Only when task 1 is completed .. task 2 will start..
+
+The shutdown() method doesn't cause immediate destruction of the ExecutorService. It will make the 
+ExecutorService stop accepting new tasks and shut down after all running threads finish their current work:
+
+
+2)Customizing number of thread #ExecuterServiceMultiThreadMain.java
+Just like queueing ....
+Executors.newFixedThreadPool(3); // runs 3 threads at time
+Once one of the 3 threads are completed (now only two active thread), so the fourth thread is taken for execution
+
+Callable -> Has return value //  es.submit(t0); -> return Future
+Runnable -> Has no return value // es.execute(t0);
+
+3)ESCallableFutureMain.java
+Callable return a Future object
+// Once f5 value is fetched ... Main thread execution is proceeded ( next line
+// is printed)
+//This will wait for the f5 to complete
+System.out.println("** Result ** " + f5.get());
+
+4)ESCallableFutureListsMain.java
+es.invokeAll(cl) -> return list of future
+es.invokeAny(c1) -> return first completed thread future
+
+
+Deadlock :: //https://www.tutorialspoint.com/java/java_thread_deadlock.htm#:~:text=Deadlock%20occurs%20when%20multiple%20threads,associated%20with%20the%20specified%20object.
+DeadLock.java
+Deadlock describes a situation where two or more threads are blocked forever, waiting for each other. 
+Deadlock occurs when multiple threads need the same locks but obtain them in different order. 
+
+***********************************************************************************************
+***********************************************************************************************
+<<<<<<<<<<<Strings -> String buffer vs String builder
+https://www.journaldev.com/538/string-vs-stringbuffer-vs-stringbuilder
+StringBuffervsStringBuilder.java
+String Buffer : Thread safe / slow / sync
+String Builder : Not Thread safe / Fast / Non-sync
+
+Since String is immutable in Java, whenever we do String manipulation like concatenation, substring, etc. 
+it generates a new String and discards the older String for garbage collection.
+
+These are heavy operations and generate a lot of garbage in heap.
+ So Java has provided StringBuffer and StringBuilder classes that should be used for String manipulation.
+
+StringBuffer and StringBuilder are mutable objects in Java.
+
+If you are in a single-threaded environment or don’t care about thread safety, 
+you should use StringBuilder. Otherwise, use StringBuffer for thread-safe operations.
+
+It’s clear that StringBuilder performs better than StringBuffer even in the case of a single-threaded environment.
+This difference in performance can be caused by synchronization in StringBuffer methods.
+
+
+**************************************Immutable Collections*********************************************
+14/dec/23
+ImmutableListCreation.java
+UnmodifiedList.java
+ListofvsArraysAsList.java
+
+new ArrayList<>
+Arrays.asList
+toUnmodifiableList
+List.of
+Copy.of
+
+new ArrayList<> :
+Mutable & Can be of any size
+
+Arrays.asList:
+Mutable - Can't add new element but can modify existing element (Set() Method)
+Allow null Element
+
+unmodifiableList:
+Mutable
+->Created from Mutable list
+->Any change in Mutable list will be reflected in unmodified list
+->Can't add/modify element in unmodifiableList
+
+List.Of:
+-> Immutable
+-> Modifying the ListOf Collection will throw exception
+-> Modifying the original collection will not reflect List.of collection
+
+Copy Of :
+-> Immutable
+
+key diff b/w list.of &  List.Copyof is
+List.of allows you to specify elements directly in method call
+List.copyOf takes collection as its arg.(Created immutable copy of elements in mutable col)
+ 
+
+********************************************************************************************************
+Exception Handling :ExceptionHandler.java
+
+//https://www.javatpoint.com/exception-handling-in-java
+//https://howtodoinjava.com/java/exception-handling/checked-vs-unchecked-exceptions-in-java/
+
+
+The Exception Handling in Java is one of the powerful mechanism to handle the runtime errors so that normal flow
+of the application can be maintained.
+
+We have two choices when an exception object is created in our application.
+
+1)Either we will handle it within method
+2)Or we can pass it to the caller method to let it handle
+
+RunTime Exception: (Unchecked Exception)
+Arithmetic Exception
+Nullpointer Exception
+ClassCast exception
+Numberformat Exception
+Index out of bound Exception (Array Index , String Index)
+
+1) Checked Exception
+Java forces you to handle these error scenarios in some manner in your application code. 
+They will come immediately into your face, once you start compiling your program
+The classes which directly inherit Throwable class except RuntimeException and Error are known as 
+checked exceptions e.g. IOException, SQLException etc. Checked exceptions are checked at compile-time.
+
+2) Unchecked Exception
+The classes which inherit RuntimeException are known as unchecked exceptions e.g. ArithmeticException, 
+NullPointerException, ArrayIndexOutOfBoundsException etc. 
+***Unchecked exceptions are not checked at compile-time, but they are checked at runtime.***
+
+3) Error
+Error is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError,Stackoverflow etc
+
+
+#########Garbage collection
+https://www.geeksforgeeks.org/garbage-collection-java/
+
+*****Make the object unreachable ,so that it is considered for gc
+
+Unreachable object::
+book a = new book(); // a has a reference
+a= null; // now the new book() which is present in heap is unreachable
+
+Even though the programmer is not responsible to destroy useless objects but it is highly recommended 
+to make an object unreachable(thus eligible for GC) if it is no longer required.
+There are generally four different ways to make an object eligible for garbage collection.
+Nullifying the reference variable
+Re-assigning the reference variable
+Object created inside method
+Island of Isolation
+
+***Main objective of Garbage Collector is to free heap memory by destroying unreachable objects.
+
+JVM Automatocally runs the garbace collector program..but we dont know when it will be executed
+
+So we can request the JVM to run garbage collector by following ways:
+1) System.gc() method ( internally calls Runtime.getRuntime().gc() )
+2) Runtime.getRuntime().gc() 
+
+
+finalize() Method :: (data count increase in static varible)
+***present in Object class (protected void finalize() throws Throwable)
+***Called by GC not by jvm
+***The finalize() method is never invoked more than once for any given object. 
+***If an uncaught exception is thrown by the finalize() method, the exception is ignored and finalization of that object terminates.
+
+ 
+How to make objects unreachable ??
+
+An object is eligible to be garbage collected if its reference variable is lost from the program during execution.
+Sometimes they are also called unreachable objects 
+
+#####https://www.geeksforgeeks.org/how-to-make-object-eligible-for-garbage-collection/
+Garbage  collection ways :
+1 ) Object created inside a method (ObjectCreatedInsideAMethod.java)
+When a method is called it goes inside the stack frame. When the method is popped from the stack, 
+all its members dies and if some objects were created inside it then these objects becomes unreachable or 
+anonymous after method execution and thus becomes eligible for garbage collection
+
+Note ::
+If a method returns the object created inside it and we store this object reference by using a 
+reference-type variable than it is no longer eligible for garbage collection.
+
+
+2)Reassigning the reference variable (ReassigningTheReferenceVariable.java)
+When reference id of one object is referenced to reference id of some other object then the previous object
+has no any longer reference to it and becomes unreachable and thus becomes eligible for garbage collection
+ 
+3)Nullifying the reference variable (GarbageCollector1.java) 
+ 
+4) Anonymous object : 
+The reference id of an anonymous object is not stored anywhere. Hence, it becomes unreachable
+
+####Island of isolation
+**** Object 1 references Object 2 and Object 2 references Object 1. 
+Neither Object 1 nor Object 2 is referenced by any other object. That’s an island of isolation.
+*** Basically, an island of isolation is a group of objects that reference each other
+but they are not referenced by any active object in the application. 
+Strictly speaking, even a single unreferenced object is an island of isolation too.
+
+
+*********************************** SOLID PRINCIPLES*************************************************
+SRP -> tax calc.. invoice ,printer, writer, mailer
+O/c p  -> Total price car , food ,mobile , toy ( new code  becos well tested code )
+Lis sub prin ->  superclas obj = new subclass()
+Int seg pri -> Ui comp , non touch , touch ui , desk top , mobile
+Dipen inv -> 
+
+https://www.youtube.com/watch?v=vilk8A8EO7E
+*Group of Object oriented principles
+*used for writing clean , readable , maintainable code
+
+********* 1: S: Single Responsibility Principle. (SRP)
+*Each class / module in program should focus on single task
+
+Authenticaiton Module  ( Does authentication related works)
+  -> First step login in seperate class
+  -> Step 2 login in seperate class
+  -> Email related thing in seperated class
+  -> XML parsing in seperate class ( JAXB parser)
+
+
+For Example : Invoice APP
+Normal Coding:
+-> Tax calculator , invoice printer , mailer , archiever everyting present in SAME CLASS
+If any error occurs , we have to change in sample class and the size of the class grows
+
+SRP :
+-> Tax calculator , invoice printer , mailer , archiever everyting present in SEPERATE CLASS
+If any error occurs / or any new feature need to be added,we can chnage in only that particular class
+
+********* 2: O: Open-Closed Principle. (Open for Extension - Closed for modification)
+https://www.youtube.com/watch?v=dMIf_QUSe3w
+When adding new feature ,we should not modify the existing code instead we should write new code by extending
+the existing class
+
+bad :
+when you want to add a new ITEM - TOY , you have to modify the existing class
+Because of this , already existing code may create a problem
+
+Good:
+new Toy class is added which extends product class
+
+Existing code is not changed... New code is written
+
+
+********* 3: L: Liskov Substitution Principle.
+This principle defines that , Object of superclass can be replaced with object of subclass
+without breaking the application.
+
+Super class object replaced by sub class object
+
+//Code reusablity
+//reduced coupling
+//Easier maintainance
+
+
+********* 4: I: Interface Segregation Principle.
+While defining interface ,, it should have only those methods that the client need..
+
+Seggregating interface in such a way that , it should be fully utilized by the implementation class
+
+Un supported method are not need in classes
+
+Bad design : Internet & Intranet servlets in Authentication 
+
+********* 5: D: Dependency Inversion Principle.
+Inversion of Control:
+  -> Dipendency injection 
+       -> Field injection 
+       -> Method injection
+       -> Constructor injection
+
+When you create object inside a class , its is tightly coupled
+To make it loosely coupled , we need to create the object outside and inject into class
+
+When its tightly couple , you find difficult to write test cases
+
+
+***************************************************************************************************
+************************************Data structure ************************************************
+***************************************************************************************************
+https://examples.javacodegeeks.com/java-tree-example/
+**quite good for insertion & deletion operation
+Tree:
+Hierarchical order ( where ever we wanna implement hierarchical order
+we can user trees)
+Eg : Org structure , (ceo -> manager -> TL -> dev)
+
+Binary tree :: Parent having ATMOST two children
+BST (binary search tree) 
+AVL tree
+RBT tree
+
+
+Binary search tree:https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+A BST is a binary tree where nodes are ordered in the following way:
+The value in the left subtree are less than the value in its parent node
+The value in the right subtree are greater than the value in its parent node
+Duplicate values are not allowed.
+
+
+
+**************************************************************************************************************
+**********************************TIME COMPLEXIITY************************************************
+Check this below page
+https://www.baeldung.com/java-algorithm-complexity
+
+https://www.youtube.com/watch?v=cNRrJkXJ8T4
+
+The study of the performance of algorithms – or algorithmic complexity –
+falls into the field of algorithm analysis. Algorithm analysis answers the question of how many resources, such as disk space or time, an algorithm consumes.
+
+We'll be looking at time as a resource. Typically, the less time an algorithm takes to complete, the better.
+
+What is time complexity?
+How does this input size of an algorithm affect its running time? 
+Key to understanding Big O is understanding the rates at which things can grow. 
+The rate in question here is time taken per input size.
+
+1)Constant Time Algorithms – O(1)
+
+2)Logarithmic Time Algorithms – O(log n)
+Calculate withLog base 2 
+If input size n = 10;
+log₂(10) = 3.322 // maximum it will take 3 to 4 iter to find the output 
+https://www.omnicalculator.com/math/log-2
+Ex : Binary search 
+
+3)Linear Time Algorithms – O(n)
+
+If we say something grows linearly, 
+we mean that it grows directly proportional to the size of its inputs
+
+O(2n+1) is the same as O(n), as Big O Notation concerns itself with growth for input sizes.
+
+4)N Log N Time Algorithms – O(n log n)
+Ex : Quick Sort
+
+5)Polynomial Time Algorithms – O(np)
+The term polynomial is a general term which contains quadratic (n2), cubic (n3), quartic (n4), etc. functions. 
+What's important to know is that O(n2) is faster than O(n3) which is faster than O(n4), etc.
+
+6)Exponential Time Algorithms – O(kn)
+these algorithms grow in proportion to some factor exponentiated by the input size.
+
+For example, O(2n) algorithms double with every additional input. So, if n = 2, 
+these algorithms will run four times; if n = 3, they will run eight times 
+(kind of like the opposite of logarithmic time algorithms).
+
+O(3n) algorithms triple with every additional input, 
+O(kn) algorithms will get k times bigger with every additional input.
+
+7)Factorial Time Algorithms – O(n!)
+Ex : Combiation abcd --> Find all possibilities
+https://en.wikipedia.org/wiki/Travelling_salesman_problem 
+
+########Before Interview
+1)jdk vs jre vs jvm
+
+2)final keyword
+
+3)can we assign null to primitive types ? #no
+
+4)stack vs heap
+https://www.journaldev.com/4098/java-heap-space-vs-stack-memory
+https://www.guru99.com/java-stack-heap.html
+https://www.youtube.com/watch?v=UcPuWY0wn3w
+https://www.youtube.com/watch?v=jzJjMefsFKE
+
+5)serialization / deserialization -->  https://stackoverflow.com/questions/285793/what-is-a-serialversionuid-and-why-should-i-use-it
+--- When sending an object from servlet to JSP (req.setattribute) then the object is utilized in JSP by req.getattribute and assigned to a Object
+--- This serial version id is used to check whether sent object and loaded object in jsp are same
+https://www.baeldung.com/java-serial-version-uid#:~:text=The%20serialVersionUID%20attribute%20is%20an,object%20of%20a%20Serializable%20class.
+6)Eclipse has its own java compiler --> https://stackoverflow.com/questions/47623117/which-java-compiler-is-used-by-eclipse#:~:text=Eclipse%20has%20its%20own%20Java,eclipse.
+
+
+
+
+
+
+

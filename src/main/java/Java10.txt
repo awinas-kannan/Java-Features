@@ -1,0 +1,32 @@
+https://javagoal.com/immutable-collection-in-java/#7
+
+Java 10 was released on March 20, 2018
+Long-Term-Support (LTS) releases. 
+Java 8, Java 11, and Java 17 are LTS versions. 
+Now the next planned LTS release is Java 21 in September 2023.
+
+1)Local Variable Type Inference (var - LVTI)
+LVTI.java
+
+We don’t need to specify the data type with the variable name. 
+Now it’s the compiler’s responsibility to infer the type of the variable using the value provided
+
+https://howtodoinjava.com/java10/var-local-variable-type-inference/
+
+
+2)Immutable Collection :
+
+https://javagoal.com/immutable-collection-in-java/
+	1. List.copyOf(), Set.copyOf(), and Map.copyOf()
+	Returns an immutable copy of Mutable/Immutable collection
+	ImmutableCopyOf.java
+	2. Collectors.toUnmodifiableList(), toUnmodifiableSet(), and toUnmodifiableMap()
+	Returns immutable collection when used in Stream.
+    ReturnImmutableListStream.java
+    
+3)Optional.orElseThrow()
+    
+    
+
+    
+
