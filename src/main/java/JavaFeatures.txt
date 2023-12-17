@@ -29,6 +29,24 @@ Java 10:
 **************************************************
 Java 11:
 
-Launch Single-File Programs Without Compilation
+1)Launch Single-File Programs Without Compilation
+2)HTTP Client API
+3)String API Changes
+4)Collection.toArray(IntFunction)
+5) Files.readString() and Files.writeString()
+6) Optional.isEmpty()
+7) Predicate Not Method	
+8) Local variable type inference for lambda expressions
 
 
+**************************************************
+Java 12:
+
+1. Collectors.teeing() in Stream API
+2. String API Changes
+3. Switch Expressions (Preview)
+4. Files.mismatch(Path, Path)
+5. Compact Number Formatting
+6. JEP 305: Pattern Matching for instanceof (Preview)  
+
+**************************************************

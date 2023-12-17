@@ -1,0 +1,44 @@
+Java 12 (released on March 19, 2019) is latest version available for JDK.
+https://howtodoinjava.com/java12/new-features-enhancements/
+
+
+1. Collectors.teeing() in Stream API
+This collector forwards its input to two other collectors before merging their results with a function.
+
+https://howtodoinjava.com/java12/collectors-teeing-example/
+TeeingCollector.java
+
+
+2. String API Changes
+StringAPIs12.java
+2.1. String.indent()
+2.2. String.transform()
+2.3. String constants
+
+
+3. Switch Expressions (Preview)
+SwitchExp.java
+
+This change extends the switch statement so that it can be used as either a statement or an expression.
+
+Switch Expression :
+  -> To Avoid break  Use -> instead of :
+  -> Switch statement vs Switch expression
+
+  Switch expression 
+  -> Add semicolon at the end
+  -> Use Yield if you want to use : instead of ->
+  
+4. Files.mismatch(Path, Path)
+
+FileMismatch.java
+mismatch() method compares two file paths and return a long value. 
+The long indicates the position of the first mismatched byte in the content of the two files. 
+The return value will be '–1' if the files are “equal.”
+
+
+5. Compact Number Formatting
+CompactNumberFormatting.java
+
+6. JEP 305: Pattern Matching for instanceof (Preview)  
+InstanceOf12.java

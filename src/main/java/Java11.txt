@@ -6,19 +6,82 @@ https://mkyong.com/java/what-is-new-in-java-11/
 https://www.baeldung.com/java-11-new-features
 https://www.digitalocean.com/community/tutorials/java-11-features
 
+1. Why is Java 11 important?
+Java 11 is the second LTS (long-term support) release after Java 8. 
+Since Java 11, Oracle JDK would no longer be free for commercial use
+
+Long-term support (LTS) is a product lifecycle management policy in which a stable release of 
+computer software is maintained for a longer period of time than the standard edition.
+
+LTS Java Versions - 8 , 11, 17 , 21 
 
 1) Launch Single-File Programs Without Compilation
-we don’t need to compile the Java source files with javac explicitly anymore:
-
-$ javac HelloWorld.java
-$ java HelloWorld 
-Hello Java 8!
-Copy
-Instead, we can directly run the file using the java command:
-
-$ java HelloWorld.java
-Hello Java 11!
+	we don’t need to compile the Java source files with javac explicitly anymore:
+	
+	$ javac HelloWorld.java
+	$ java HelloWorld 
+	Hello Java 8!
+	
+	Instead, we can directly run the file using the java command:
+	
+	$ java HelloWorld.java
+	Hello Java 11!
 
 2)HTTP Client API
-Now the Java applications can make HTTP communications without the need to any external dependency.
+	Now the Java applications can make HTTP communications without the need to any external dependency(Apache HttpComponents or OkHttp etc).
+	
+	HttpSync.java
+	HttpAsync.java
+	
+	A typical HTTP interaction with the java.net.http module looks like-
+	Create an instance of HttpClient and configure it as needed.
+	Create an instance of HttpRequest and populate the information.
+	Pass the request to the client, perform the request, and retrieve an instance of HttpResponse.
+	Process the information contained in the HttpResponse.
+	
+	Asynchronous request:
+	Asynchronous communication is useful if we don’t want to wait for the response. 
+	We provide callback handler, which gets executed when response is available.
+
+3)String API Changes
+	StringApis.java
+	
+	String.repeat(Integer)
+	String.isBlank()
+	String.strip()
+	String.lines()
+
+4)Collection.toArray(IntFunction)
+	Before Java 11, converting a collection to array was not straightforward. 
+	Java 11 makes the conversion more convenient.
+
+5) Files.readString() and Files.writeString()
+	https://javagoal.com/java-11-features/#1
+	FilesStringMethod.java
+	
+	Files.readString():
+	The readString() method allows us to read the entire contents of a file into a String with a single method call. 
+	It’s much simpler and more convenient than BufferedReader to read the file line by line.
+	
+6) Optional.isEmpty()
+   OptionalEmpty.java
+   isEmpty() method is reverse of isPresent() method and returns false if a value is present, otherwise true.
+
+   
+7) Predicate Not Method	
+   PredicateNot.java
+
+8) Local variable type inference for lambda expressions
+   https://javagoal.com/java-11-features/#3
+   LVTILambda.java
+    After java 11, the compiler can identify the type of a lambda expression parameter based on its context. 
+    So now we can use var as the parameter type for lambda expressions.
+     But why is this needed when we can just skip the type in the lambda? 
+     If you need to apply an annotation just as @Nullable, you cannot do that without defining the type 
+     For uniformity with local variables, we wish to allow 'var' for the formal
+	 parameters of an implicitly typed lambda expression   
+	
+	
+	
+
 
