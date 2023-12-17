@@ -12,7 +12,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.awinas.learning.Java8.Employee;
+import com.awinas.learning.java8.Employee;
 
 //Ref :: https://howtodoinjava.com/java8/java-streams-by-examples/
 

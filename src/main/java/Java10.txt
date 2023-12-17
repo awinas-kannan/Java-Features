@@ -1,3 +1,5 @@
+https://javagoal.com/java-10-features/
+https://howtodoinjava.com/java10/java10-features/#1
 https://javagoal.com/immutable-collection-in-java/#7
 
 Java 10 was released on March 20, 2018
@@ -25,7 +27,8 @@ https://javagoal.com/immutable-collection-in-java/
     ReturnImmutableListStream.java
     
 3)Optional.orElseThrow()
-    
+OptionalInJava10.java
+If a value is present, returns the value, otherwise throws NoSuchElementException.    
     
 
     

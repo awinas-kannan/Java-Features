@@ -15,12 +15,20 @@ https://www.digitalocean.com/community/tutorials/java-9-features-with-examples
 4)Try with resources
 5)Stream API Improvements
 6)@Deprecated Tag Changes
+
 7)HTTP/2 Client
-Java platform module system
+8)Java platform module system
 
 **************************************************
 Java 10:
 
 1) Local Variable Type Inference (var - LVTI)
 2) Immutable collection -> CopyOf / Collector.unmodifiedList
+3) Optional.orElseThrow()
+
+**************************************************
+Java 11:
+
+Launch Single-File Programs Without Compilation
+
 

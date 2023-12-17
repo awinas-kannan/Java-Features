@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.awinas.learning.Java8.streams.MyList;
+import com.awinas.learning.java8.streams.MyList;
 
 //https://www.baeldung.com/java-optional
 public class OptionalInJava8 extends MyList {

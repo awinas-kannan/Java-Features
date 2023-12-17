@@ -1,0 +1,24 @@
+Java 11 (released on September 2018)
+
+https://howtodoinjava.com/java11/features-enhancements/
+https://javagoal.com/java-11-features/#1
+https://mkyong.com/java/what-is-new-in-java-11/
+https://www.baeldung.com/java-11-new-features
+https://www.digitalocean.com/community/tutorials/java-11-features
+
+
+1) Launch Single-File Programs Without Compilation
+we don’t need to compile the Java source files with javac explicitly anymore:
+
+$ javac HelloWorld.java
+$ java HelloWorld 
+Hello Java 8!
+Copy
+Instead, we can directly run the file using the java command:
+
+$ java HelloWorld.java
+Hello Java 11!
+
+2)HTTP Client API
+Now the Java applications can make HTTP communications without the need to any external dependency.
+

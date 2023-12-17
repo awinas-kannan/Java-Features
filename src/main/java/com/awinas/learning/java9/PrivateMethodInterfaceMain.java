@@ -1,4 +1,4 @@
-package com.awinas.learning.java9;
+package com.awinas.learning.Java9;
 
 public class PrivateMethodInterfaceMain implements PrivateMethodInterface {
 
