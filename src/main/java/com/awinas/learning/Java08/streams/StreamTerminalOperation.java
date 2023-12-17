@@ -1,4 +1,4 @@
-package com.awinas.learning.Java8.streams;
+package com.awinas.learning.Java08.streams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.awinas.learning.Java8.Employee;
+import com.awinas.learning.Java08.Employee;
 
 //Ref :: https://howtodoinjava.com/java8/java-streams-by-examples/
 

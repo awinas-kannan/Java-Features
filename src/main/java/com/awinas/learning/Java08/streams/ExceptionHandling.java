@@ -1,4 +1,4 @@
-package com.awinas.learning.Java8.streams;
+package com.awinas.learning.Java08.streams;
 
 import java.util.Arrays;
 import java.util.List;

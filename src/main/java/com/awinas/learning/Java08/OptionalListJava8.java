@@ -1,4 +1,4 @@
-package com.awinas.learning.Java8;
+package com.awinas.learning.Java08;
 
 import java.util.Arrays;
 import java.util.List;
