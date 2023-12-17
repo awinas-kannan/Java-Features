@@ -59,3 +59,10 @@ Java 13
 **************************************************
 Java 14
 
+1. JEP 305 – Pattern Matching for instanceof (Preview)
+2. Switch Expressions (Standard) - JEP 361
+3. Helpful NullPointerExceptions - JEP 358
+4. Records (Preview) - JEP 359
+5. Text Blocks (Second Preview) - JEP 368
+
+**************************************************

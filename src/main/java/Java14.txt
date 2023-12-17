@@ -1,0 +1,82 @@
+Java 14 reached general availability on 17 March 2020.
+
+https://www.digitalocean.com/community/tutorials/java-14-features
+https://howtodoinjava.com/java14/java14-new-features/
+https://www.baeldung.com/java-14-new-features
+https://howtodoinjava.com/java14/java-text-blocks/
+
+1. JEP 305 – Pattern Matching for instanceof (Preview)
+	Already seen in Java 12
+	InstanceOf12.java
+
+2. Switch Expressions (Standard) - JEP 361
+	
+	Switch Expressions after staying a preview feature in the last two releases 
+	--Java 12 and Java 13 have finally attained permanent status in Java 14.
+	Java 12 introduced the lambda syntax for switch expressions thereby allowing multiple case labels for pattern matching
+	Java 13, the second preview introduced yield statements instead of break for returning values from an expression.
+	
+	Note: Yield isn’t a new keyword in Java. It’s just used in switch expressions.
+	
+	SwitchExp14.java
+
+3. Helpful NullPointerExceptions - JEP 358
+
+	NullPointerException.java
+	
+	Before Java 14:
+	//Stacktrace
+	Exception in thread "main" java.lang.NullPointerException
+	    at NullPointerExample.main(NullPointerExample.java:5)
+	
+	Exception in thread "main" java.lang.NullPointerException: 
+	    Cannot invoke "Blog.getAuthor()" because the return value of "Journaldev.getBlog()" is null
+	    at NullPointerExample.main(NullPointerExample.java:4)  
+	      
+4. Text Blocks (Second Preview) - JEP 368
+
+	In Java 14, Text Blocks are still in preview with some new additions. We can now use:
+	
+	** Backslash for displaying nice-looking multiline string blocks.
+	For example:
+		String multiline = "A quick brown fox jumps over a lazy dog; the lazy dog howls loudly.";
+		can now be written as:
+		String multiline = """
+  			  A quick brown fox jumps over a lazy dog; \
+    		the lazy dog howls loudly.""";
+    		
+	** \s is used to consider trailing spaces which are by default ignored by the compiler. It preserves all the spaces present before it.
+	
+
+5. Records (Preview) - JEP 359
+	EmpRecord.java
+	https://howtodoinjava.com/java/java-record-type/
+	https://www.digitalocean.com/community/tutorials/java-records-class#why-do-we-need-java-records
+	
+    Like enum, a record is also a special class type in Java. 
+    Records are intended to be used in places where a class is created only to act as a plain data carrier.
+
+	The Java compiler will generate a constructor, private final fields, accessors, equals/hashCode and toString methods automatically
+
+	
+	Why do we need Java Records?
+	One of the common complaints with Java has been its verbosity. 
+	If you have to create a simple POJO class, it requires the following boiler-plate code.
+	
+	Private fields
+	Getter and Setter Methods
+	Constructors
+	hashCode(), equals(), and toString() methods.
+	
+	This verbosity is one of the reasons for high interest in Kotlin and Project Lombok.
+	
+	Important Points about Record Classes
+		A Record class is final, so we can’t extend it.
+		The Record classes implicitly extend java.lang.Record class.
+		All the fields specified in the record declaration are final.
+		The record fields are “shallow” immutable and depend on the type. For example, we can change the addresses field by accessing it and then making updates to it.
+		A single constructor is created with all the fields specified in the record definition.
+		The Record class automatically provides accessor methods for the fields. The method name is the same as the field name, not like generic and conventional getter methods.
+		The Record class provides hashCode(), equals(), and toString() implementations too.	
+		
+    		
