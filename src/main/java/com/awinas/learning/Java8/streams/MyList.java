@@ -3,7 +3,7 @@ package com.awinas.learning.Java8.streams;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.awinas.learning.java8.Employee;
+import com.awinas.learning.Java8.Employee;
 
 public class MyList {
 	protected static final List<String> memberNames = new ArrayList<>();
