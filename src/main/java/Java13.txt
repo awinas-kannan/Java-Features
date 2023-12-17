@@ -1,0 +1,42 @@
+Java 13 was released for production use on 17th September 2019. 
+There are not a lot of developer-specific features in Java 13 because of the 6-month release cycle.
+
+https://www.digitalocean.com/community/tutorials/java-13-features
+https://mkyong.com/java/what-is-new-in-java-13/
+
+1. Text Blocks - JEP 355
+
+TextBlocks13.java
+
+ The string object created using text blocks has no additional properties. 
+ It’s an easier way to create multiline strings. We can’t use text blocks to create a single-line string. 
+ The opening triple-double quotes must be followed by a line terminator.
+ 
+ 2. New Methods in String Class for Text Blocks
+ 
+ TextBlocksStrMethods13.java
+ 
+ There are three new methods in the String class, associated with the text blocks feature.
+
+		1.formatted(Object… args): it’s similar to the String format() method. 
+		It’s added to support formatting with the text blocks.
+		
+		2.stripIndent(): used to remove the incidental white space characters from the beginning 
+		and end of every line in the text block. This method is used by the text blocks 
+		and it preserves the relative indentation of the content.
+		
+		3.translateEscapes(): returns a string whose value is this string, 
+		with escape sequences translated as if in a string literal.
+ 
+ 3. Switch Expressions Enhancements - JEP 354
+ https://mkyong.com/java/what-is-new-in-java-13/
+ 
+ SwitchEnhance13.java
+ Switch expressions were added as a preview feature in Java 12 release. 
+ In Java 12, we can use break to return a value from a switch.
+
+ It’s almost same in Java 13 except that the “break” has been replaced with “yield” 
+ to return a value from the case statement.
+
+ 
+ 

@@ -50,3 +50,12 @@ Java 12:
 6. JEP 305: Pattern Matching for instanceof (Preview)  
 
 **************************************************
+Java 13
+
+1. Text Blocks - JEP 355
+2. New Methods in String Class for Text Blocks
+3. Switch Expressions Enhancements - JEP 354
+
+**************************************************
+Java 14
+
