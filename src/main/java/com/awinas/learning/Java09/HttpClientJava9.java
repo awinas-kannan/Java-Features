@@ -1,4 +1,4 @@
-package com.awinas.learning.Java9;
+package com.awinas.learning.Java09;
 
 import java.net.URI;
 import java.net.URISyntaxException;
