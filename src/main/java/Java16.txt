@@ -1,0 +1,24 @@
+Java 16, released on the 16th of March 2021
+
+1. JEP 394: Pattern Matching for instanceof
+The pattern matching for instanceof is a standard or product feature in Java 16.
+
+
+
+  if (obj instanceof String s && s.length() > 5) {
+      if (s.equalsIgnoreCase("java16")) {
+          //...
+      }
+  }
+  
+2. JEP 395: Records
+The record is finalized and becomes a standard feature.
+
+  
+3. Add Stream.toList Method (JDK-8180352)
+
+	.collect(Collectors.toList());
+		->
+			.toList();
+			
+  

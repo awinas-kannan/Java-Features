@@ -1,0 +1,46 @@
+Java 15 released on 15th Sep’2020 following the 6th-month release cycle. 
+Java 15 continues support for various preview features in previous JDK releases; 
+and also introduced some new features.
+
+https://www.digitalocean.com/community/tutorials/java-15-features
+https://howtodoinjava.com/java15/java-15-new-features/
+
+1. Sealed Classes and Interfaces (Preview) (JEP 360)
+	https://howtodoinjava.com/java15/sealed-classes-interfaces/
+	
+	A sealed class or interface restricts which other classes or 
+	interfaces may extend or implement them. Conceptually, 
+	it is a more declarative way than access modifiers to restrict the use of a class or 
+	interface as a parent class or as a parent interface.
+	
+	The reserved keyword permits lists all the classes that can extend the sealed class directly. 
+	The listed subclasses can either be final, non-sealed, or sealed.
+	
+	1.1. sealed modifier and permits keyword
+	
+2. Pattern Matching for instanceof (Second Preview) (JEP 375)
+
+	https://howtodoinjava.com/java/basics/pattern-matching-instanceof/
+	
+	//Allowed to use s in complex condition
+	if (obj instanceof String s && s.startsWith("a")) {
+	  System.out.println(s);
+	}
+	
+	//compiler error
+	if (obj instanceof String s || s.startsWith("a")) {
+	  System.out.println(s);  
+	}	
+	
+3. Records (Second Preview) (JEP 384)
+	   In the second preview, Records have some minor changes. 
+	   Now fields inside a record should not be modified via reflection as it will throw IllegalAccessException.
+	   
+	   Records are meant to be data carrier classes and you should totally avoid defining native methods in them.
+
+
+4. Text Blocks (JEP 378)
+       Text blocks are finally a standard feature in Java 15. A text block is a multi-line string literal.
+
+       	   	
+	
