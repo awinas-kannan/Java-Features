@@ -1,0 +1,29 @@
+Java 17 was released on September 14, 2021. 
+Java 17 is an LTS (Long Term Support) release, like Java 11 and Java 8. 
+Oracle will support it for bug fixes, patches and performance enhancements for the next few years.
+
+As Java 17 is an LTS release, and major popular frameworks (e.g., Spring 6 and Spring Boot 3) will be supporting the new features, 
+it is better to plan for Java 17 migration.
+
+https://howtodoinjava.com/java/new-features/
+https://www.baeldung.com/java-17-new-features
+
+
+1. Pattern Matching for Switch (Preview)
+   PatterMatcher17.java
+    ‘–enable-preview‘ 
+    
+    int getNumberOfSides(Shape shape) {
+    return switch (shape) {
+        case WeirdTriangle t -> t.getNumberOfSides();
+        case Circle c -> c.getNumberOfSides();
+        case Triangle t -> t.getNumberOfSides();
+        case Rectangle r -> r.getNumberOfSides();
+        case Square s -> s.getNumberOfSides();
+    };
+}
+
+2. Sealed Classes
+    In Java 17, it has become a standard feature with no changes to what was available in Java 16.
+    
+        

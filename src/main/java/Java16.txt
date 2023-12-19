@@ -1,5 +1,8 @@
 Java 16, released on the 16th of March 2021
 
+https://mkyong.com/java/what-is-new-in-java-16/
+https://www.baeldung.com/java-16-new-features
+
 1. JEP 394: Pattern Matching for instanceof
 The pattern matching for instanceof is a standard or product feature in Java 16.
 
