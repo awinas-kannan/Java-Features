@@ -19,7 +19,7 @@ import java.util.PriorityQueue;
 //Explanation: The 2nd largest element is 5.
 //Hint: You can use a min-heap (Priority Queue) with size k. Insert elements into the heap, and if the heap size exceeds k, remove the smallest element. The root of the heap will give you the Kth largest element.
 
-public class PriorirtyQueue1 {
+public class KthLargestNumberUsingPQ {
 	public static int findKthLargest(int[] arr, int k) {
 		if (k <= 0 || k > arr.length) {
 			return -1; // or any other value to indicate invalid input
