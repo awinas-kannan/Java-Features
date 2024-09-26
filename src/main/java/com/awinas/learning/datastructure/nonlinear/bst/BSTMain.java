@@ -1,4 +1,4 @@
-package com.awinas.learning.datastructure.nonlinear;
+package com.awinas.learning.datastructure.nonlinear.bst;
 
 public class BSTMain {
 
@@ -47,6 +47,11 @@ public class BSTMain {
 		System.out.println("*************post order traversal*************");
 
 		tree.postOrder();
+
+		System.out.println("Level Order Traversal:");
+		System.out.println("*************Level Order Traversal:*************");
+
+		tree.levelOrderTraversal();
 	}
 
 }

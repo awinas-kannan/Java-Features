@@ -1,0 +1,82 @@
+1) Binary Tree vs Binary search Tree
+
+	A binary tree is a type of data structure where each node has at most two children, known as the left child and the right child. 
+	The binary tree can be empty (null), or it can have a root node with two subtrees, each of which is a binary tree.
+	
+	A binary search tree (BST) is a specific type of binary tree where the nodes are ordered or sorted in a particular way. 
+	The value of each node in a binary search tree is greater than all the values in its left subtree and less than all the values in its right subtree. This property makes it easy to search for a specific value in the tree efficiently.
+	
+	In summary, while a binary tree is a general tree structure with at most two children per node, 
+	a binary search tree is a specific type of binary tree where the nodes are ordered based on their values.
+	
+
+2) Min Heap and Max Heap
+   <<<<< MinAndMaxHeap.java >>>>>> 
+   A heap is a special tree-based data structure that satisfies the heap property. A heap is always a complete binary tree, 
+   meaning all levels of the tree are fully filled except possibly the last level, which is filled from left to right.
+   
+   Min Heap: The root node contains the minimum value, and every parent node is smaller than or equal to its children.
+   			This means that the smallest value is always stored at the root of the tree.
+   			
+        5
+      /   \
+     10    15
+    /  \   /  \
+   20  30 40  50
+   
+   Use Cases
+	    Priority Queue implementation.
+		Dijkstra's algorithm (shortest path).
+		Prim's algorithm (minimum spanning tree).
+   
+   Max Heap: The root node contains the maximum value, and every parent node is greater than or equal to its children.
+             This means that the largest value is always stored at the root of the tree.
+             
+        50
+      /    \
+     30     40
+    /  \   /  \
+   20  10 15  5
+   
+   Use Cases:
+	    Scheduling systems (where higher-priority tasks should be handled first).<<<<<  TaskScheduling.java >>>>>> 
+		Implementing the Heap Sort algorithm.
+		Tracking the largest elements (e.g., a leaderboard).
+   
+
+   IMPLEMENT MIN HEAP:
+   https://www.digitalocean.com/community/tutorials/min-heap-binary-tree
+   
+   Heap Representation:
+		Heaps are commonly represented as arrays for efficient access.
+		#### Array Representation of Min Heap:
+		For the min heap:
+		```
+		        5
+		      /   \
+		     10    15
+		    /  \   /  \
+		   20  30 40  50
+		```
+		The corresponding array representation would be: `[5, 10, 15, 20, 30, 40, 50]`.
+		This indexing follows a Level Order Traversal of the Binary Tree, so a Binary Heap array is a Binary Tree using a level order traversal.
+		In a heap represented as an array:
+		- The root element is at index 0.
+		- The left child of a node at index i is at index <<<  2i + 1 >>>>
+		- The right child of a node at index  i  is at index   2i + 2 .
+		- The parent of a node at index i  is at index {i-1}/{2} .
+		
+3) Priority QUEUE
+   https://www.geeksforgeeks.org/priority-queue-class-in-java/
+    <<<<< MinAndMaxHeap.java >>>>>> 
+    <<<<<  TaskScheduling.java >>>>>>
+   PriorityQueue doesn’t permit null.
+   We can’t create a PriorityQueue of Objects that are non-comparable
+   The queue retrieval operations poll,  remove,  peek, and element access the element at the head of the queue.
+   It provides O(log(n)) time for add and poll methods.
+   
+     
+    		
+   
+
+   	

@@ -1,4 +1,7 @@
-package com.awinas.learning.datastructure.nonlinear;
+package com.awinas.learning.datastructure.nonlinear.bst;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 //https://www.geeksforgeeks.org/insert-a-node-in-binary-search-tree-iteratively/
 
@@ -109,6 +112,25 @@ public class BinarySearchTree {
 			postOrderTraversal(node.left);
 			postOrderTraversal(node.right);
 			System.out.println(node.value);
+		}
+	}
+
+	void levelOrderTraversal() {
+		if (root == null)
+			return;
+
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+
+		while (!queue.isEmpty()) {
+			Node node = queue.poll();
+			System.out.print(node.value + " ");
+
+			if (node.left != null)
+				queue.add(node.left);
+
+			if (node.right != null)
+				queue.add(node.right);
 		}
 	}
 

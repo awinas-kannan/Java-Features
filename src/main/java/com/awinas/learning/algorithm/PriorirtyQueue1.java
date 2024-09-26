@@ -2,6 +2,7 @@ package com.awinas.learning.algorithm;
 
 import java.util.PriorityQueue;
 
+//https://www.digitalocean.com/community/tutorials/min-heap-binary-tree
 
 //1. Find the Kth Largest Element in an Array
 //Problem: Given an array of integers, find the Kth largest element in the array.
@@ -19,26 +20,28 @@ import java.util.PriorityQueue;
 //Hint: You can use a min-heap (Priority Queue) with size k. Insert elements into the heap, and if the heap size exceeds k, remove the smallest element. The root of the heap will give you the Kth largest element.
 
 public class PriorirtyQueue1 {
-	 public static int findKthLargest(int[] arr, int k) {
-	        if (k <= 0 || k > arr.length) {
-	            return -1; // or any other value to indicate invalid input
-	        }
-	        
-	        PriorityQueue<Integer> pq = new PriorityQueue<>();
-	        for (int num : arr) {
-	            pq.offer(num);
-	            if (pq.size() > k) {
-	                pq.poll();
-	            }
-	        }
-	        
-	        return pq.peek();
-	    }
+	public static int findKthLargest(int[] arr, int k) {
+		if (k <= 0 || k > arr.length) {
+			return -1; // or any other value to indicate invalid input
+		}
 
-	    public static void main(String[] args) {
-	        int[] arr = {3, 1, 5, 2, 4};
-	        int k = 3;
-	        int kthLargest = findKthLargest(arr, k);
-	        System.out.println("The " + k + "th largest element in the array is: " + kthLargest);
-	    }
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for (int num : arr) {
+			pq.offer(num);
+
+			if (pq.size() > k) {
+				pq.poll();
+			}
+			System.out.println(pq.toString());
+		}
+
+		return pq.peek();
+	}
+
+	public static void main(String[] args) {
+		int[] arr = { 3, 1, 5, 2, 4, 10, 11, 7, 6, 12, 8 };
+		int k = 5;
+		int kthLargest = findKthLargest(arr, k);
+		System.out.println("The " + k + "th largest element in the array is: " + kthLargest);
+	}
 }
