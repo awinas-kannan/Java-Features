@@ -36,7 +36,7 @@
       /    \
      30     40
     /  \   /  \
-   20  10 15  5
+   20  10 15   5
    
    Use Cases:
 	    Scheduling systems (where higher-priority tasks should be handled first).<<<<<  TaskScheduling.java >>>>>> 
