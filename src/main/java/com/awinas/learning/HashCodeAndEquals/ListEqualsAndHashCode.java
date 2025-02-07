@@ -59,9 +59,9 @@ public class ListEqualsAndHashCode {
 
 		Employee emp6 = new Employee(1, "raj", "25");
 		Employee emp7 = new Employee(2, "manoj", "35");
-		Employee emp8 = new Employee(3, "awinas", "23");
 		Employee emp9 = new Employee(1, "raj", "25");
 		Employee emp10 = new Employee(1, "raj", "27");
+		Employee emp8 = new Employee(3, "awinas", "23");
 
 		List<Employee> empList3 = new ArrayList<>();
 		empList3.add(emp6);

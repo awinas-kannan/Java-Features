@@ -123,6 +123,16 @@ check EqualsOverridenInStringClass.java (==)
 // If two objects are equal , they must have same hashcode
 
 #####serialization / deserialization -->  https://stackoverflow.com/questions/285793/what-is-a-serialversionuid-and-why-should-i-use-it
+Serialization is the process of converting an object into a byte stream so that it can be stored in a file, transmitted over a network, or saved in a database.
+Deserialization is the reverse process, where the byte stream is converted back into an object.
+
+Conclusion
+For REST APIs (Spring Boot, JSON responses), Serializable is NOT required.
+For Java object serialization (file storage, caching, messaging, session replication), Serializable is REQUIRED.
+If the API uses Java’s built-in serialization (ObjectOutputStream), missing Serializable causes a NotSerializableException.
+
+***Interoperability Between Systems **
+
 --- When sending an object from servlet to JSP (req.setattribute) then the object is utilized in JSP by req.getattribute and assigned to a Object
 --- This serial version id is used to check whether sent object and loaded object in jsp are same
 https://www.baeldung.com/java-serial-version-uid#:~:text=The%20serialVersionUID%20attribute%20is%20an,object%20of%20a%20Serializable%20class.
