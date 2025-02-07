@@ -1,4 +1,4 @@
-package com.awinas.learning.leetcode;
+package com.awinas.learning.leetcode.medium;
 
 
 //713 : https://leetcode.com/problems/subarray-product-less-than-k/description/
