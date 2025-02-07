@@ -13,6 +13,7 @@ public class TwoSum {
 		int target = 9;
 		System.out.println(Arrays.toString(bruteForce(nums, target)));
 		System.out.println(Arrays.toString(optimizedMethod(nums, target)));
+		System.out.println(Arrays.toString(twoPointerApproach(nums, target)));
 	}
 
 	private static int[] bruteForce(int[] nums, int target) {
@@ -45,6 +46,28 @@ public class TwoSum {
 				return new int[] { hashMap.get(target - nums[i]), i };
 			} else {
 				hashMap.put(nums[i], i);
+			}
+		}
+		return new int[] { -1, -1 };
+	}
+
+	private static int[] twoPointerApproach(int[] nums, int target) {
+//	(O(n log n))	
+//		  1. Sort the array.
+//		  2. Use two pointers (one at the start, one at the end) to find the sum.
+//		  3. Move pointers based on the sum comparison.
+//		- Time Complexity: \(O(n \log n)\) due to sorting.
+//        Space Complexity: \(O(1)\) if sorting is done in place, otherwise \(O(n)\) for a new sorted array.
+
+		int left = 0, right = nums.length - 1;
+		while (left < right) {
+			int sum = nums[left] + nums[right];
+			if (sum == target) {
+				return new int[] { left, right };
+			} else if (sum < target) {
+				left++;
+			} else {
+				right--;
 			}
 		}
 		return new int[] { -1, -1 };
