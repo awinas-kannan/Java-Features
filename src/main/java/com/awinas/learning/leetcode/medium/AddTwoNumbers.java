@@ -35,6 +35,7 @@ public class AddTwoNumbers {
 
 	// Wont Work for Large number of nodes.. (Because of Int Max value)
 
+	// Time Complexity O(m+n)
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
 		int numberOne = l1.val;
@@ -74,6 +75,8 @@ public class AddTwoNumbers {
 		return orig;
 	}
 
+	// Time Complexity : (O(max(m, n)))
+	// Space Complexity: (O(max(m, n)))
 	public ListNode addTwoNumbersOptimised(ListNode l1, ListNode l2) {
 
 		int carry = 0;
