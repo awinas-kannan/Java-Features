@@ -1,0 +1,11 @@
+https://github.com/ashishps1/awesome-leetcode-resources?tab=readme-ov-file
+
+
+1) Recursion
+2) Backtracking
+3) Two Pointer
+4) Sliding Window
+5) Searching
+6) Sorting
+7) Trees
+8) Graph

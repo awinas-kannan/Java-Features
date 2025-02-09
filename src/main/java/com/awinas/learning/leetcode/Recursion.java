@@ -30,7 +30,7 @@ public class Recursion {
 //	factorialHelper(3, 20)
 //	factorialHelper(2, 60)
 //	factorialHelper(1, 120)
-	
+
 	public static int factorialHelper(int n, int accumulator) {
 		if (n == 0 || n == 1)
 			return accumulator;
@@ -40,4 +40,5 @@ public class Recursion {
 	public static int factorialTailRecursion(int n) {
 		return factorialHelper(n, 1); // Initial call with accumulator = 1
 	}
+
 }
