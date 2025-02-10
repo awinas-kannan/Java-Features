@@ -11,6 +11,9 @@ import java.util.stream.IntStream;
 // All possible selections of elements. 
 // The empty subset, which contains no elements.
 
+//We include the empty subset because it is mathematically correct, 
+//logically consistent, and useful in combinatorial problems.
+
 /*
  *  1 2 3 4
  *  
@@ -39,13 +42,21 @@ import java.util.stream.IntStream;
 
 /*  1 2 3 4
  *  2*2*2*2 (Each element has 2 choices) It can be or cannot be part of sub set.. 2^n
+ *  
+ *  
+ *  Ref : [Java] Leetcode 78/90. Subsets I/II [Backtracking #6] https://www.youtube.com/watch?v=NS01_5oZn7c 
+ *  Eric Programming
+ *  
+ *  
+ *  
  */
 
 public class SubSets_1 {
 
 	public static void main(String[] args) {
 		System.out.println(subsets(IntStream.of(1, 2, 3, 4).toArray()));
-		System.out.println(subsetsBT(IntStream.of(1, 2, 3, 4).toArray()));
+		System.out.println(subsets2(IntStream.of(1, 2, 3, 4).toArray()));
+		System.out.println(subsetsBT(IntStream.of(1, 2, 3,4).toArray()));
 	}
 
 	// Time Complexity : O(n * 2^n) (Each element has 2 choices: include or
@@ -95,6 +106,8 @@ public class SubSets_1 {
 
 	// Backtracking is a recursive approach where we explore all possible subsets by
 	// either including or excluding each element.
+	
+	
 
 	public static List<List<Integer>> subsetsBT(int[] nums) {
 		List<List<Integer>> result = new ArrayList<>();
