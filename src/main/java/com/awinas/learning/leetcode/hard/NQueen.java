@@ -16,7 +16,7 @@ public class NQueen {
 //		System.out.println("Valid Positions " + solveNQueens(4));
 //		System.out.println("Valid Positions " + solveNQueens(5));
 //		System.out.println("Valid Positions " + solveNQueens(8));
-		System.out.println("Valid Positions " + solveNQueens(9));
+//		System.out.println("Valid Positions " + solveNQueens(9));
 
 		System.out.println("Valid Positions " + solveNQueensOptimised(9));
 	}
@@ -106,7 +106,8 @@ public class NQueen {
 	}
 
 	/*
-	 *  
+	 * Optimized backtracking avoids unnecessary checks, reducing runtime from
+	 * O(N^N) to O(N!)
 	 */
 
 	public static List<List<String>> solveNQueensOptimised(int n) {
@@ -116,37 +117,39 @@ public class NQueen {
 			Arrays.fill(row, '.'); // Initialize board
 
 		boolean[] cols = new boolean[n]; // Track used columns
-		boolean[] upperLeftDiagonal = new boolean[2 * n - 1]; // Main diagonals (\) --> row - col + (N - 1)
-		boolean[] upperRightDiagonal = new boolean[2 * n - 1]; // Anti-diagonals (/) --> row + col
+		boolean[] topLeftToBottomRightDiagonal = new boolean[2 * n - 1]; // Main diagonals (\) --> row - col + (N - 1)
+		boolean[] topRightToBottomLeftDiagonal = new boolean[2 * n - 1]; // Anti-diagonals (/) --> row + col
 		long start = System.currentTimeMillis();
-		backtrack(0, board, results, cols, upperLeftDiagonal, upperRightDiagonal, n);
+		backtrack(0, board, results, cols, topLeftToBottomRightDiagonal, topRightToBottomLeftDiagonal, n);
 		System.out.println("(solveNQueensOptimised) Time Taken : "
 				+ TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start) + " Seconds");
 
 		return results;
 	}
 
-	private static void backtrack(int row, char[][] board, List<List<String>> results, boolean[] cols,
-			boolean[] upperLeftDiagonal, boolean[] upperRightDiagonal, int n) {
+	private static void backtrack(int row, char[][] board, List<List<String>> results, boolean[] cols, boolean[] TLtoBR,
+			boolean[] TRtoBL, int n) {
+
 		if (row == n) { // Base case: All queens placed
 			results.add(constructBoard(board));
 			return;
 		}
 
 		for (int col = 0; col < n; col++) {
-			if (cols[col] || upperLeftDiagonal[row - col + (n - 1)] || upperRightDiagonal[row + col])
+			if (cols[col] || TLtoBR[row - col + (n - 1)] || TRtoBL[row + col]) {
 				continue; // Prune invalid placements
+			}
 
 			// Place queen
 			board[row][col] = 'Q';
-			cols[col] = upperLeftDiagonal[row - col + (n - 1)] = upperRightDiagonal[row + col] = true;
+			cols[col] = TLtoBR[row - col + (n - 1)] = TRtoBL[row + col] = true;
 
 			// Recur for next row
-			backtrack(row + 1, board, results, cols, upperLeftDiagonal, upperRightDiagonal, n);
+			backtrack(row + 1, board, results, cols, TLtoBR, TRtoBL, n);
 
 			// Backtrack (remove queen)
 			board[row][col] = '.';
-			cols[col] = upperLeftDiagonal[row - col + (n - 1)] = upperRightDiagonal[row + col] = false;
+			cols[col] = TLtoBR[row - col + (n - 1)] = TRtoBL[row + col] = false;
 		}
 	}
 
