@@ -4,9 +4,8 @@ package com.awinas.learning.leetcode.easy;
 
 /**
  * 
- * Approach 			   		Time Complexity 	    Space Complexity 
- * Recursive Binary Search		 O(log N) 			O(log N) (due to recursion stack) 
- * Iterative Binary Search 		O(log N) 			O(1) ✅
+ * Approach Time Complexity Space Complexity Recursive Binary Search O(log N)
+ * O(log N) (due to recursion stack) Iterative Binary Search O(log N) O(1) ✅
  * 
  * 
  * Iterative approach is better for large inputs (avoids recursion overhead). ✅
@@ -25,6 +24,10 @@ public class BinarySearch {
 		System.out.println(binarySearchRecursion(nums, 5, 0, nums.length - 1));
 		System.out.println(binarySearchRecursion(nums, 2, 0, nums.length - 1));
 		System.out.println(binarySearchRecursion(nums, 7, 0, nums.length - 1));
+		System.out.println("*************************************");
+		System.out.println(binarySearchRecursion2(nums, 5, 0, nums.length - 1));
+		System.out.println(binarySearchRecursion2(nums, 2, 0, nums.length - 1));
+		System.out.println(binarySearchRecursion2(nums, 7, 0, nums.length - 1));
 	}
 
 	public static int binarySearchOLogN(int[] nums, int target) {
@@ -57,6 +60,22 @@ public class BinarySearch {
 			}
 		}
 		return -1;
+	}
+
+	public static int binarySearchRecursion2(int[] nums, int target, int start, int end) {
+		if (start > end) {
+			return -1;
+		}
+		int midNumber = start + ((end - start) / 2);
+		if (nums[midNumber] == target) {
+			return midNumber;
+		} else if (nums[midNumber] < target) {
+			start = midNumber + 1;
+			return binarySearchRecursion2(nums, target, start, end);
+		} else {
+			end = midNumber - 1;
+			return binarySearchRecursion2(nums, target, start, end);
+		}
 	}
 
 }
