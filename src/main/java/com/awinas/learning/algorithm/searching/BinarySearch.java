@@ -2,6 +2,22 @@ package com.awinas.learning.algorithm.searching;
 
 public class BinarySearch {
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * REFER LEETCODE PACKAGE
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public static void main(String[] args) {
 		// Should have numbers in sorted order
 
