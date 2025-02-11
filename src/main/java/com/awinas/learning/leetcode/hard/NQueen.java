@@ -21,6 +21,13 @@ public class NQueen {
 		System.out.println("Valid Positions " + solveNQueensOptimised(8));
 	}
 
+	
+	/*
+	 * In brute force, we try placing N queens in an N×N board in every possible way.
+	 * Each queen has N choices per row, leading to: O(N^N)
+	 * 
+	 *  Space Complexity : O(N^2) -> If storing the board for output.
+	 */
 	public static List<List<String>> solveNQueens(int n) {
 
 		List<List<String>> results = new ArrayList<>();
@@ -29,12 +36,6 @@ public class NQueen {
 		for (char[] row : board) {
 			Arrays.fill(row, '.');
 		}
-
-//		for (char[] row : board) {
-//			for (int col = 0; col < n; col++) {
-//				row[col] = '1';
-//			}
-//		}
 
 		long start = System.currentTimeMillis();
 		placeQueens(board, 0, results, n);
@@ -108,6 +109,9 @@ public class NQueen {
 	/*
 	 * Optimized backtracking avoids unnecessary checks, reducing runtime from
 	 * O(N^N) to O(N!)
+	 * Due to pruning (column & diagonal checks in O(1)), we reduce invalid placements.
+	 * 
+	 * Space Complexity : O(N^2) -> If storing the board for output.
 	 */
 
 	public static List<List<String>> solveNQueensOptimised(int n) {
