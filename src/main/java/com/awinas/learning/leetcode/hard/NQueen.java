@@ -18,7 +18,7 @@ public class NQueen {
 //		System.out.println("Valid Positions " + solveNQueens(8));
 //		System.out.println("Valid Positions " + solveNQueens(9));
 
-		System.out.println("Valid Positions " + solveNQueensOptimised(9));
+		System.out.println("Valid Positions " + solveNQueensOptimised(8));
 	}
 
 	public static List<List<String>> solveNQueens(int n) {
