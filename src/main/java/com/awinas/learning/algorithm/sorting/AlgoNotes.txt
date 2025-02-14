@@ -30,4 +30,8 @@ c) Insertion Sort ( Start from num 2(i) and check from 0 - index of the number i
 	Time Complexity: O(n²) (Best case: O(n) for nearly sorted data)
 	Best for: Small or nearly sorted datasets.	
 	
+d) Merge Sort (Divide and Conquer)
+	Divides the array into two halves, sorts each half, and merges them.
+	Time Complexity: O(n log n)
+	Best for: Large datasets, stable sorting.	
 		
