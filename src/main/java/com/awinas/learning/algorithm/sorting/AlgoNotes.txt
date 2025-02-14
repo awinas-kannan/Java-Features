@@ -5,3 +5,23 @@ Sorting Algorithm:
 	Insertion Sort:
 	Quick Sort
 	Mer...
+
+Arrays.sort() (uses Dual-Pivot Quicksort for primitives and Timsort for objects)
+Collections.sort() (uses Timsort for sorting lists)
+List.sort() (also uses Timsort)
+Arrays.parallelSort() (uses parallel sorting for large arrays)
+
+
+a) Bubble Sort
+	Repeatedly swaps adjacent elements if they are in the wrong order.
+	Moves the largest element to the last index
+	Time Complexity: O(n²)
+	Best for: Small datasets, easy to implement.
+	BubbleSort.png
+	
+b) Selection Sort
+	Finds the minimum element and places it in the correct position iteratively.
+	Time Complexity: O(n²)
+	Best for: Small datasets.	
+	
+		
