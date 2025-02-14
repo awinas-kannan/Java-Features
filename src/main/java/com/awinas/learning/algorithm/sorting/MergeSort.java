@@ -16,13 +16,17 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+		int arr[] = { 38, 27, 43, 3, 9, 82, 10 };
 		mergeSort(arr, 0, arr.length - 1);
 		System.out.println(Arrays.toString(arr));
 
-		int arr2[] = { 11, 12, 22, 25, 34, 64, 90, 100 };
-		mergeSort(arr2, 0, arr2.length - 1);
-		System.out.println(Arrays.toString(arr2));
+//		arr = new int[] { 64, 34, 25, 12, 22, 11, 90 };
+//		mergeSort(arr, 0, arr.length - 1);
+//		System.out.println(Arrays.toString(arr));
+//
+//		int arr2[] = { 11, 12, 22, 25, 34, 64, 90, 100 };
+//		mergeSort(arr2, 0, arr2.length - 1);
+//		System.out.println(Arrays.toString(arr2));
 	}
 
 	private static void mergeSort(int[] arr, int left, int right) {
