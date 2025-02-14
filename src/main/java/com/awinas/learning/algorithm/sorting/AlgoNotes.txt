@@ -34,4 +34,13 @@ d) Merge Sort (Divide and Conquer)
 	Divides the array into two halves, sorts each half, and merges them.
 	Time Complexity: O(n log n)
 	Best for: Large datasets, stable sorting.	
+
+e) Quick Sort (Divide and Conquer) - pivot Index (Choose Last element as Pivot Index and Place it at the correct index . Then choose it as Partition index
+	Selects a pivot, partitions the array, and sorts recursively.
+	Time Complexity: O(n log n) (Worst case: O(n²) when poorly partitioned)
+	Best for: General-purpose sorting, fast in practice.
+
+
+
+	
 		

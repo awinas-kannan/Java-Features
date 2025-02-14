@@ -9,6 +9,10 @@ import java.util.Arrays;
  * 	Divides the array into two halves, sorts each half, and merges them.
  * 	Time Complexity: O(n log n)
  * 	Best for: Large datasets, stable sorting.
+ * 
+ *  Time Complexity : O(log n) levels of recursion (since we keep dividing the array into halves).
+ *  
+ *  Auxiliary Space : O(n)	Merge Sort requires additional space for temporary arrays.
  * 	
  */
 
