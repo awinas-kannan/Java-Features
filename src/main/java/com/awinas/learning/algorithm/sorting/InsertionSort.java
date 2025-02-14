@@ -11,6 +11,9 @@ public class InsertionSort {
 		System.out.println(Arrays.toString(insertionSort(arr)));
 		System.out.println(Arrays.toString(insertionSort(new int[] { 12, 11, 13, 5, 6 })));
 
+		System.out.println(Arrays.toString(insertionSort_v2(arr)));
+		System.out.println(Arrays.toString(insertionSort_v2(new int[] { 12, 11, 13, 5, 6 })));
+
 	}
 
 	/*
@@ -22,7 +25,7 @@ public class InsertionSort {
 	 * to j'th position shift all the numbers from j'th position till i
 	 * 
 	 */
-	
+
 	private static int[] insertionSort(int[] array) {
 		// Start from second number
 		for (int i = 1; i < array.length; i++) {
@@ -37,8 +40,7 @@ public class InsertionSort {
 		}
 		return array;
 	}
-	
-	
+
 	private static void shift(int i, int j, int[] arr) {
 		int temp = arr[i];
 		for (int x = i; x > j; x--) {
@@ -46,6 +48,29 @@ public class InsertionSort {
 		}
 		arr[j] = temp;
 
+	}
+
+	/*
+	 * Shifts the elements from left to right to i'th index
+	 * 
+	 */
+
+	private static int[] insertionSort_v2(int[] array) {
+		// Start from second number
+		for (int i = 1; i < array.length; i++) {
+			int key = array[i]; // The element to be inserted
+			int j = i - 1;
+
+			// Move elements that are greater than 'key' one position ahead
+			while (j >= 0 && array[j] > key) {
+				array[j + 1] = array[j];
+				j--;
+			}
+
+			// Insert the key at its correct position
+			array[j + 1] = key;
+		}
+		return array;
 	}
 
 }

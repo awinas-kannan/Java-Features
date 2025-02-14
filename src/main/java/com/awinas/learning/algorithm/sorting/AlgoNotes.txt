@@ -1,8 +1,8 @@
 Sorting Algorithm:
 
-	Bubble Sort:
-	Selection Sort:
-	Insertion Sort:
+	Bubble Sort: (Swapping)
+	Selection Sort: (Finding min Index and Swapping to first) 
+	Insertion Sort: (Shifting)
 	Quick Sort
 	Mer...
 
@@ -25,7 +25,7 @@ b) Selection Sort (Select the min index and move to first)
 	Time Complexity: O(n²)
 	Best for: Small datasets.	
 	
-c) Insertion Sort
+c) Insertion Sort ( Start from num 2(i) and check from 0 - index of the number i ,shift if its a 
 	Builds a sorted list by inserting each element at its correct position.
 	Time Complexity: O(n²) (Best case: O(n) for nearly sorted data)
 	Best for: Small or nearly sorted datasets.	
