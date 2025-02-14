@@ -1,7 +1,7 @@
 Sorting Algorithm:
 
-Selection Sort:
-Bubble Sort:
-Insertion Sort:
-Quick Sort
-Mer...
+	Bubble Sort:
+	Selection Sort:
+	Insertion Sort:
+	Quick Sort
+	Mer...
