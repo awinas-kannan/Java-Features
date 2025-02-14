@@ -12,16 +12,22 @@ List.sort() (also uses Timsort)
 Arrays.parallelSort() (uses parallel sorting for large arrays)
 
 
-a) Bubble Sort
+a) Bubble Sort (Move the large elment to the last by continuously swapping)
 	Repeatedly swaps adjacent elements if they are in the wrong order.
-	Moves the largest element to the last index
+	Moves the largest element to the last index , Then to last index - 1 ,then last index -2 for each iteration
 	Time Complexity: O(n²)
 	Best for: Small datasets, easy to implement.
 	BubbleSort.png
 	
-b) Selection Sort
+b) Selection Sort (Select the min index and move to first)
 	Finds the minimum element and places it in the correct position iteratively.
+	Find the Min index -> move to position 1, then postition 2 ...
 	Time Complexity: O(n²)
 	Best for: Small datasets.	
+	
+c) Insertion Sort
+	Builds a sorted list by inserting each element at its correct position.
+	Time Complexity: O(n²) (Best case: O(n) for nearly sorted data)
+	Best for: Small or nearly sorted datasets.	
 	
 		
