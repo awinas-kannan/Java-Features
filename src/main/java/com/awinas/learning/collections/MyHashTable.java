@@ -3,6 +3,8 @@ package com.awinas.learning.collections;
 import java.util.Hashtable;
 import java.util.Map;
 
+// No Null Values Allowed
+
 public class MyHashTable {
 
 	public static void main(String[] args) {

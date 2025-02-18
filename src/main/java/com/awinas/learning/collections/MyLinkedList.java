@@ -46,6 +46,8 @@ public class MyLinkedList {
 		// Add elements at specified position
 		linkedList.add(4, "A");
 		linkedList.add(5, "A");
+		
+		
 
 		System.out.println(linkedList);
 

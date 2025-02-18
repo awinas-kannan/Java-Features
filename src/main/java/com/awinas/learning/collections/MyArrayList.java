@@ -11,7 +11,7 @@ import java.util.List;
 
 //Index based
 
-//Dynamic resixing
+//Dynamic resizing
 
 //non syncronised
 
@@ -42,9 +42,10 @@ public class MyArrayList {
 
 		// 1. ArrayList to Array
 		String array[] = new String[numbers2.size()];
-		numbers2.toArray(array);
+		Integer arrayz[] = new Integer[numbers2.size()];
+		numbers2.toArray(arrayz);
 
-		System.out.println(Arrays.toString(array));
+		System.out.println(Arrays.toString(arrayz));
 
 		// random access
 		List<Integer> suncList = Collections.synchronizedList(numbers2);

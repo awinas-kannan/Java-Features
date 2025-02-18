@@ -12,6 +12,7 @@ public class ListSorting {
 	public static void main(String[] args) {
 		List<String> names = Arrays.asList("Alex", "Charles", "Brian", "David");
 
+		Collections.sort(names);
 		Collections.sort(names, (a, b) -> {
 			return a.charAt(0) > b.charAt(0) ? 1 : -1;
 		});

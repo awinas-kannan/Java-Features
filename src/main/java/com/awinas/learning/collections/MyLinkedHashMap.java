@@ -13,6 +13,9 @@ public class MyLinkedHashMap {
 		pairs.put(3, "C");
 		pairs.put(4, "D");
 
+		pairs.entrySet().stream().forEach((entry) -> {
+			System.out.println("Key " + entry.getKey() + " Value " + entry.getValue());
+		});
 		pairs.forEach((key, value) -> {
 			System.out.println("Key:" + key + ", Value:" + value);
 		});

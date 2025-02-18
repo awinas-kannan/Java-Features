@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 //Load factor
 //https://www.geeksforgeeks.org/load-factor-in-hashmap-in-java-with-examples/
 //https://stackoverflow.com/questions/10901752/what-is-the-significance-of-load-factor-in-hashmap
-//Index = hashcode(key) & (ArraySize – 1)
+//Index = hashcode(key) & (ArraySize ï¿½ 1)
 
 public class MyHashMap {
 
@@ -35,6 +35,9 @@ public class MyHashMap {
 		System.out.println("Index - >" + (((h = tempKey1.hashCode()) ^ (h >>> 16)) & (5)));
 		System.out.println("Index - >" + (((h = tempKey12.hashCode()) ^ (h >>> 16)) & (5)));
 		System.out.println("Index - >" + (tempKey.hashCode() & 0x7FFFFFFF) % 11);
+		
+		System.out.println("************** HashMap ****************");
+		
 		Map<Integer, String> map = new HashMap<>();
 
 		map.put(1, "A");
