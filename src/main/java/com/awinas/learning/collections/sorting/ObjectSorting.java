@@ -38,6 +38,14 @@ public class ObjectSorting {
 
 		System.out.println("*****************Comparator in Java 8***********");
 
+		Comparator<Employee> comparatorz = new Comparator<Employee>() {
+
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				return o1.getAge() > o2.getAge() ? 1 : -1;
+			}
+		};
+		
 		employees.sort(Comparator.comparing(e -> e.getFirstName()));
 		System.out.println(employees);
 
