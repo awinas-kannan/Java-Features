@@ -889,6 +889,11 @@ In simple terms: If class B is a subclass of class A, then we should be able to 
 
 
 ********* 4: I: Interface Segregation Principle.
+
+The Interface Segregation Principle (ISP) states that a class should not be forced to implement methods it does not use. 
+Instead of having one large interface, we should split it into smaller, specific interfaces.
+
+
 While defining interface ,, it should have only those methods that the client need..
 
 Seggregating interface in such a way that , it should be fully utilized by the implementation class
@@ -897,7 +902,12 @@ Un supported method are not need in classes
 
 Bad design : Internet & Intranet servlets in Authentication 
 
-********* 5: D: Dependency Inversion Principle.
+********* 5: Dependency Inversion Principle.
+
+High-level modules should not depend on low-level modules. Both should depend on abstractions.
+Abstractions should not depend on details. Details should depend on abstractions.
+
+
 Inversion of Control:
   -> Dipendency injection 
        -> Field injection 
