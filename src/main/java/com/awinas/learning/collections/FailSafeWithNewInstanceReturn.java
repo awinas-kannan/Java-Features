@@ -15,11 +15,13 @@ class FailSafeWithNewInstanceReturn {
 		while (itr.hasNext()) {
 			Integer no = (Integer) itr.next();
 			System.out.println(no);
-			if (no == 8)
+			if (no == 5)
 				// This will not print,
 				// hence it has created separate copy
 				list.add(14);
 		}
+		
+		
 
 		// 14 WILL NOT BE PRINTED AS , ITERATOR RETURNNS NEW INSTANCE
 		// AND WE HAVE MADE MODIFICATION IN ORIGINAL LIST

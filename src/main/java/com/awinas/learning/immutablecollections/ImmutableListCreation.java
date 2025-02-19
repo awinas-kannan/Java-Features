@@ -20,17 +20,24 @@ public class ImmutableListCreation {
 		strArr[0] = "0";
 		strArr[1] = "1";
 		strArr[2] = "2";
+		System.out.println(Arrays.asList(strArr));
 		List<String> arrAsList = Arrays.asList(strArr);
 //		arrAsList.add("5"); // java.lang.UnsupportedOperationException
 		arrAsList.set(0, "asList Set method");
+		System.out.println(strArr[0]);
+		
 		List<String> arrListUnModified = Collections.unmodifiableList(arrList);
-
-		System.out.println(Arrays.asList(strArr));
 		List<String> arrListof = List.of(strArr);
 		List<String> arrCopyof = List.copyOf(arrList);
 
+//		arrListUnModified.add("New");
+//		arrListof.add("Try Add");
+//		arrCopyof.add("Try add");
+
 		print(arrList, arrAsList, arrListUnModified, arrListof, arrCopyof);
 
+		
+		
 		strArr[2] = "set att val";
 		arrList.add("100");
 

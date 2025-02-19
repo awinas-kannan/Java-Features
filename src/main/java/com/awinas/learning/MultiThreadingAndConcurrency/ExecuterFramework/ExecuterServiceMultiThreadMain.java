@@ -14,6 +14,8 @@ public class ExecuterServiceMultiThreadMain {
 		Runnable t2 = new RunnableTask(2);
 
 		es.execute(t0); // Runs the thread
+//		es.execute(t0); // Runs the thread
+//		es.execute(t0);
 		es.execute(t1);
 		es.execute(t2);
 		es.execute(new RunnableTask(3));

@@ -30,6 +30,7 @@ public class ListofvsArraysAsList {
 		 */
 
 		List<String> listOf = List.of("apple", "banana", "cherry");
+//		listOf = List.of(array);
 		listOf.set(0, "orange"); // Throws UnsupportedOperationException
 		
 		
