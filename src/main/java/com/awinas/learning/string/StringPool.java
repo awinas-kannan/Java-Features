@@ -12,7 +12,7 @@ package com.awinas.learning.string;
 //String pool is possible only because String is immutable in Java
 
 //https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning#:~:text=String%20is%20immutable%20means%20that,the%20String%20literal%20%22ty%22%20.
-public class StirngPool {
+public class StringPool {
 
 	public static void main(String[] args) {
 
