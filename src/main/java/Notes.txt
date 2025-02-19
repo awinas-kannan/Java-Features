@@ -837,6 +837,19 @@ SRP :
 -> Tax calculator , invoice printer , mailer , archiever everyting present in SEPERATE CLASS
 If any error occurs / or any new feature need to be added,we can chnage in only that particular class
 
+Real-World Examples of SRP
+E-Commerce System
+
+Order (holds order data)
+OrderProcessor (handles order placement)
+OrderRepository (manages database storage)
+ATM Machine
+
+ATM (handles transactions)
+CashDispenser (dispenses cash)
+AccountRepository (manages account storage)
+
+
 ********* 2: O: Open-Closed Principle. (Open for Extension - Closed for modification)
 https://www.youtube.com/watch?v=dMIf_QUSe3w
 When adding new feature ,we should not modify the existing code instead we should write new code by extending
@@ -851,12 +864,24 @@ new Toy class is added which extends product class
 
 Existing code is not changed... New code is written
 
+Real-Time Examples of OCP Usage
+Logging System: Instead of modifying an existing logger class, we can add new log handlers (Console Logger, File Logger, Database Logger) by implementing a common interface.
+Notification System: A Notification interface can be extended for different types of notifications (Email, SMS, Push, Slack) without modifying the main notification processor.
+E-Commerce Discounts: Different discount strategies (PercentageDiscount, FlatDiscount, CouponDiscount) can be added without modifying the core billing system.
+
+Ref : PaymentProcessor.java
 
 ********* 3: L: Liskov Substitution Principle.
 This principle defines that , Object of superclass can be replaced with object of subclass
 without breaking the application.
 
-Super class object replaced by sub class object
+Super class object replaced by sub class object. There should not be un-necessary methods in super class.
+For Ex: If Super class has cash discount which applies to cash mode of payment.. and there are diff payment modes liek upi , creditcard.. then
+the cash discout method should not be in super class and its not used for other payment types... So better move it to a interface
+
+
+The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program.
+In simple terms: If class B is a subclass of class A, then we should be able to replace A with B without breaking the behavior.
 
 //Code reusablity
 //reduced coupling
