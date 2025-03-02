@@ -904,8 +904,8 @@ Bad design : Internet & Intranet servlets in Authentication
 
 ********* 5: Dependency Inversion Principle.
 
-High-level modules should not depend on low-level modules. Both should depend on abstractions.
-Abstractions should not depend on details. Details should depend on abstractions.
+High-level modules should depend on abstractions, not on concrete implementations.
+DIP ensures that classes depend on abstractions, not concrete implementations, reducing tight coupling.
 
 
 Inversion of Control:
@@ -920,6 +920,42 @@ To make it loosely coupled , we need to create the object outside and inject int
 When its tightly couple , you find difficult to write test cases
 
 
+Principle											Focus													What It Solves
+Single Responsibility Principle (SRP)	A class should have only one reason to change.			Prevents god classes (bloated classes with multiple responsibilities).
+
+Open-Closed Principle (OCP)				A class should be open for extension 
+										but closed for modification.							Avoids modifying existing code, reducing bugs and increasing reusability.
+
+Liskov Substitution Principle (LSP)		Subclasses should be replaceable without breaking 
+										the parent class's functionality.						Prevents unexpected behaviors when using derived classes.
+
+Interface Segregation Principle (ISP)	Clients should not be forced to implement 
+										unnecessary methods.									Prevents bloated interfaces and keeps code modular.
+
+Dependency Inversion Principle (DIP)	Depend on abstractions, not concrete implementations.	Reduces tight coupling and increases flexibility.
+
+
+
+Why Do We Need SOLID Principles?
+Improves Maintainability 🛠️
+		Small, single-responsibility classes are easier to debug and modify.
+
+Enhances Scalability 🚀
+	OCP and DIP make it easy to add new features without breaking existing code.
+
+Promotes Code Reusability 🔄
+	Well-structured classes and interfaces can be reused in multiple projects.
+
+Reduces Bugs & Errors 🐞
+	LSP ensures that substituting child classes does not cause unexpected behavior.
+
+Makes Code More Readable & Understandable 📖
+	Clear separation of concerns (SRP, ISP) helps developers quickly grasp functionality.
+
+Supports Agile Development ⚡
+	Loose coupling (DIP) allows easier refactoring and integration of new components.
+	
+	
 ***************************************************************************************************
 ************************************Data structure ************************************************
 ***************************************************************************************************
@@ -1006,7 +1042,7 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem
 3)can we assign null to primitive types ? #no
 
 4)stack vs heap
-https://www.journaldev.com/4098/java-heap-space-vs-stack-memory
+https://www.journaldev.com/4098/java-heap-space-vs-stack-memory -> https://www.digitalocean.com/community/tutorials/java-heap-space-vs-stack-memory
 https://www.guru99.com/java-stack-heap.html
 https://www.youtube.com/watch?v=UcPuWY0wn3w
 https://www.youtube.com/watch?v=jzJjMefsFKE
