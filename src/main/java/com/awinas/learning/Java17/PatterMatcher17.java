@@ -45,18 +45,18 @@ public class PatterMatcher17 {
 		}
 
 		// Java 17
-		System.out.println(formatterJava17("Java 17"));
-		System.out.println(formatterJava17(17));
+//		System.out.println(formatterJava17("Java 17"));
+//		System.out.println(formatterJava17(17));
 	}
 
-	static String formatterJava17(Object o) {
-        return switch (o) {
-            case Integer i -> String.format("int %d", i);
-            case Long l    -> String.format("long %d", l);
-            case Double d  -> String.format("double %f", d);
-            case String s  -> String.format("String %s", s);
-            default        -> o.toString();
-        };
-    }
+//	static String formatterJava17(Object o) {
+//        return switch (o) {
+//            case Integer i -> String.format("int %d", i);
+//            case Long l    -> String.format("long %d", l);
+//            case Double d  -> String.format("double %f", d);
+//            case String s  -> String.format("String %s", s);
+//            default        -> o.toString();
+//        };
+//    }
 
 }

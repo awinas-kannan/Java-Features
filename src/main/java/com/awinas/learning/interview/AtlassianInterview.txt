@@ -1,0 +1,762 @@
+****************************************************************************************************************************************************************************************************
+
+round 1:
+  ->  DS
+
+  ->  Open ended problem
+  
+  ->  TDD
+
+  -> Zoom Wifi
+  -> IDE ? Comfortable
+  -> Boilerplate setup
+  -> Can be google on syntaxx
+  -> Thought Process Alignment with interviewer
+  -> Java : 
+  -> Use Naming Converntions/ 
+  -> Time And Space COmplexity
+  -> Code Quality
+  -> OE
+  -> Cross team collab
+  -> 60Mins Intevire - 45 min coding
+    -> Scale up
+       -> Tradeodd / Though porcess
+       -> Change the method variabless..
+       -> Open to hear interviews thought process
+    -> 
+
+  -> Samples :
+     -> Data structute
+        -> Voting applicatoin
+        -> Collection of files -> https://leetcode.com/discuss/interview-experience/1504593/Atlassian-or-SDE-2-or-P4-or-September-2021-or-Bangalore-or-Offer
+        -> Popular content -> https://leetcode.com/discuss/interview-question/5890716/Atlassian-Interview-Experience-%3A-Content-Popularity-Tracker/
+        -> Commodity prices
+        -> Packaging problem
+        -> Find the closet org -- BFS (Queue - LL)
+
+    -> LLD
+        
+     -> Rate Limiter
+     -> Middleware router
+     -> Game of snake
+     -> Cost explorer
+     -> Custormer satisfaction
+
+
+
+Round 4: System Design
+Design a web scraper
+Provided with initial set of URLs
+Scrape all possible nested urls and find images in all urls and return the list against parent url
+Multiple followups
+
+HLD Round - Atlassian Tags management.
+The interviewer was a Principal engineer and maturely handled the interview. Asked the API design, DB schema, microservices and then moved on to discussion on scaled up system. He asked questions on which components can act as a bottleneck and how can they be scaled.
+The verdict was positive.
+Tag management system: We need to design a tagging system that different systems like Confluence and Jira should be able to use to tag their assets.
+
+
+
+
+
+
+Design a distributed job scheduler
+
+
+
+https://leetcode.com/discuss/compensation/6326155/Atlassian-or-P50-or-Senior-Software-Engineer
+
+
+
+
+
+
+Feed Back :
+  -> P50 : 
+
+  -> SDE 2 P40 :
+     -> System Design :
+        -> HIGH LEVEL DESIGH
+          -> Data model
+          -> Area of immprovements
+          -> API Design
+          -> component design
+
+        Zoom WiteBoard   :
+         
+         open ended : 
+         ->Ask with the interview
+
+         Multiple aproached explaing
+           -> Flow Chart
+           -> Consent Wit Interviewer
+          -> 3 aproaced :
+             Jusitfy thoufhg process ,tradeofffcs,,
+
+           -> Concern with the interviewer... Beofre statrting...
+           -> Future adaptabilty ....
+
+           -> Scale Up the problem
+              -> Init design Face the challenges.. and Scale up
+              -> Be awre about he bottnelct, latency...corner cases
+
+           -> Keep track of api
+           -> Service request
+           -> Monitorying mechanism   
+
+           -> Point the failure of the system.. what correctnesa can be butilt there
+           -> also emapasise on scalame desci
+           -> proactively justity your solution
+           -> Data with wider context
+
+    -> Rapo with the interviewr
+       -> Scalanle system design
+       -> Consptual thinking
+       -> Go with pulse of interviewer..
+       -> 
+  -> Post interview... connect with interviewr 
+
+
+
+
+
+
+Design a web scraper
+Provided with initial set of URLs
+Scrape all possible nested urls and find images in all urls and return the list against parent url
+Multiple followups
+
+
+
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+
+
+Values Round of Interview:
+   
+   Open Company no bullshit : 
+       
+                 *  Have u given constructive feedback : Yes This happens frequetluy duting Code reviews
+                        Instead of simply saying, "This is not required," I provide clear reasoning. 
+                        For example, if the change introduces unnecessary complexity or doesn't align with coding standards, I highlight that. 
+                        Check for Redundancy: If the change duplicates existing logic, I ask if it's really needed. Sometimes, developers might not be aware of an existing utility function or feature.
+                        Scenario:
+                        A junior developer submits a PR, but the code is inefficient and doesn't follow best practices.
+
+                        🔹 What NOT to Say:
+                        "This code is bad. Fix it." ❌ (Too vague and negative)
+
+                        🔹 Constructive Feedback:
+                        "I see that you’ve implemented the function, but it can be optimized. Instead of using multiple loops, you can use a map function to improve efficiency. Also, following our naming convention will make the code more readable. Let me know if you need any help!" ✅
+
+                     Ex : 
+                          naming variable
+                          Asked Arka to use Utility function for converting date to 1 hr ago , 2 hrs ago  
+                          New Feature for Notification comments ,,, arka added in notification planogram class itself
+                          Issue Report : Multiple If else condition were used .. instead of the we could have done it in SQL Itself
+                           @Query(value = """
+                            SELECT * FROM RequestDashboard rd 
+                            WHERE 
+                                (:clubNumber IS NULL OR rd.ClubNumber = :clubNumber)
+                                AND (:fromDate IS NULL OR :toDate IS NULL OR rd.RequestDate BETWEEN :fromDate AND :toDate)
+                                AND (:issueType IS NULL OR rd.IssueType = :issueType)
+                                AND (:category IS NULL OR rd.Category = :category)
+                                AND (:subCategory IS NULL OR rd.SubCategory = :subCategory)
+                            """, nativeQuery = true)
+
+                          Suggestgin fucntional programmsing 
+
+                *  Have you receive critizin from someone :
+                     -> Be Vocal duting the discussion calls ( when during discuss, i used to ping my manages as if this can be done in this ways.. then he used to communicate the same in the discussion meetings)
+                     -> Show Visibiity of your work
+                   
+                *  Time when u had a conflicting POV on solving a problem
+                     ->  Riversand want to make some logic changes in Serivincf Layer
+                          -- Data intergity has to be achieve in source only
+                     ->  Full feed topic designin  during the inital stage
+                     
+
+                *   Be ready to share example to demonstarate transperance or tackeled challengin convo with honesty
+
+                     -> tell about the classification attribute issue
+                     -> It helps build trust and encourages open communication.
+                     You acknowledge the issue instead of avoiding it.
+                     You take responsibility instead of blaming others.
+                     You propose a solution to prevent it from happening again.
+
+   Play, as a team : 
+
+              *  Highlight a time you colloborate effectively with other , fostering team work and achieving shared goals
+                  -> Ecommerece Integration
+
+              *  Compromising to Move Forward in a Project
+
+                   -> Full Feed Seperate topic creation (Suggested to have header with full feed and deelta feed)
+                   -> Robin asked to create new topic .. to save the cost we added it in header
+
+                   --> Storing the Delta Json sent to the downstream systems
+
+                   --> Send Item data to Riversand using Blob instead of Event Hub .. To take full control over the reprprcess
+                        Suggested not have a real time as this will create slowness in the RIversand
+                        We will have the clear visibility if what is sent to the Riversand if throug blob
+
+                   Balances both perspectives – Uses a simpler solution now but keeps an option open for future improvement.
+                   Keeps the project moving – Avoids unnecessary delays.
+                   Maintains teamwork – Shows flexibility while making a practical decision.
+
+             *  Motivate an Employee to Move Forward with a Project : Brain stroming
+                  Recognizes effort → Boosts confidence
+                  Tell About badgify
+
+                  Helped Vrinda with the Asset Migration
+
+                  Acknowledge Their Effort – "I see you’ve been putting in a lot of effort on this. Your contributions are really valuable."
+                  Learning champina Shenita : For helping with one of the task i ecom inegration with urdercy
+
+                  Build and deployment fixes
+                  Offer Support – "If you need help, let’s brainstorm together or pair-program to find a better approach."
+
+                  Notification Service Brain stroming session with arka:
+                   -> Creating a new table
+                   -> Two approach 
+                      -> 1 complex query for business usrs and non business user
+                      -> 1 easy way to create a notificaiton table
+
+
+
+   Build with heart and balance : Innovation should solve real problems without overcomplicating the system
+   
+            *  Balancing Innovation with Practicality While Keeping People’s Needs in Focus
+                    Example 1: Optimizing Database Performance Without Overengineering
+
+                    * Created a single topic for full feed and delta deed.. Avoided subscrimin to two topics.. manintin the two topic where we had to keep track of renewin the  certificatis
+
+                    * Talk aboout the PDF Upload where the create/modify/ delete functinality was over engineered
+
+                    * Implemented In memory cache of storing the Location data in BUP instead of calling the location api
+                      ✔ Business teams maintain continuity while improving performance.
+
+                    * Notification Feature :
+                        -> Created complex query for Busnees users and club users based on existin table
+                        -> Solved it by createing a new table
+
+                     ---> Reduced complexity
+
+                   
+
+
+            *  Time When I Overcommitted on a Delivery
+                -> Generelly i analysie and estimate it properly beofre commiting anything
+                -> Add buffer when you say the delivery date 
+                
+                
+                How I Handled It:
+                -> ✅ Acknowledged the Delay Early 
+                -> ✅ Communicated Transparently 
+                -> ✅ Asked for Support
+                -> ✅ Revised the Plan 
+
+                -> outcome    :  Learned to buffer time for unknown dependencies in future estimations.
+                -> Key Lesson :  Overcommitting can lead to stress and delays. It’s better to set realistic expectations and adapt proactively!
+
+            * Balancing Business, Team, and Project Priorities When They Compete
+                In any software development environment, business goals, team well-being, and project deadlines often conflict. 
+                Balancing them requires smart decision-making to ensure success without burnout or poor-quality deliverables.
+
+               Ex : Location ETL Prod Issue vs Ecomm Integration Feature
+               Got Production issue in location  etl
+               Ecom intecreation : Compare and upsert the cosmos entity
+
+                Prioritize the Most Critical Task
+                Communicate Clearly with Stakeholders
+                Learn and Improve : If such conflicts happen frequently, propose better sprint planning and buffer time for unexpected issues.
+
+                Outcome:
+                🚀 Business gets a transparent timeline for both the fix and feature.
+                🚀 Project progresses without completely stopping new development.
+                🚀 Team avoids unnecessary stress while keeping work balanced.
+
+                Key Lesson: Balancing priorities is about trade-offs—choose the best option that minimizes risk while keeping stakeholders aligned. 🔥
+
+
+
+
+
+    Be the change you seek
+            -> 
+
+            Be the change you seek" means that if you want to see a difference in your team, workplace, or community, 
+            you should take the initiative and embody the change yourself instead of waiting for others to act.
+
+            Example in the Workplace:
+            If you feel that team collaboration is weak, don’t just complain—start communicating better, helping teammates, and setting an example of teamwork. Over time, others will follow your lead.
+
+            It’s about taking responsibility and driving positive change through your own actions! 
+
+            *  Share an instance where you Proactively Drove a Change or Improving a Process , embodying ownership and initative
+
+                ** Tell about Hashi corp to akeyless Migration 
+                ** Tell about migrating from Event hub to Kafka
+                ** Ownerhip of cloud cost optimiszation
+                ** CCM Integration
+                ** Cosmos PoC 
+                ** DB Migration from Moving from Westus to east us                
+                ** Mostly if there are any PoC , My Manger use to assign it to me
+                
+           
+
+                Key Lesson:
+                💡 Taking ownership of inefficiencies and proactively improving processes creates long-term benefits for both the team and the business.
+                    Proactively identifying inefficiencies and introducing automation helps scale the team's productivity and reliability.
+
+        
+            * How did u handle ambigious priject (Ex : Wlmart team / working wth bad data // cleandins )
+
+              Tell About Ecomm Integration :
+                 -> Data Validator component
+                    -> Check for Data types of the item attributes
+                    -> Min lenght , Max length constrains
+                    -> LOV Values check
+                    -> Cateogry based attributes
+                    -> Multple attribute mapped to single attribute
+                 -> Help to cleanse the data in soruce during the migration to the next gen system
+                
+                Outcome :
+                  -> Speed up the migration process
+                  -> 
+
+            * Have u turn ar
+
+      
+
+
+    Dont f**k the customer
+
+          *  Provide an example of how you prioritized customer needs, delivered exceptional value, or resolved a critical issue with care.
+
+            -> Tell about Image Download issue in maxima : users were facing issue viewing the image..
+            -> Bulk Upload plus Slowness : Cached Location data Instead of calling the api. Cached Meta data .. Implemented Multi threading for each items presetn
+            -> Tell about Location ETL Temp Fix of sending the data directly to KAFKA
+
+          * Above and beyond to create a great customer/stakeholder experience
+            -> Designed and developed servicing layer
+            -> May be tell about the data validator layer
+
+          * Messing up something at work.
+            -> Non Prod Data deletion for internet users
+            -> PDF Upload feature - Helped to re deply the older version
+            -> 
+
+
+
+
+-> helped Someone (happende with juniors)
+-> Conflicting POV -- Told about kafka
+-> End to End Initaitved with the challeges faced -- ecom integration
+-> Put somethin in prod that got impaced -- classificatio attr
+-> Idea got rejected -- power bi for Report Visual
+
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+
+
+Management Round :
+
+  7 Params
+
+  Leadership skills
+
+  Learning Agility & Adaptability
+    
+    Learning Agility is the ability to quickly learn, adapt, and apply new knowledge in different situations. It means being open to new experiences, learning from them, and adjusting your approach as needed.
+    Adaptability is the flexibility to change your thoughts, behaviors, or strategies based on new information or unexpected challenges.  
+    Together, Learning Agility + Adaptability means:
+    ✅ Being open to new ideas.
+    ✅ Quickly learning from experiences.
+    ✅ Adjusting your approach when things change.
+    ✅ Handling uncertainty with confidence.
+
+  Decision Making Conceptual Thinking  (Eg : Cloud Cost Optimization - Conducted Load resting and reduced the CPU and Memory Usage)
+    Decision Making is the ability to choose the best option from multiple choices based on logic, experience, and available information.
+    Conceptual Thinking is the ability to see the bigger picture, connect ideas, and understand complex situations.
+    Together, Decision Making + Conceptual Thinking means:
+    ✅ Analyzing a situation deeply.
+    ✅ Understanding patterns and connections.
+    ✅ Thinking beyond the obvious.
+    ✅ Making well-informed and strategic choices.
+    
+    It's about "seeing the whole puzzle before placing the right piece."
+
+
+  Conflict management
+  Ownership
+  Org Impact
+  Operational Excellence
+
+
+
+-- Top 2 projects
+-- STAR Approach
+-- Challenced faced in project
+-- Scratch to delivery
+-- Go to Steps to be successful
+
+
+
+  *  Can we walk me thorugh engg project e2e
+          How to manage and impact
+          Explaing About Servicing Layer  & Ecom Integration
+
+
+  * How I Estimated and Scoped a Project
+          -> Tell about the excel sheet that i created for servicing layer
+          Understanding Requirements
+          Breaking Down Tasks 
+          Estimating Effort
+          Validating Estimates with the Team 
+          Finalizing Scope – Prioritized MVP features to release faster and planned enhancements in later sprints.
+
+
+  *  Cross Team colloboration
+          Cross-Team Collaboration Across Different Products (Item MDM , Sentinel , ATG)
+
+
+  *  Team or Org Boundaries 
+          Team or organizational boundaries refer to the defined limits within which a team or department operates. These boundaries determine:
+            ✅ Roles & Responsibilities – What a team is accountable for.
+            ✅ Scope of Work – What falls under a team's ownership.
+            ✅ Communication & Collaboration – Who they interact with and how.
+            Key Takeaway:
+            Boundaries help teams focus, but effective collaboration across boundaries ensures efficiency, innovation, and smooth execution in an organization.            
+
+  *  Metrics to Track Project Progress
+          We generally maintain excel sheet
+          Capacity planning :  Planned and Commited tasks
+          📌 Planned vs. Actual Completion – Tracks whether tasks are being completed on time.
+          📌 Sprint Velocity – Measures how much work (story points) is completed in each sprint.
+          📌 Cycle Time – Time taken from starting a task to completion.
+          📌 Lead Time – Time taken from request to delivery.
+
+          📌 Test Coverage – Percentage of code covered by automated tests.
+          📌 Deployment Success Rate – Percentage of successful deployments vs. failed ones.
+
+
+          Sprint Velocity
+          Sprint Completion Rate (%)
+          Unplanned Work (%)
+          PR Review Time
+          PR Review Depth
+          PRs In Progress
+          PR Merge Frequency
+
+          Build Success Rate
+          Top Failed Jobs
+          Avg Build Duration
+
+          Development Cycle Time (The average amount of time between a pull request's 1st commit to when the pull request is deployed to productio)
+          Deploy Frequency
+
+          Sonar Violations
+          Automated Code Coverage
+          Container Security Vulnerabilitie
+
+          Build : API Liniting/ Code Coverage
+          Test : Func Test/Contract Testing/Resiliency Test/Integration /E2E Testing
+          Deploy : Canary deployment / Alerts / Auto scale /Deployment Recency
+          Operate: Auto Rollback / DR / Health Check (Promtheus / Metrics / Gragana) / APP Monitor (Livliness Probe * Readiness Probe (/actuatro/health))
+
+
+   
+  *  Learning from that experience and applied in next project
+
+          Effictively Communicating with Business team..  Classification attribute... mapping mismatch 
+          ** get It clarified and then Go On ** 
+          Before commiting take an analysis story
+          About technical expertise. like Creating DB / using Partiion /using kafka
+
+  *  Any improvement That u observe in term of qulaity or efficeiny
+          Multiple Mail thread could have been avoided if there was a dashboard>>>>>
+          Should have implemented a dashboard to check the Item attribute in 3 Systesm ( RS | SL | ATG)
+          Data Integraity Maintenance for Ecom INtegration
+          Async in Bup item creation
+          Location Cache
+          Should have tried to implemented the kafak consumer in an async way in Ecom Integration
+
+
+  *  How did u identify the improvement opportunity
+          Improving the UI Screen whihc was calling multiple api to single api
+          Performance Imporovement in Bulkupload plus
+          Initla Load Async Process for Loading hte data into Servicing Layer
+   
+  *  How did u measeure and quantifiy the impact
+          1️⃣ Define Success Metrics : Made Riversand Omni Channel
+           Location API Cache : Did Load Testing on Item Createion 
+           A new API version is deployed. Logs show a 20% reduction in latency, confirming a positive impact.
+
+           Already Existing API Taking X time.. Reduced the time and testing using Automation
+           🔹 Improved load time (3s → 1s) → Increased conversion rate by 10%.
+
+           Async Process in CLIC - Club Invertory into cluuys
+            -> 30 mins to Load Millions of record
+
+           Loading the Data from Riversand To Servicing Layer :(Full Feed)
+            -> Syncronous Approach Vs Async Approach 
+
+          * Servicing Layer : Adoption by n number of teams  
+   
+  
+  *  How did u present to ur peers and take ok from leadership
+          -> Tell about dev tracker excel . Got approval from Product Owner  & Engineering manager
+
+
+  * How a Team Safely Deploys Changes to Production
+      CRQ Tell about :
+        -> Evidence of testing
+        -> Installation strategy ( Creating table/ Creating configs like Serets)
+        -> validation Plan
+        -> Rollback strategry (Revert the table created)
+        -> WHat will happend in case of issue ? Will u be doing forward fix ?
+        -> 
+
+      ✅ Pull Requests & Code Reviews – Every change undergoes peer review before merging.
+      ✅ Automated Linting & Static Code Analysis – Ensures code quality.
+      ✅ Feature Flags – Enables/disables features without redeploying.
+      ✅ Rollback Strategy – If an issue occurs, revert to the last stable version.
+      ✅ Unit Tests – Ensures individual components work as expected.
+      ✅ Continuous Deployment (CD) – Deployments are automated if all tests pass.
+
+
+
+  * Operational Processes That Slow Down Team Performance
+        1️⃣ Slow Code Review & Approval Process Sometimes if i'm busy with priority work i could not review the code.PR Validation Got Delayeed
+          ✅ Problem: PRs stay in review for too long, delaying releases.
+          ✅ Impact: Developers wait, leading to idle time and missed deadlines.
+          ✅ Solution: Set SLAs (e.g., "PRs must be reviewed within 24 hours").
+         2️⃣ Too Many Meetings & Bureaucracy    
+         5️⃣ Lack of Clear Prioritization & Scope Creep
+          ✅ Solution:Use roadmaps and quarterly goals to align priorities.
+                      Ensure feature requests go through proper backlog grooming.
+      -> Dependency On Other Teams related to Deplyment issues : Have to create a jira tikect waint until its assigned
+      -> Dependecy on Other teams (Business ) during the Ecomm Integration Process
+
+
+  * Faced complex changes within the project—how did you approach them?
+      -> If the Businnes is not chaning the rollout plan thn we hade to work for additional hours to complete that
+      -> Ex : Lot of Mapping channged b.w attributes happened During UAT.
+
+      -> Feacute Flag to filter only the Rollout Categories FOr the Soft Launch
+         Soft Launch : Migrate ALL items from ATG to Riversand. Item Createion /Modifiction allowed only for Pilot Categories
+                       -> Rest of the categories were done by ATG. We get the delta feed for modified item and store to Riversand
+          
+         Mainlaunch : All the items were managed in Riversand
+         
+         1️⃣ Understand the Scope & Impact
+         2️⃣ Break It Down into Smaller Steps
+         3️⃣ Collaborate & Gather Inputs
+            ✅ Involve stakeholders (PO, EM, Architects, Devs, QA, Ops) early.
+            ✅ Discuss alternative solutions and trade-offs.   
+         5️⃣ Plan Deployment & Rollout
+
+
+
+  * Technical and Non-Technical Approach— How Did This Change Impact?
+
+        🚀 A technical solution alone is not enough—ensure people understand and adopt the change.
+        🚀 Clear communication and training reduce friction in adoption.
+        🚀 Measuring impact helps validate the effectiveness of changes.
+        well-balanced technical and non-technical approach ensures that changes are successful, sustainable, and widely accepted. ✅
+
+        🔹 Focus: How you approached the change using both technical and non-technical strategies and what impact it had.
+        🔹 Key Elements:
+
+          Technical Approach: Solution design, optimizations, automation, testing.
+          Non-Technical Approach: Communication, collaboration, training, change management.
+          Impact Measurement: Riversand Made Omni Chnanel.. Servicng Layer Become the Source of Truch for Items . We get rid of Legacy systems called (ATG/Sentianl) .
+          We got our first consumer for Servicing layer...
+
+          🔹 Example: Migrating from a legacy system to a modern microservices architecture and ensuring smooth transition via training & phased rollout.
+
+        Riversand Omni Item :
+          -> DB2 is where the Downstream system accesss using read only accounts
+          -> Once the Riversand is Omni Item
+          -> We had to Inform the consumer to Get the data from Servicing Layer
+          -> Prepared a ppt with all details about how to consumer the item data and presented it to downstream systems
+          -> 
+
+          Impact : Started Depricating DB2 / ATG/ Sentinal
+
+
+  * How did you influence the outcome or adoption of the change?
+        Influencing the adoption of a change requires both technical execution and stakeholder alignment. It’s not just about implementing a solution but also ensuring that the team and organization embrace it effectively.
+
+        Key Difference:
+          ✅ The first question is about the approach & impact of the change (what was done?).
+          ✅ The second question is about how you ensured the change was accepted & implemented (how did you drive adoption?).
+
+          🚀 Think of the first as execution-focused and the second as influence-focused.
+
+
+          ** Adoption rate calculationed from increlasing number of consumers for Servicing Layer
+
+
+  * Have you pushed back on a change you thought was not required?
+        Scenario: Avoiding Over-Engineering in UI Design
+        This scenario is a perfect example of over-engineering and how pushing back on unnecessary changes can prevent complexity.
+        Context:
+                You have a UI where users can:
+                ✅ Select content from a table to modify or delete it.
+                ✅ Click "Create" to add a new entry.
+                ✅ Submit Button: Initially designed to handle both "Create" and "Modify" actions.
+
+                Issue Identified:
+                🔹 Users were only using "Create" or "Modify" individually, never both at the same time.
+                🔹 The Submit button was over-engineered to handle both cases, adding unnecessary complexity to the frontend and backend logic.
+                🔹 Code became harder to maintain due to multiple condition checks for a scenario that wasn't even occurring.
+        Why I Pushed Back on the Change:
+          1️⃣ Analyzed Real Usage Data
+
+          Monitored UI interactions and found that users never needed to "Create" and "Modify" in one step.
+          Confirmed with business stakeholders that this wasn't a required feature.
+          2️⃣ Proposed a Simplified Approach
+
+          Removed complex logic from the Submit button.
+          Introduced separate "Save" buttons for "Create" and "Modify" to simplify user experience.
+          Reduced API complexity, making backend handling easier.
+          3️⃣ Communicated the Benefits to Stakeholders
+
+          Explained that removing the extra logic would:
+          ✅ Make the UI more intuitive.
+          ✅ Reduce maintenance overhead in both frontend & backend.
+          ✅ Improve code clarity for future enhancements.       
+          
+          Outcome:
+          ✅ Simpler UI & better UX – Users had a clearer workflow with dedicated buttons.
+          ✅ Reduced tech debt – Easier to maintain code without unnecessary condition handling.
+          ✅ Performance improved – API didn’t have to process an unnecessary combined "Create/Modify" scenario. 
+
+          "Pushing back" means challenging a request, requirement, or decision when you believe it's unnecessary, inefficient, or could introduce risks. 
+          It does not necessarily mean rejecting changes outright, but rather questioning their necessity and suggesting a better alternative.
+
+          ✅ Push back = Thoughtful challenge + Better alternative
+
+
+
+
+
+
+  * Have you worked on a project with significant ambiguity?
+        * Ecommerce Integration
+
+  * Reflect on a situation where you helped an individual teammate grow or assisted the team in improving practices.
+        * PR Review For Juniors
+        * Branstormin Seession 
+
+  * Suggestions given to the product
+  
+        * Maxima - As business were facing Issue with Print Icon and Were just using that for saving Planograms/ Floorplans as PDF. Discusssed with business and created Download Icon in the Page. So that now club associates can directly download it instead of clicking on print and then saving the PDF
+        * Maxima - Suggested to have new card in Issue dashboard to show Planograms Pending Excecution (Evidence Added but not completed)
+        * Bulkupload - Provided solution for increasing the performance of application
+        * Cache the location data in applciaiton   
+        * Export data to blob storage for Midas Team. 
+
+        * Maxima 2.0 UI/UX Figma design review and suggestion
+        * Splunk dashboard to differentiate the request from 1.0 and 2.0 UI
+        * Create a Data validator service to check the data quality in Riversand. Features includes 1) Data type of all the attributes of all the items will be validated 2)LOV Values will be validated 3)Relationship counts of the entity will be validated 4) PTI Hierarchy will be validated
+        * Integrate Json Schema before publishing the Canonical Data to Downstream system      
+
+
+✅ Scope: Migrate data from ATG and Sentinel to Riversand.
+✅ Impact: Riversand will become an Omni-Channel platform.
+
+
+✅ Scope: Create a servicing layer to provide Item MDM data to consumers.
+✅ Impact: The servicing layer will become the Next-Gen system for fetching Item MDM data within the Walmart network.
+
+
+* Clic
+* Bup
+* Location ETL
+* Servicing Layer
+* Ecom Integration
+* Space Planning
+
+
+
+Projects :
+ -> Servicing Layer :
+    -> Router
+    -> Transformer
+    -> 
+
+Soft Launch :
+  -> Atttributes migrated from ATG
+  -> Forward  Sync frm  ATG to RS
+
+SENTINEL ( Maintains Assets )
+ATG (Maintains Ecom Item Attributes)
+
+
+
+Mistakes & Learnings
+  Classification / Warnings attribute.
+  Failed to inform the plan change during main launch (Loading the cosmos with Asset Item Rel after Exporting the pilot categories to ATG)
+  Created cosmos without partition key. Resolved this by adding TTL
+
+
+OE : 
+  -> Auto Scaling
+  -> Alerts
+  -> Health Check
+  -> APP Monitor
+  -> Disaster Recover ( Multiple Region)
+  -> 
+
+EE :
+ -> Sonar Qube integration
+ -> API Linting Integration
+ -> Junits
+ -> Contract Testing
+ -> FUnctional Testing using Cucumber
+ -> Load Testing
+
+
+mx-rs-sl-message-router
+mx-rs-sl-transformer-publisher
+mx-rs-sl-common-lib
+mx-rs-sl-inital-load
+mx-rs-sl-graphql-service
+mx-rs-sl-export-full-load 
+mx-rs-sl-asset-api
+
+
+mx-rs-ecomm-data-integration
+
+mx-rs-ecomm-data-mig-cron
+
+Built ATG validation error table ,which helped the business team to cleanse the data or update the riversand data model
+
+
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+
+Have u pushback a change whihc u thought was not required ? 
+
+    Yes, if I come across a change in a PR that I believe is not required, I push back on it with proper reasoning. Here’s how I usually handle it:
+
+    Provide Constructive Feedback: Instead of simply saying, "This is not required," I provide clear reasoning. For example, if the change introduces unnecessary complexity or doesn't align with coding standards, I highlight that.
+    Suggest Alternatives: If there's a better way to achieve the same goal, I suggest it. This ensures the discussion is solution-oriented rather than just rejecting the change.
+    Check for Redundancy: If the change duplicates existing logic, I ask if it's really needed. Sometimes, developers might not be aware of an existing utility function or feature.
+    Evaluate Business Impact: If the change doesn't contribute to the expected business outcome, I flag it and ask for clarification.
+    Encourage Discussion: I always keep an open mind. If the developer provides a valid reason for the change, I reconsider my stance.
+
+
+
+Tell  About PDF Upload / Issue Report Screen
+Tell about the coommon library
+
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************
+****************************************************************************************************************************************************************************************************

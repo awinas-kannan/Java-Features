@@ -39,7 +39,7 @@ public class SubArrayProductLessThanK {
 	
 	// 2 2 10 10
 	private static void optimizedSlidingWindow() {
-		int[] nums = { 10, 5, 2, 6 ,1 };
+		int[] nums = { 10, 5, 2, 6, 1 };
 		int k = 100;
 		int count = 0;
 		int product = 1;
