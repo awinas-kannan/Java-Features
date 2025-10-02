@@ -1,6 +1,6 @@
 package com.awinas.learning.exceptionhandling;
 
-public class MyNullPtrException extends Exception {
+public class MyNullPtrException  extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

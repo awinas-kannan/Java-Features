@@ -1,0 +1,168 @@
+### Min Heap and Max Heap
+
+A **heap** is a special tree-based data structure that satisfies the **heap property**. A heap is always a **complete binary tree**, meaning all levels of the tree are fully filled except possibly the last level, which is filled from left to right.
+
+Heaps can be classified into two types:
+
+1. **Min Heap**: The root node contains the **minimum** value, and every parent node is smaller than or equal to its children.
+2. **Max Heap**: The root node contains the **maximum** value, and every parent node is greater than or equal to its children.
+
+### 1. Min Heap
+In a **min heap**, the parent node is always smaller than its child nodes. The smallest element is at the root, and every subtree follows the same property.
+
+#### Min Heap Properties:
+- The value of the root is the **minimum** of all nodes.
+- The children of a node are always **greater** than or equal to the parent node.
+  
+#### Example of a Min Heap:
+
+```
+        5
+      /   \
+     10    15
+    /  \   /  \
+   20  30 40  50
+```
+
+In this min heap:
+- The smallest element (5) is at the root.
+- Every parent node is smaller than or equal to its children (e.g., 10 and 15 are greater than 5).
+
+#### Operations on Min Heap:
+- **Insertion**: Insert the new element at the end (bottom-most, left-most) of the tree and then "bubble up" to maintain the heap property.
+- **Deletion (removal of the root)**: Remove the root (smallest element), replace it with the last element, and then "bubble down" to maintain the heap property.
+
+The time complexity of both insertion and deletion operations in a min heap is \( O(\log N) \), where \( N \) is the number of nodes.
+
+### 2. Max Heap
+In a **max heap**, the parent node is always larger than its child nodes. The largest element is at the root, and every subtree follows the same property.
+
+#### Max Heap Properties:
+- The value of the root is the **maximum** of all nodes.
+- The children of a node are always **smaller** than or equal to the parent node.
+  
+#### Example of a Max Heap:
+
+```
+        50
+      /    \
+     30     40
+    /  \   /  \
+   20  10 15  5
+```
+
+In this max heap:
+- The largest element (50) is at the root.
+- Every parent node is larger than or equal to its children (e.g., 30 and 40 are smaller than 50).
+
+#### Operations on Max Heap:
+- **Insertion**: Insert the new element at the end (bottom-most, left-most) of the tree and then "bubble up" to maintain the heap property.
+- **Deletion (removal of the root)**: Remove the root (largest element), replace it with the last element, and then "bubble down" to maintain the heap property.
+
+The time complexity for both insertion and deletion in a max heap is \( O(\log N) \), where \( N \) is the number of nodes.
+
+### Key Heap Operations:
+1. **Insertion**:
+   - Insertion always occurs at the bottom of the heap (last position in the array representation).
+   - After insertion, the element "bubbles up" if it violates the heap property (e.g., a smaller element in a min heap or a larger element in a max heap).
+
+2. **Deletion (Extract Min/Max)**:
+   - The root element (min for a min heap, max for a max heap) is removed.
+   - The last element is placed at the root, and it "bubbles down" to maintain the heap property.
+
+### Heap Representation:
+Heaps are commonly represented as arrays for efficient access.
+
+#### Array Representation of Min Heap:
+For the min heap:
+```
+        5
+      /   \
+     10    15
+    /  \   /  \
+   20  30 40  50
+```
+The corresponding array representation would be: `[5, 10, 15, 20, 30, 40, 50]`.
+
+In a heap represented as an array:
+- The root element is at index 0.
+- The left child of a node at index \( i \) is at index \( 2i + 1 \).
+- The right child of a node at index \( i \) is at index \( 2i + 2 \).
+- The parent of a node at index \( i \) is at index \( \frac{i-1}{2} \).
+
+### Code Implementation of Min Heap and Max Heap in Java
+
+#### Min Heap Example (Using `PriorityQueue`):
+
+```java
+import java.util.PriorityQueue;
+
+public class MinHeapExample {
+    public static void main(String[] args) {
+        // Create a min heap using PriorityQueue
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // Insert elements into the min heap
+        minHeap.add(20);
+        minHeap.add(10);
+        minHeap.add(30);
+        minHeap.add(5);
+
+        // Display the smallest element (root)
+        System.out.println("Min element: " + minHeap.peek());  // Output: 5
+
+        // Remove the smallest element and display the next smallest
+        while (!minHeap.isEmpty()) {
+            System.out.println("Polling: " + minHeap.poll());
+        }
+    }
+}
+```
+
+#### Max Heap Example (Using `PriorityQueue` with Comparator):
+
+```java
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+public class MaxHeapExample {
+    public static void main(String[] args) {
+        // Create a max heap using PriorityQueue with a custom comparator
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+
+        // Insert elements into the max heap
+        maxHeap.add(20);
+        maxHeap.add(10);
+        maxHeap.add(30);
+        maxHeap.add(5);
+
+        // Display the largest element (root)
+        System.out.println("Max element: " + maxHeap.peek());  // Output: 30
+
+        // Remove the largest element and display the next largest
+        while (!maxHeap.isEmpty()) {
+            System.out.println("Polling: " + maxHeap.poll());
+        }
+    }
+}
+```
+
+### Time Complexities:
+- **Insertion**: \( O(\log N) \) because an element might need to bubble up the height of the heap.
+- **Deletion (Extract Min/Max)**: \( O(\log N) \) because the root needs to bubble down to maintain heap property.
+- **Peek**: \( O(1) \) because accessing the root (min or max) is a constant-time operation.
+
+### Use Cases:
+1. **Min Heap**:
+   - Priority Queue implementation.
+   - Dijkstra's algorithm (shortest path).
+   - Prim's algorithm (minimum spanning tree).
+
+2. **Max Heap**:
+   - Scheduling systems (where higher-priority tasks should be handled first).
+   - Implementing the **Heap Sort** algorithm.
+   - Tracking the largest elements (e.g., a leaderboard).
+
+### Conclusion:
+- **Min Heap** stores the smallest element at the root, while **Max Heap** stores the largest element at the root.
+- Both heaps are very efficient for scenarios where you need frequent access to the smallest or largest element, with logarithmic time complexity for insertion and deletion.
