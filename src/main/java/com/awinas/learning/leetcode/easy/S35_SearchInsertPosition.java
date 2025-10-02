@@ -2,7 +2,7 @@ package com.awinas.learning.leetcode.easy;
 
 // 35 : https://leetcode.com/problems/search-insert-position/description/
 
-public class SearchInsertPosition {
+public class S35_SearchInsertPosition {
 
 	public static void main(String[] args) {
 

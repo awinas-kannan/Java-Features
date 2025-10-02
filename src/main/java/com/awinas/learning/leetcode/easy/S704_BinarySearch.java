@@ -13,7 +13,7 @@ package com.awinas.learning.leetcode.easy;
  * 
  */
 
-public class BinarySearch {
+public class S704_BinarySearch {
 
 	public static void main(String[] args) {
 		System.out.println(binarySearchOLogN(new int[] { 1, 3, 5, 6 }, 5));

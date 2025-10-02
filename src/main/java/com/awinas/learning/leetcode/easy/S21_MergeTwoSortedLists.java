@@ -8,7 +8,7 @@ import com.awinas.learning.leetcode.utils.ListNode;
 
 // 21 : https://leetcode.com/problems/merge-two-sorted-lists/description/
 
-public class MergeTwoSortedLists {
+public class S21_MergeTwoSortedLists {
 
 	public static void main(String[] args) {
 
