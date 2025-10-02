@@ -40,7 +40,6 @@ public class S13_RomanToInt {
 				} else {
 					value = value + 1;
 				}
-
 			} else if (s.charAt(i) == 'V') {
 				value = value + 5;
 			} else if (s.charAt(i) == 'X') {
@@ -66,7 +65,6 @@ public class S13_RomanToInt {
 				} else {
 					value = value + 100;
 				}
-
 			} else if (s.charAt(i) == 'D') {
 				value = value + 500;
 			} else if (s.charAt(i) == 'M') {
