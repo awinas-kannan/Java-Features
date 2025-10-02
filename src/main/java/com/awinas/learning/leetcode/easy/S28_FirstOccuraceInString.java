@@ -24,6 +24,11 @@ public class S28_FirstOccuraceInString {
 		return -1;
 	}
 
+	/*
+	 * Time: O(n·m) worst case, but better in practice.
+	 * Space: O(1)
+	 * 
+	 */
 	public static int firstOccuraceManual(String haystack, String needle) {
 		int n = haystack.length();
 		int m = needle.length();
