@@ -6,7 +6,7 @@ public interface Interface1 {
 
 	void method();
 	
-	//int method2();
+//	int method2();
 	
 	void method3(int i ,float f);
 }

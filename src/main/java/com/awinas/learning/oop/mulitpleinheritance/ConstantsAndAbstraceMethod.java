@@ -6,7 +6,7 @@ public class ConstantsAndAbstraceMethod implements Interface1, Interface2 {
 	public void method() {
 
 		System.out.println("Hi");
-		// System.out.println(param);
+//		 System.out.println(param);
 		System.out.println(Interface1.param);
 		System.out.println(Interface2.param);
 	}
