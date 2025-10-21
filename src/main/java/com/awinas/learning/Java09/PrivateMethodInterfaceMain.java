@@ -6,6 +6,12 @@ public class PrivateMethodInterfaceMain implements PrivateMethodInterface {
 	public void abstractMetod() {
 		System.out.println("abstractMetod");
 	}
+	
+	@Override
+	public void defMethod1() {
+		System.out.println("defMethod1 PrivateMethodInterfaceMain");
+	}
+
 
 	public static void main(String[] args) {
 		PrivateMethodInterface pmi = new PrivateMethodInterfaceMain();

@@ -12,6 +12,17 @@ public class MainInterface {
 		id.normalMethod();
 		id.defMethod1();
 
+
+		System.out.println("***************************************************");
+
+		Istatic is = new StaticUtilizer();
+		is.normalmethod();
+		Istatic.staticMethod1();
+		Istatic.staticMethod2();
+		StaticUtilizer.staticMethod1();
+
+		System.out.println("***************************************************");
+		
 		List<String> str = new ArrayList<>();
 		str.add("ak");
 		// str.add(null);
@@ -29,16 +40,6 @@ public class MainInterface {
 		str.forEach(e -> System.out.println(e.contains("a")));
 		str.forEach(c);
 		str.forEach(c1);
-
-		System.out.println("***************************************************");
-
-		Istatic is = new StaticUtilizer();
-		is.normalmethod();
-		Istatic.staticMethod1();
-		Istatic.staticMethod2();
-		StaticUtilizer.staticMethod1();
-
-		System.out.println("***************************************************");
 		
 	}
 
