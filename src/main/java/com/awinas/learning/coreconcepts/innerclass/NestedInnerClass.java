@@ -1,4 +1,4 @@
-package com.awinas.learning.innerclass;
+package com.awinas.learning.coreconcepts.innerclass;
 
 //Non Static nested Classes are known as Inner Class
 //Note that inner classes can access outer class private members 

@@ -1,4 +1,4 @@
-package com.awinas.learning.exceptionhandling;
+package com.awinas.learning.coreconcepts.exceptionhandling;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

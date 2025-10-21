@@ -1,4 +1,4 @@
-package com.awinas.learning.exceptionhandling;
+package com.awinas.learning.coreconcepts.exceptionhandling;
 
 public class InvalidCredsException extends Exception {
 	private static final long serialVersionUID = 1L;

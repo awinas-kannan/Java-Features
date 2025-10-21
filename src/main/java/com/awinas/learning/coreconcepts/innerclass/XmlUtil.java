@@ -1,4 +1,4 @@
-package com.awinas.learning.innerclass;
+package com.awinas.learning.coreconcepts.innerclass;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Hashtable;

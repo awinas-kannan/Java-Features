@@ -1,4 +1,4 @@
-package com.awinas.learning.innerclass;
+package com.awinas.learning.coreconcepts.innerclass;
 
 import java.util.HashSet;
 import java.util.Set;

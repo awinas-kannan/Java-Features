@@ -1,4 +1,4 @@
-package com.awinas.learning.operator;
+package com.awinas.learning.coreconcepts.operators;
 
 public class Opeartor {
 

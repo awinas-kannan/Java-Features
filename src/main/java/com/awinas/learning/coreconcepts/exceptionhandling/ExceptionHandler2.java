@@ -1,4 +1,4 @@
-package com.awinas.learning.exceptionhandling;
+package com.awinas.learning.coreconcepts.exceptionhandling;
 
 //SQL exception
 //sqle.getErrorCode()==RSA_TOKEN_NULL_OTP_ERROR_CODE)

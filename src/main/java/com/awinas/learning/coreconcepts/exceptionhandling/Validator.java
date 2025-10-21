@@ -1,4 +1,4 @@
-package com.awinas.learning.exceptionhandling;
+package com.awinas.learning.coreconcepts.exceptionhandling;
 
 public class Validator {
 
