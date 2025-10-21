@@ -1,4 +1,4 @@
-package com.awinas.learning.HashCodeAndEquals;
+package com.awinas.learning.coreconcepts.HashCodeAndEquals;
 
 public class HashCode {
 

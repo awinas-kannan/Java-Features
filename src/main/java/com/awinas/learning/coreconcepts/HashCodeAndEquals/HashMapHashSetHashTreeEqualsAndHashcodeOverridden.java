@@ -1,4 +1,4 @@
-package com.awinas.learning.HashCodeAndEquals;
+package com.awinas.learning.coreconcepts.HashCodeAndEquals;
 
 import java.util.HashSet;
 import java.util.Set;
