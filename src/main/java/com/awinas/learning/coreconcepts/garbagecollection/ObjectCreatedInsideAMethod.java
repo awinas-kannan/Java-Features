@@ -1,4 +1,4 @@
-package com.awinas.learning.garbagecollection;
+package com.awinas.learning.coreconcepts.garbagecollection;
 
 //https://www.geeksforgeeks.org/how-to-make-object-eligible-for-garbage-collection/
 

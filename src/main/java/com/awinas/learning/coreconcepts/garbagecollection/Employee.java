@@ -1,4 +1,4 @@
-package com.awinas.learning.garbagecollection;
+package com.awinas.learning.coreconcepts.garbagecollection;
 
 //Correct code to count number
 // of employees excluding interns.

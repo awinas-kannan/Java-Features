@@ -1,4 +1,4 @@
-package com.awinas.learning.garbagecollection;
+package com.awinas.learning.coreconcepts.garbagecollection;
 
 public class IslandOfIsolation {
 

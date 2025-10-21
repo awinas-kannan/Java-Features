@@ -1,4 +1,4 @@
-package com.awinas.learning.datatypes;
+package com.awinas.learning.coreconcepts.datatypes;
 
 public class WrapperClasses {
 

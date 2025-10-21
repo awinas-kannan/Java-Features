@@ -1,4 +1,4 @@
-package com.awinas.learning.datatypes;
+package com.awinas.learning.coreconcepts.datatypes;
 
 //https://howtodoinjava.com/java/basics/data-types-in-java/
 

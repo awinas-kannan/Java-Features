@@ -1,11 +1,11 @@
-package com.awinas.learning.datatypes;
+package com.awinas.learning.coreconcepts.datatypes;
 
 //https://howtodoinjava.com/java/basics/primitive-data-types-in-java/
 
-//byte -8 bit (1 byte)  // -128 to 127 (-27 to 27 – 1).
-//short -16 bit (2 byte)  // -32768 to 32767 (or -2^15 to 2^15 – 1).
-//int - 32 bit ( 4 byte)  // -2,147,483,648 to 2,147,483,647 (-2^31 to 2^31– 1).
-//long -64 bit ( 8 byte)  // -2^63 to 2^63 – 1.
+//byte -8 bit (1 byte)  // -128 to 127 (-27 to 27 ï¿½ 1).
+//short -16 bit (2 byte)  // -32768 to 32767 (or -2^15 to 2^15 ï¿½ 1).
+//int - 32 bit ( 4 byte)  // -2,147,483,648 to 2,147,483,647 (-2^31 to 2^31ï¿½ 1).
+//long -64 bit ( 8 byte)  // -2^63 to 2^63 ï¿½ 1.
 
 //Small data type to large datatype --- No type match
 //Large data type to small datatype --- type match  -- Add explicit casting // data loss

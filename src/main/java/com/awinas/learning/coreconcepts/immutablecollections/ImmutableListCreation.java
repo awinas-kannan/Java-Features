@@ -1,4 +1,4 @@
-package com.awinas.learning.immutablecollections;
+package com.awinas.learning.coreconcepts.immutablecollections;
 
 import java.util.ArrayList;
 import java.util.Arrays;

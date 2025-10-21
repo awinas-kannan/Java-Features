@@ -1,4 +1,4 @@
-package com.awinas.learning.Enum;
+package com.awinas.learning.coreconcepts.Enum;
 
 public class EnumMain {
 

@@ -1,4 +1,4 @@
-package com.awinas.learning.garbagecollection;
+package com.awinas.learning.coreconcepts.garbagecollection;
 
 //gc2 cleared before gc1
 public class GarbageCollector1 {

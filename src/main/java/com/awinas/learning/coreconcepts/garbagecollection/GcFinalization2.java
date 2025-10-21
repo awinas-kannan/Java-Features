@@ -1,4 +1,4 @@
-package com.awinas.learning.garbagecollection;
+package com.awinas.learning.coreconcepts.garbagecollection;
 
 //https://www.geeksforgeeks.org/garbage-collection-java/
 
