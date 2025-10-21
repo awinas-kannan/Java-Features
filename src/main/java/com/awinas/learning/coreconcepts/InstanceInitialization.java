@@ -1,6 +1,6 @@
-package com.awinas.learning;
+package com.awinas.learning.coreconcepts;
 
-public class InstanceInitialization extends ParentInstanceInit{
+public class InstanceInitialization extends ParentInstanceInit {
 
 	{
 		System.out.println("instance initializer block 1");

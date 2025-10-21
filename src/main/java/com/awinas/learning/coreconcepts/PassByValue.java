@@ -1,5 +1,11 @@
-package com.awinas.learning;
+package com.awinas.learning.coreconcepts;
 
+
+/*
+ * 
+ * Modifying the Object (Affects Original)
+ * Reassigning the Reference (Does NOT Affect Original)
+ */
 public class PassByValue {
 
 	public static void main(String[] args) {
@@ -19,4 +25,21 @@ public class PassByValue {
 		c.setAttribute("Changing actual value");
 	}
 
+}
+
+
+class Foo {
+	private String attribute;
+
+	public Foo(String a) {
+		this.attribute = a;
+	}
+
+	public String getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
+	}
 }

@@ -34,6 +34,8 @@ public final class ImmutableClass {
 		//Deep copy Required.... Since Date is Mutable (has setter method to change date)
 		//New instance of date is created and set
 		//If directly assigned from input object(this.mutableField= date), then we any modification in date object will change here too
+	    // Defensive copy to prevent external reference mutation
+
 		this.mutableField = new Date(date.getTime());
 	}
 

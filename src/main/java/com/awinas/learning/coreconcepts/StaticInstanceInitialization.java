@@ -1,4 +1,4 @@
-package com.awinas.learning;
+package com.awinas.learning.coreconcepts;
 
 public class StaticInstanceInitialization extends ParentInstanceInit {
 
