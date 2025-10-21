@@ -1,4 +1,4 @@
-package com.awinas.learning.clone;
+package com.awinas.learning.coreconcepts.cloning;
 
 //Different memory address for original & cloned object
 public class TestCloning {

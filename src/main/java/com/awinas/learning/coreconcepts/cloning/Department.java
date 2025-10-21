@@ -1,4 +1,4 @@
-package com.awinas.learning.clone;
+package com.awinas.learning.coreconcepts.cloning;
 
 public class Department implements Cloneable {
 	private int id;

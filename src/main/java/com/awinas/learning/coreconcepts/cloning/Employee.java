@@ -1,4 +1,4 @@
-package com.awinas.learning.clone;
+package com.awinas.learning.coreconcepts.cloning;
 
 public class Employee implements Cloneable {
 

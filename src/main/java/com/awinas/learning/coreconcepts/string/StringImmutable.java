@@ -1,4 +1,4 @@
-package com.awinas.learning.string;
+package com.awinas.learning.coreconcepts.string;
 
 //https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning#:~:text=String%20is%20immutable%20means%20that,the%20String%20literal%20%22ty%22%20.
 

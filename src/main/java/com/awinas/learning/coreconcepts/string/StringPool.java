@@ -1,4 +1,4 @@
-package com.awinas.learning.string;
+package com.awinas.learning.coreconcepts.string;
 
 // == will check for reference
 

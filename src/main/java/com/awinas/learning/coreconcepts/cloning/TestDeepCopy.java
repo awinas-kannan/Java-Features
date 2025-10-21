@@ -1,4 +1,4 @@
-package com.awinas.learning.clone;
+package com.awinas.learning.coreconcepts.cloning;
 
 //Un comment the clone in both employee & department
 public class TestDeepCopy {
