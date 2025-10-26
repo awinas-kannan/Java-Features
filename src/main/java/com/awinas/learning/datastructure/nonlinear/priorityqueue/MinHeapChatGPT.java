@@ -56,6 +56,18 @@ class MinHeap1 {
 		}
 	}
 
+// 5 15 10 30 25 35 20 
+// 20 15 10 30 25 35
+// 10 15 20 30 25 35
+// 
+// 10	
+// 35 15 20 30 25
+// 20 15 35 30 25 
+//  sm = 2
+// 20 15 25 30 35
+// sm = 4
+	
+	
 	// Remove and return the minimum element from the heap
 	public int extractMin() {
 		if (size == 0)
