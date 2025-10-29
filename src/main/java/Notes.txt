@@ -821,6 +821,8 @@ https://www.youtube.com/watch?v=vilk8A8EO7E
 ********* 1: S: Single Responsibility Principle. (SRP)
 *Each class / module in program should focus on single task
 
+####### NEW : Employee.java
+
 Authenticaiton Module  ( Does authentication related works)
   -> First step login in seperate class
   -> Step 2 login in seperate class
@@ -850,10 +852,12 @@ CashDispenser (dispenses cash)
 AccountRepository (manages account storage)
 
 
-********* 2: O: Open-Closed Principle. (Open for Extension - Closed for modification)
+********* 2: O: Open-Closed Principle. (Open for Extension - Closed for modification) 
 https://www.youtube.com/watch?v=dMIf_QUSe3w
 When adding new feature ,we should not modify the existing code instead we should write new code by extending
 the existing class
+
+####### NEW : PaymentProcessor.java
 
 bad :
 when you want to add a new ITEM - TOY , you have to modify the existing class
@@ -869,27 +873,35 @@ Logging System: Instead of modifying an existing logger class, we can add new lo
 Notification System: A Notification interface can be extended for different types of notifications (Email, SMS, Push, Slack) without modifying the main notification processor.
 E-Commerce Discounts: Different discount strategies (PercentageDiscount, FlatDiscount, CouponDiscount) can be added without modifying the core billing system.
 
+
+Chat GPT :
+The Open/Closed Principle (OCP) states that a class should be open for extension but closed for modification. 
+This means we should be able to add new functionality without modifying existing code.
 Ref : PaymentProcessor.java
 
 ********* 3: L: Liskov Substitution Principle.
 This principle defines that , Object of superclass can be replaced with object of subclass
 without breaking the application.
 
-Super class object replaced by sub class object. There should not be un-necessary methods in super class.
-For Ex: If Super class has cash discount which applies to cash mode of payment.. and there are diff payment modes liek upi , creditcard.. then
-the cash discout method should not be in super class and its not used for other payment types... So better move it to a interface
 
-
+Chat GPT :
 The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program.
 In simple terms: If class B is a subclass of class A, then we should be able to replace A with B without breaking the behavior.
+
+Super class object replaced by sub class object. There should not be un-necessary methods in super class.
+For Ex: If Super class has cash discount which applies to cash mode of payment.. and there are diff payment modes like upi , creditcard.. then
+the cash discount method should not be in super class and its not used for other payment types... So better move it to a interface
+
 
 //Code reusablity
 //reduced coupling
 //Easier maintainance
 
+##### NEW : BadMain.java
 
 ********* 4: I: Interface Segregation Principle.
 
+Chat GPT : 
 The Interface Segregation Principle (ISP) states that a class should not be forced to implement methods it does not use. 
 Instead of having one large interface, we should split it into smaller, specific interfaces.
 
@@ -902,11 +914,14 @@ Un supported method are not need in classes
 
 Bad design : Internet & Intranet servlets in Authentication 
 
+
 ********* 5: Dependency Inversion Principle.
 
+CHAT GPT :
 High-level modules should depend on abstractions, not on concrete implementations.
 DIP ensures that classes depend on abstractions, not concrete implementations, reducing tight coupling.
 
+NEW : OrderService.java
 
 Inversion of Control:
   -> Dipendency injection 
@@ -918,6 +933,7 @@ When you create object inside a class , its is tightly coupled
 To make it loosely coupled , we need to create the object outside and inject into class
 
 When its tightly couple , you find difficult to write test cases
+
 
 
 Principle											Focus													What It Solves

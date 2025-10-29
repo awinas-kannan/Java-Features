@@ -21,10 +21,12 @@ public class BadMain {
 		/*
 		 * Credit card doesn't require cash discount.... Only cash payment has that
 		 * feature...
-		 * 
+		 * cashPayment.applyCashDiscount();
 		 * Move it to Interface
 		 */
 		crediCard.applyCashDiscount();
+		
+		
 
 	}
 

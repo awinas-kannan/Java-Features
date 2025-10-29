@@ -1,7 +1,5 @@
 package com.awinas.learning.solid.dipendencyinversion.good;
 
-import com.awinas.learning.solid.dipendencyinversion.good.MessageProcessor;
-
 public class GoodDesign {
 
 	public static void main(String[] args) {
