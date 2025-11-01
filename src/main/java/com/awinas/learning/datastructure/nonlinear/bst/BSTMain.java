@@ -34,24 +34,11 @@ public class BSTMain {
 
 		System.out.println("#################### Depth First Search (DFS) #######################################");
 
-		System.out.println("*************in order traversal*************");
+		System.out.println("*************in order traversal  (Print Sorted Values) *************");
 		System.out.println(
 				"The in-order traversal consists of first visiting the left sub-tree, then the root node, and finally the right sub-tree:");
 		tree.inorder();
-		System.out.println("*************pre order traversal*************");
-		System.out.println(
-				"Pre-order traversal visits first the root node, then the left subtree, and finally the right subtree:");
-		tree.preorder();
-		System.out.println(
-				"Post-order traversal visits the left subtree, the right subtree, and the root node at the end:");
-		System.out.println("*************post order traversal*************");
-
-		tree.postOrder();
-
-		System.out.println("Level Order Traversal:");
-		System.out.println("*************Level Order Traversal:*************");
-
-		tree.levelOrderTraversal();
+		
 	}
 
 }

@@ -88,51 +88,6 @@ public class BinarySearchTree {
 		}
 	}
 
-	// Pre order traversal
-
-	void preorder() {
-		preOrderTraversal(root);
-	}
-
-	public void preOrderTraversal(Node node) {
-		if (node != null) {
-			System.out.println(node.value);
-			preOrderTraversal(node.left);
-			preOrderTraversal(node.right);
-		}
-	}
-
-	// Post order traversal
-	void postOrder() {
-		postOrderTraversal(root);
-	}
-
-	public void postOrderTraversal(Node node) {
-		if (node != null) {
-			postOrderTraversal(node.left);
-			postOrderTraversal(node.right);
-			System.out.println(node.value);
-		}
-	}
-
-	void levelOrderTraversal() {
-		if (root == null)
-			return;
-
-		Queue<Node> queue = new LinkedList<>();
-		queue.add(root);
-
-		while (!queue.isEmpty()) {
-			Node node = queue.poll();
-			System.out.print(node.value + " ");
-
-			if (node.left != null)
-				queue.add(node.left);
-
-			if (node.right != null)
-				queue.add(node.right);
-		}
-	}
 
 	private class Node {
 
