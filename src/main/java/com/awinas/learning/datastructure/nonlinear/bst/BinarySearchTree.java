@@ -1,8 +1,5 @@
 package com.awinas.learning.datastructure.nonlinear.bst;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 //https://www.geeksforgeeks.org/insert-a-node-in-binary-search-tree-iteratively/
 
 //https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
@@ -17,6 +14,7 @@ public class BinarySearchTree {
 		this.root = null;
 	}
 
+	// Check the Insert Soln in LeetCode
 	public void insert(int value) {
 
 		Node newNode = new Node(value);
@@ -66,6 +64,43 @@ public class BinarySearchTree {
 		return false;
 
 	}
+	
+
+	// Recursion
+	// Insert node into BST
+	Node insert(Node root, int val) {
+		if (root == null)
+			return new Node(val);
+
+		if (val < root.value)
+			root.left = insert(root.left, val);
+		else if (val > root.value)
+			root.right = insert(root.right, val);
+		return root;
+	}
+
+	// Search node in BST
+	boolean search(Node root, int val) {
+		if (root == null)
+			return false;
+		if (root.value == val)
+			return true;
+		return (val < root.value) ? search(root.left, val) : search(root.right, val);
+	}
+
+	// Find minimum
+	int findMin(Node root) {
+		while (root.left != null)
+			root = root.left;
+		return root.value;
+	}
+
+	// Find maximum
+	int findMax(Node root) {
+		while (root.right != null)
+			root = root.right;
+		return root.value;
+	}
 
 	// This method mainly calls InorderRec()
 	void inorder() {
@@ -87,7 +122,6 @@ public class BinarySearchTree {
 			inOrderTraversalRec(node.right);
 		}
 	}
-
 
 	private class Node {
 
