@@ -41,9 +41,9 @@ Prefix Sum
 560. Subarray Sum Equals K
 
 Two Pointers
-167. Two Sum II - Input Array is Sorted
-15. 3 Sum
-11. Container with most water
+167. Two Sum II - Input Array is Sorted (DONE)
+15. 3 Sum 
+11. Container with most water (DONE)
 
 Sliding Window
 643. Maximum Average Subarray I
@@ -81,10 +81,10 @@ Modified Binary Search
 240. Search a 2D Matrix II
 
 Binary Tree Traversal
-257. Binary Tree Paths
+257. Binary Tree Paths 
 230. Kth Smallest Element in a BST
 124. Binary Tree Maximum Path Sum
-107. Binary Tree Level Order Traversal II
+107. Binary Tree Level Order Traversal II (DONE)
 
 Depth First Search
 133. Clone Graph
@@ -92,7 +92,7 @@ Depth First Search
 210. Course Schedule II
 
 Breadth First Search
-102. Binary Tree Level Order Traversal
+102. Binary Tree Level Order Traversal (DONE)
 994. Rotting Oranges
 127. Word Ladder
 
