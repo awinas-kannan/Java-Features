@@ -7,7 +7,7 @@ import java.io.IOException;
 public class MethodOverRidingRulesChild extends MethodOverridingRule {
 
 //	1) The method argument list in overridden and overriding methods must be exactly same 
-//	If they don’t match, you will end up with an overloaded method.
+//	If they don't match, you will end up with an overloaded method.
 //
 //	2) The return type of overriding method can be child class of return type declared 
 //	   in overridden method.

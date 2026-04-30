@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.awinas.learning.string.Str;
-
 @Deprecated(since = "2019", forRemoval = true)
 public class SreamAPIImprovements {
 

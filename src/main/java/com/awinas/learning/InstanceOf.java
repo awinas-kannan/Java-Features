@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-//true – if variable is instance of specified class, it’s parent class or implement specified
-//interface or it’s parent interface
-//false – if variable is not instance of the class or implement the interface; 
+//true - if variable is instance of specified class, it's parent class or implement specified
+//interface or it's parent interface
+//false - if variable is not instance of the class or implement the interface; 
 //or variable is null
 public class InstanceOf {
 
