@@ -1,4 +1,4 @@
-package com.awinas.learning.collections;
+package com.awinas.learning.collections.Maps;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

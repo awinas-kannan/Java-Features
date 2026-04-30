@@ -1,4 +1,4 @@
-package com.awinas.learning.collections;
+package com.awinas.learning.collections.Maps;
 
 import java.util.HashMap;
 import java.util.Iterator;

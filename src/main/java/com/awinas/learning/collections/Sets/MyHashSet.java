@@ -1,4 +1,4 @@
-package com.awinas.learning.collections;
+package com.awinas.learning.collections.Sets;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package com.awinas.learning.collections;
+package com.awinas.learning.collections.Lists;
 
 import java.util.Arrays;
 import java.util.Collections;
