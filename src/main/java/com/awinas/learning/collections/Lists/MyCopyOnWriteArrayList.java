@@ -194,6 +194,7 @@ public class MyCopyOnWriteArrayList {
 		CopyOnWriteArrayList<String> temp = new CopyOnWriteArrayList<>(list);
 		temp.clear();
 		System.out.println("After clear            : " + temp + ", isEmpty: " + temp.isEmpty());
+		System.out.println("After clear            : " + list + ", isEmpty: " + list.isEmpty());
 
 		System.out.println("\n========== End of CopyOnWriteArrayList utilMethod ==========\n");
 	}
