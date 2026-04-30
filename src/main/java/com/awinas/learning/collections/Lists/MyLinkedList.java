@@ -69,7 +69,7 @@ public class MyLinkedList {
 		System.out.println();
 
 		// 1. LinkedList to Array
-		String array[] = new String[linkedList.size()];
+		String [] array = new String[linkedList.size()];
 		linkedList.toArray(array);
 
 		System.out.println(Arrays.toString(array));
