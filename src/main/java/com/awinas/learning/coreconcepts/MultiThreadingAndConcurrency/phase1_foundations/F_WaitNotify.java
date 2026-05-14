@@ -100,7 +100,7 @@ public class F_WaitNotify {
         }, "Waiter");
 
         Thread notifier = new Thread(() -> {
-            try { Thread.sleep(1000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(5000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             synchronized (signal) {
                 System.out.println("  [Notifier] Sending signal!");
                 signal.notify(); // wakes up ONE waiting thread
@@ -135,37 +135,63 @@ public class F_WaitNotify {
         final Queue<String> buffer = new LinkedList<>();
         final Object lock = new Object();
 
+        System.out.println("    ┌─────────────────────────────────────────────────────────┐");
+        System.out.println("    │ SETUP: Kitchen(Producer) → Counter(Buffer, max=3) → Waiter(Consumer) │");
+        System.out.println("    └─────────────────────────────────────────────────────────┘");
+        System.out.println();
+
         // Producer — the kitchen
         Thread producer = new Thread(() -> {
-            String[] dishes = {"Pasta", "Salad", "Soup", "Steak", "Cake", "Tea"};
-            for (String dish : dishes) {
+            String[] dishes = {"Dish-1", "Dish-2", "Dish-3", "Dish-4", "Dish-5", "Dish-6", "Dish-7", "Dish-8", "Dish-9", "Dish-10"};
+            for (int idx = 0; idx < dishes.length; idx++) {
+                String dish = dishes[idx];
                 synchronized (lock) {
+                    System.out.println("    [Kitchen] Acquired lock. Checking buffer space...");
+                    System.out.println("    [Kitchen] Buffer size=" + buffer.size() + ", capacity=" + CAPACITY);
+
                     while (buffer.size() == CAPACITY) {
-                        System.out.println("    [Kitchen] Counter FULL! Waiting...");
+                        System.out.println("    [Kitchen] ⛔ Buffer FULL! Calling wait() → releases lock, goes to WAITING");
                         try { lock.wait(); } catch (InterruptedException e) { Thread.currentThread().interrupt(); return; }
+                        System.out.println("    [Kitchen] ✓ Woke up from wait()! Re-acquired lock. Re-checking condition...");
+                        System.out.println("    [Kitchen] Buffer size=" + buffer.size() + ", capacity=" + CAPACITY);
                     }
+
                     buffer.add(dish);
-                    System.out.println("    [Kitchen] Prepared: " + dish + " | Counter: " + buffer);
-                    lock.notifyAll(); // wake up consumer
+                    System.out.println("    [Kitchen] ✚ PRODUCED: " + dish + " | Buffer now: " + buffer + " (size=" + buffer.size() + ")");
+                    System.out.println("    [Kitchen] Calling notifyAll() → wakes up waiting Consumer");
+                    lock.notifyAll();
+                    System.out.println("    [Kitchen] Releasing lock (exiting synchronized block)");
                 }
                 try { Thread.sleep(200); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                System.out.println("    ────────────────────────────────────────────────");
             }
+            System.out.println("    [Kitchen] 🏁 All dishes produced! Kitchen closing.");
         }, "Producer");
 
         // Consumer — the waiter
         Thread consumer = new Thread(() -> {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 10; i++) {
                 synchronized (lock) {
+                    System.out.println("    [Waiter]  Acquired lock. Checking if buffer has items...");
+                    System.out.println("    [Waiter]  Buffer size=" + buffer.size());
+
                     while (buffer.isEmpty()) {
-                        System.out.println("    [Waiter] Counter EMPTY! Waiting...");
+                        System.out.println("    [Waiter]  ⛔ Buffer EMPTY! Calling wait() → releases lock, goes to WAITING");
                         try { lock.wait(); } catch (InterruptedException e) { Thread.currentThread().interrupt(); return; }
+                        System.out.println("    [Waiter]  ✓ Woke up from wait()! Re-acquired lock. Re-checking condition...");
+                        System.out.println("    [Waiter]  Buffer size=" + buffer.size());
                     }
+
                     String dish = buffer.poll();
-                    System.out.println("    [Waiter]  Served:   " + dish + " | Counter: " + buffer);
-                    lock.notifyAll(); // wake up producer
+                    System.out.println("    [Waiter]  ✔ CONSUMED: " + dish + " | Buffer now: " + buffer + " (size=" + buffer.size() + ")");
+                    System.out.println("    [Waiter]  Calling notifyAll() → wakes up waiting Producer");
+                    lock.notifyAll();
+                    System.out.println("    [Waiter]  Releasing lock (exiting synchronized block)");
                 }
                 try { Thread.sleep(400); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                System.out.println("    ────────────────────────────────────────────────");
             }
+            System.out.println("    [Waiter]  🏁 All dishes served! Waiter done.");
         }, "Consumer");
 
         producer.start();

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer-Consumer | wait() / notify() Visualizer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        h1 { text-align: center; margin-bottom: 8px; color: #38bdf8; font-size: 1.8rem; }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 24px; font-size: 0.95rem; }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* Main visualization area */
+        .viz-area {
+            display: grid;
+            grid-template-columns: 1fr 200px 1fr;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 24px;
+        }
+
+        .thread-box {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #334155;
+            min-height: 280px;
+        }
+        .thread-box h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .producer-box { border-color: #22c55e; }
+        .producer-box h3 { color: #22c55e; }
+        .consumer-box { border-color: #f59e0b; }
+        .consumer-box h3 { color: #f59e0b; }
+
+        .state-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .state-running { background: #166534; color: #4ade80; }
+        .state-waiting { background: #713f12; color: #fbbf24; }
+        .state-blocked { background: #7f1d1d; color: #f87171; }
+        .state-idle { background: #334155; color: #94a3b8; }
+
+        .thread-action {
+            margin-top: 12px;
+            padding: 10px;
+            background: #0f172a;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            min-height: 60px;
+        }
+
+        /* Buffer visualization */
+        .buffer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .buffer-section h3 {
+            color: #a78bfa;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .buffer-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        .buffer-slot {
+            height: 50px;
+            background: #1e293b;
+            border: 2px dashed #475569;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+        }
+        .buffer-slot.filled {
+            background: #1e3a5f;
+            border: 2px solid #38bdf8;
+            color: #38bdf8;
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .buffer-label {
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Lock indicator */
+        .lock-indicator {
+            text-align: center;
+            margin: 16px 0;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .lock-free { background: #064e3b; color: #6ee7b7; }
+        .lock-producer { background: #14532d; color: #4ade80; }
+        .lock-consumer { background: #451a03; color: #fbbf24; }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button:hover { transform: translateY(-1px); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-start { background: #22c55e; color: #052e16; }
+        .btn-step { background: #3b82f6; color: white; }
+        .btn-reset { background: #ef4444; color: white; }
+        .btn-speed { background: #8b5cf6; color: white; }
+
+        /* Log area */
+        .log-area {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #334155;
+        }
+        .log-area h3 { color: #94a3b8; margin-bottom: 10px; font-size: 0.9rem; }
+        .log-entry {
+            padding: 4px 8px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        .log-producer { background: #052e16; color: #4ade80; border-left: 3px solid #22c55e; }
+        .log-consumer { background: #451a03; color: #fbbf24; border-left: 3px solid #f59e0b; }
+        .log-system { background: #1e1b4b; color: #a5b4fc; border-left: 3px solid #6366f1; }
+        .log-lock { background: #3b0764; color: #d8b4fe; border-left: 3px solid #a855f7; }
+
+        /* Explanation panel */
+        .explanation {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid #334155;
+        }
+        .explanation h3 { color: #38bdf8; margin-bottom: 8px; font-size: 0.9rem; }
+        .explanation p { color: #cbd5e1; font-size: 0.85rem; line-height: 1.7; }
+        .explanation code {
+            background: #0f172a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #f472b6;
+            font-size: 0.8rem;
+        }
+
+        /* Step counter */
+        .step-counter {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+        .step-counter span { color: #38bdf8; font-weight: 700; }
+
+        /* Arrows */
+        .arrow-right, .arrow-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #475569;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Producer-Consumer Pattern</h1>
+        <p class="subtitle">Interactive visualization of <code>wait()</code> / <code>notifyAll()</code> — click Step or Auto-Play</p>
+
+        <div class="controls">
+            <button class="btn-start" id="btnAuto" onclick="toggleAuto()">▶ Auto Play</button>
+            <button class="btn-step" id="btnStep" onclick="nextStep()">⏭ Step</button>
+            <button class="btn-speed" onclick="changeSpeed()">Speed: Normal</button>
+            <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+        </div>
+
+        <div class="step-counter">Step: <span id="stepNum">0</span> / <span id="totalSteps">0</span></div>
+
+        <div class="viz-area">
+            <!-- Producer -->
+            <div class="thread-box producer-box">
+                <h3>🍳 Producer (Kitchen) <span class="state-badge state-idle" id="producerState">IDLE</span></h3>
+                <div class="thread-action" id="producerAction">Waiting to start...</div>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #64748b;">
+                    Items to produce: <span id="producerQueue" style="color: #4ade80;">Dish-1, Dish-2, Dish-3, Dish-4, Dish-5, Dish-6, Dish-7, Dish-8, Dish-9, Dish-10</span>
+                </div>
+            </div>
+
+            <!-- Buffer -->
+            <div class="buffer-section">
+                <h3>📦 Buffer (Capacity: 3)</h3>
+                <div class="buffer-slots">
+                    <div class="buffer-slot" id="slot0">empty</div>
+                    <div class="buffer-slot" id="slot1">empty</div>
+                    <div class="buffer-slot" id="slot2">empty</div>
+                </div>
+                <div class="buffer-label">Size: <span id="bufferSize">0</span> / 3</div>
+                <div class="lock-indicator lock-free" id="lockIndicator">🔓 Lock: FREE</div>
+            </div>
+
+            <!-- Consumer -->
+            <div class="thread-box consumer-box">
+                <h3>🍽️ Consumer (Waiter) <span class="state-badge state-idle" id="consumerState">IDLE</span></h3>
+                <div class="thread-action" id="consumerAction">Waiting to start...</div>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #64748b;">
+                    Items consumed: <span id="consumerCount" style="color: #fbbf24;">0</span> / 10
+                </div>
+            </div>
+        </div>
+
+        <!-- Log -->
+        <div class="log-area">
+            <h3>📋 Execution Log (step-by-step)</h3>
+            <div id="logContent"></div>
+        </div>
+
+        <!-- Explanation -->
+        <div class="explanation">
+            <h3>💡 What's Happening Right Now</h3>
+            <p id="explanationText">
+                Click <strong>Step</strong> to go one step at a time, or <strong>Auto Play</strong> to watch the full animation.
+                The Producer (Kitchen) creates dishes and puts them in the buffer.
+                The Consumer (Waiter) takes dishes from the buffer.
+                When the buffer is full, Producer calls <code>wait()</code> and goes to sleep.
+                When the buffer is empty, Consumer calls <code>wait()</code> and goes to sleep.
+                After producing/consuming, they call <code>notifyAll()</code> to wake the other.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const dishes = ["Dish-1", "Dish-2", "Dish-3", "Dish-4", "Dish-5", "Dish-6", "Dish-7", "Dish-8", "Dish-9", "Dish-10"];
+        let buffer = [];
+        let produced = 0;
+        let consumed = 0;
+        let currentStep = 0;
+        let autoInterval = null;
+        let speed = 1500;
+        let steps = [];
+
+        function buildSteps() {
+            steps = [];
+            let buf = [];
+            let pi = 0; // producer index
+            let ci = 0; // consumer count
+
+            while (pi < dishes.length || ci < dishes.length) {
+                // Producer tries to produce
+                if (pi < dishes.length && buf.length < 3) {
+                    steps.push({
+                        type: 'producer-acquire',
+                        desc: `Producer tries to acquire lock`,
+                        explanation: `The Producer enters the <code>synchronized(lock)</code> block. It acquires the intrinsic lock on the shared lock object. No other thread can enter any synchronized block on the same object now.`,
+                        producerState: 'RUNNING', consumerState: ci > 0 ? 'RUNNABLE' : 'IDLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-check',
+                        desc: `Producer checks: buffer.size()==${buf.length}, capacity==3. Space available!`,
+                        explanation: `Inside the synchronized block, Producer checks the <code>while (buffer.size() == CAPACITY)</code> condition. Buffer has ${buf.length} items, capacity is 3. Since ${buf.length} < 3, the while-loop condition is FALSE — Producer skips <code>wait()</code> and proceeds to produce.`,
+                        producerState: 'RUNNING', consumerState: ci > 0 ? 'RUNNABLE' : 'IDLE',
+                        lock: 'producer'
+                    });
+                    buf.push(dishes[pi]);
+                    steps.push({
+                        type: 'producer-produce',
+                        dish: dishes[pi],
+                        buffer: [...buf],
+                        desc: `Producer adds "${dishes[pi]}" to buffer. Buffer: [${buf.join(', ')}]`,
+                        explanation: `Producer calls <code>buffer.add("${dishes[pi]}")</code>. The item is added to the queue. Buffer now has ${buf.length} item(s).`,
+                        producerState: 'RUNNING', consumerState: ci > 0 ? 'RUNNABLE' : 'IDLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-notify',
+                        desc: `Producer calls notifyAll() → wakes Consumer if it was waiting`,
+                        explanation: `Producer calls <code>lock.notifyAll()</code>. If the Consumer was in <code>WAITING</code> state (called wait() because buffer was empty), it now wakes up and moves to <code>BLOCKED</code> state — it needs to re-acquire the lock before it can continue.`,
+                        producerState: 'RUNNING', consumerState: ci > 0 ? 'BLOCKED' : 'IDLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-release',
+                        desc: `Producer exits synchronized block → releases lock`,
+                        explanation: `Producer exits the synchronized block. The lock is released. Now any thread waiting for this lock (like the Consumer) can acquire it and enter their synchronized block.`,
+                        producerState: 'RUNNABLE', consumerState: ci > 0 ? 'RUNNABLE' : 'IDLE',
+                        lock: 'free'
+                    });
+                    pi++;
+                }
+                // Producer buffer full → wait
+                else if (pi < dishes.length && buf.length >= 3) {
+                    steps.push({
+                        type: 'producer-acquire',
+                        desc: `Producer tries to acquire lock`,
+                        explanation: `Producer enters <code>synchronized(lock)</code> and acquires the lock.`,
+                        producerState: 'RUNNING', consumerState: 'RUNNABLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-full',
+                        desc: `Producer checks: buffer.size()==${buf.length}, capacity==3. FULL! Calling wait()`,
+                        explanation: `The <code>while (buffer.size() == CAPACITY)</code> condition is TRUE (${buf.length} == 3). Producer calls <code>lock.wait()</code>. This does TWO things: (1) RELEASES the lock, and (2) puts the Producer thread into <code>WAITING</code> state. It will sleep here until someone calls <code>notifyAll()</code>.`,
+                        producerState: 'WAITING', consumerState: 'RUNNABLE',
+                        lock: 'free'
+                    });
+                    // Consumer takes over
+                    steps.push({
+                        type: 'consumer-acquire',
+                        desc: `Consumer acquires the lock (Producer released it via wait())`,
+                        explanation: `Since Producer called <code>wait()</code> which released the lock, Consumer can now acquire it. Consumer enters <code>synchronized(lock)</code>.`,
+                        producerState: 'WAITING', consumerState: 'RUNNING',
+                        lock: 'consumer'
+                    });
+                    steps.push({
+                        type: 'consumer-check',
+                        desc: `Consumer checks: buffer.size()==${buf.length}. Has items!`,
+                        explanation: `Consumer checks <code>while (buffer.isEmpty())</code>. Buffer has ${buf.length} items — condition is FALSE. Consumer skips wait() and proceeds to consume.`,
+                        producerState: 'WAITING', consumerState: 'RUNNING',
+                        lock: 'consumer'
+                    });
+                    let taken = buf.shift();
+                    ci++;
+                    steps.push({
+                        type: 'consumer-consume',
+                        dish: taken,
+                        buffer: [...buf],
+                        desc: `Consumer takes "${taken}" from buffer. Buffer: [${buf.join(', ')}]`,
+                        explanation: `Consumer calls <code>buffer.poll()</code> which removes and returns the head of the queue: "${taken}". Buffer now has ${buf.length} item(s).`,
+                        producerState: 'WAITING', consumerState: 'RUNNING',
+                        lock: 'consumer', consumed: ci
+                    });
+                    steps.push({
+                        type: 'consumer-notify',
+                        desc: `Consumer calls notifyAll() → wakes Producer from wait()`,
+                        explanation: `Consumer calls <code>lock.notifyAll()</code>. The Producer, which was in <code>WAITING</code> state, now wakes up. But it can't continue yet — it moves to <code>BLOCKED</code> state because Consumer still holds the lock.`,
+                        producerState: 'BLOCKED', consumerState: 'RUNNING',
+                        lock: 'consumer'
+                    });
+                    steps.push({
+                        type: 'consumer-release',
+                        desc: `Consumer exits synchronized → releases lock`,
+                        explanation: `Consumer exits the synchronized block and releases the lock. Producer (which was BLOCKED) can now re-acquire the lock and continue from where it was in the while-loop — it re-checks the condition.`,
+                        producerState: 'RUNNABLE', consumerState: 'RUNNABLE',
+                        lock: 'free'
+                    });
+                    // Producer wakes up and re-checks
+                    steps.push({
+                        type: 'producer-wakeup',
+                        desc: `Producer re-acquires lock, re-checks: buffer.size()==${buf.length} < 3. Proceeds!`,
+                        explanation: `Producer wakes from <code>wait()</code>, re-acquires the lock, and goes back to the top of the <code>while</code> loop. It re-checks <code>buffer.size() == CAPACITY</code>: ${buf.length} == 3? NO! Exits the while loop and proceeds to produce.`,
+                        producerState: 'RUNNING', consumerState: 'RUNNABLE',
+                        lock: 'producer'
+                    });
+                    buf.push(dishes[pi]);
+                    steps.push({
+                        type: 'producer-produce',
+                        dish: dishes[pi],
+                        buffer: [...buf],
+                        desc: `Producer adds "${dishes[pi]}" to buffer. Buffer: [${buf.join(', ')}]`,
+                        explanation: `Producer calls <code>buffer.add("${dishes[pi]}")</code>. Buffer now has ${buf.length} item(s).`,
+                        producerState: 'RUNNING', consumerState: 'RUNNABLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-notify',
+                        desc: `Producer calls notifyAll()`,
+                        explanation: `Producer calls <code>lock.notifyAll()</code> to wake any waiting Consumer.`,
+                        producerState: 'RUNNING', consumerState: 'RUNNABLE',
+                        lock: 'producer'
+                    });
+                    steps.push({
+                        type: 'producer-release',
+                        desc: `Producer releases lock`,
+                        explanation: `Producer exits synchronized block and releases the lock.`,
+                        producerState: 'RUNNABLE', consumerState: 'RUNNABLE',
+                        lock: 'free'
+                    });
+                    pi++;
+                }
+                // Only consumer left
+                else if (pi >= dishes.length && ci < dishes.length) {
+                    steps.push({
+                        type: 'consumer-acquire',
+                        desc: `Consumer acquires the lock`,
+                        explanation: `Consumer enters <code>synchronized(lock)</code> and acquires the lock.`,
+                        producerState: 'TERMINATED', consumerState: 'RUNNING',
+                        lock: 'consumer'
+                    });
+                    if (buf.length === 0) {
+                        steps.push({
+                            type: 'consumer-empty',
+                            desc: `Consumer checks: buffer is EMPTY and Producer is done.`,
+                            explanation: `Buffer is empty and producer finished. In real code, consumer would wait() but since producer is done, we'd need a poison pill or flag to signal completion.`,
+                            producerState: 'TERMINATED', consumerState: 'RUNNING',
+                            lock: 'consumer'
+                        });
+                        break;
+                    }
+                    let taken = buf.shift();
+                    ci++;
+                    steps.push({
+                        type: 'consumer-consume',
+                        dish: taken,
+                        buffer: [...buf],
+                        desc: `Consumer takes "${taken}". Buffer: [${buf.join(', ')}]`,
+                        explanation: `Consumer removes "${taken}" from the buffer. ${buf.length} item(s) remaining.`,
+                        producerState: 'TERMINATED', consumerState: 'RUNNING',
+                        lock: 'consumer', consumed: ci
+                    });
+                    steps.push({
+                        type: 'consumer-release',
+                        desc: `Consumer releases lock`,
+                        explanation: `Consumer exits synchronized block.`,
+                        producerState: 'TERMINATED', consumerState: 'RUNNABLE',
+                        lock: 'free'
+                    });
+                }
+            }
+
+            steps.push({
+                type: 'done',
+                desc: '✅ All items produced and consumed! Program complete.',
+                explanation: `Both threads have finished their work. Producer created all 10 dishes, Consumer served all 10. The <code>wait()</code>/<code>notifyAll()</code> mechanism ensured: (1) No dish was lost, (2) Buffer never exceeded capacity, (3) No CPU was wasted busy-waiting.`,
+                producerState: 'TERMINATED', consumerState: 'TERMINATED',
+                lock: 'free'
+            });
+
+            document.getElementById('totalSteps').textContent = steps.length;
+        }
+
+        function updateUI(step) {
+            // Update states
+            const pState = document.getElementById('producerState');
+            const cState = document.getElementById('consumerState');
+            pState.textContent = step.producerState;
+            pState.className = 'state-badge state-' + step.producerState.toLowerCase();
+            cState.textContent = step.consumerState;
+            cState.className = 'state-badge state-' + step.consumerState.toLowerCase();
+
+            // Update lock
+            const lockEl = document.getElementById('lockIndicator');
+            if (step.lock === 'producer') {
+                lockEl.className = 'lock-indicator lock-producer';
+                lockEl.textContent = '🔒 Lock: PRODUCER';
+            } else if (step.lock === 'consumer') {
+                lockEl.className = 'lock-indicator lock-consumer';
+                lockEl.textContent = '🔒 Lock: CONSUMER';
+            } else {
+                lockEl.className = 'lock-indicator lock-free';
+                lockEl.textContent = '🔓 Lock: FREE';
+            }
+
+            // Update buffer display
+            if (step.buffer !== undefined) {
+                buffer = [...step.buffer];
+            }
+            for (let i = 0; i < 3; i++) {
+                const slot = document.getElementById('slot' + i);
+                if (i < buffer.length) {
+                    slot.textContent = buffer[i];
+                    slot.className = 'buffer-slot filled';
+                } else {
+                    slot.textContent = 'empty';
+                    slot.className = 'buffer-slot';
+                }
+            }
+            document.getElementById('bufferSize').textContent = buffer.length;
+
+            // Update consumed count
+            if (step.consumed !== undefined) {
+                document.getElementById('consumerCount').textContent = step.consumed;
+            }
+
+            // Update actions
+            if (step.type.startsWith('producer')) {
+                document.getElementById('producerAction').innerHTML = step.desc;
+            } else if (step.type.startsWith('consumer')) {
+                document.getElementById('consumerAction').innerHTML = step.desc;
+            }
+
+            // Update explanation
+            document.getElementById('explanationText').innerHTML = step.explanation;
+
+            // Add log
+            const logDiv = document.getElementById('logContent');
+            const entry = document.createElement('div');
+            let logClass = 'log-system';
+            if (step.type.startsWith('producer')) logClass = 'log-producer';
+            else if (step.type.startsWith('consumer')) logClass = 'log-consumer';
+            if (step.type.includes('lock') || step.type.includes('acquire') || step.type.includes('release')) logClass = 'log-lock';
+            entry.className = 'log-entry ' + logClass;
+            entry.innerHTML = `<strong>[Step ${currentStep}]</strong> ${step.desc}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+
+            document.getElementById('stepNum').textContent = currentStep;
+
+            // Update remaining dishes
+            const remaining = dishes.slice(Math.min(produced, dishes.length));
+            if (step.type === 'producer-produce') {
+                produced++;
+                const rem = dishes.slice(produced);
+                document.getElementById('producerQueue').textContent = rem.length > 0 ? rem.join(', ') : '(all produced!)';
+            }
+        }
+
+        function nextStep() {
+            if (currentStep >= steps.length) {
+                stopAuto();
+                return;
+            }
+            currentStep++;
+            updateUI(steps[currentStep - 1]);
+        }
+
+        let isAuto = false;
+        function toggleAuto() {
+            if (isAuto) { stopAuto(); }
+            else { startAuto(); }
+        }
+        function startAuto() {
+            isAuto = true;
+            document.getElementById('btnAuto').textContent = '⏸ Pause';
+            document.getElementById('btnStep').disabled = true;
+            autoInterval = setInterval(() => {
+                if (currentStep >= steps.length) { stopAuto(); return; }
+                nextStep();
+            }, speed);
+        }
+        function stopAuto() {
+            isAuto = false;
+            document.getElementById('btnAuto').textContent = '▶ Auto Play';
+            document.getElementById('btnStep').disabled = false;
+            clearInterval(autoInterval);
+        }
+
+        function changeSpeed() {
+            const speeds = [2000, 1500, 1000, 500];
+            const labels = ['Slow', 'Normal', 'Fast', 'Very Fast'];
+            let idx = speeds.indexOf(speed);
+            idx = (idx + 1) % speeds.length;
+            speed = speeds[idx];
+            document.querySelector('.btn-speed').textContent = 'Speed: ' + labels[idx];
+            if (isAuto) { stopAuto(); startAuto(); }
+        }
+
+        function resetAll() {
+            stopAuto();
+            buffer = [];
+            produced = 0;
+            consumed = 0;
+            currentStep = 0;
+            document.getElementById('logContent').innerHTML = '';
+            document.getElementById('stepNum').textContent = '0';
+            document.getElementById('producerState').textContent = 'IDLE';
+            document.getElementById('producerState').className = 'state-badge state-idle';
+            document.getElementById('consumerState').textContent = 'IDLE';
+            document.getElementById('consumerState').className = 'state-badge state-idle';
+            document.getElementById('producerAction').textContent = 'Waiting to start...';
+            document.getElementById('consumerAction').textContent = 'Waiting to start...';
+            document.getElementById('lockIndicator').className = 'lock-indicator lock-free';
+            document.getElementById('lockIndicator').textContent = '🔓 Lock: FREE';
+            document.getElementById('bufferSize').textContent = '0';
+            document.getElementById('consumerCount').textContent = '0';
+            document.getElementById('producerQueue').textContent = dishes.join(', ');
+            document.getElementById('explanationText').innerHTML = 'Click <strong>Step</strong> to go one step at a time, or <strong>Auto Play</strong> to watch the full animation.';
+            for (let i = 0; i < 3; i++) {
+                document.getElementById('slot' + i).textContent = 'empty';
+                document.getElementById('slot' + i).className = 'buffer-slot';
+            }
+            buildSteps();
+        }
+
+        // Initialize
+        buildSteps();
+    </script>
+</body>
+</html>
