@@ -183,8 +183,8 @@ public class D_Synchronized {
          */
 
         class Printer {
-            // Instance-level lock — each Printer object has its own lock
-            synchronized void printInstance(String msg) {
+            // WAY 1: synchronized METHOD — locks on `this` implicitly
+            synchronized void printWithSyncMethod(String msg) {
                 System.out.print("    [" + Thread.currentThread().getName() + "] ");
                 for (char c : msg.toCharArray()) {
                     System.out.print(c);
@@ -192,27 +192,70 @@ public class D_Synchronized {
                 }
                 System.out.println();
             }
+
+            // WAY 2: synchronized(this) BLOCK — same as above, but explicit
+            void printWithSyncThis(String msg) {
+                synchronized (this) {
+                    System.out.print("    [" + Thread.currentThread().getName() + "] ");
+                    for (char c : msg.toCharArray()) {
+                        System.out.print(c);
+                        try { Thread.sleep(50); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                    }
+                    System.out.println();
+                }
+            }
+
+            // WAY 3: synchronized(ClassName.class) — CLASS-LEVEL lock
+            void printWithClassLock(String msg) {
+                synchronized (Printer.class) {
+                    System.out.print("    [" + Thread.currentThread().getName() + "] ");
+                    for (char c : msg.toCharArray()) {
+                        System.out.print(c);
+                        try { Thread.sleep(50); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                    }
+                    System.out.println();
+                }
+            }
         }
 
-        // SAME object → threads are synchronized (one waits for other)
-        System.out.println("  [Same object — threads are serialized]:");
+        // --- PART A: synchronized method (locks on `this`) ---
+        // SAME object → threads are serialized (one waits for other)
+        System.out.println("  [A] synchronized method — Same object (serialized):");
         Printer samePrinter = new Printer();
-        Thread t1 = new Thread(() -> samePrinter.printInstance("HELLO"), "T1");
-        Thread t2 = new Thread(() -> samePrinter.printInstance("WORLD"), "T2");
+        Thread t1 = new Thread(() -> samePrinter.printWithSyncMethod("HELLO"), "T1");
+        Thread t2 = new Thread(() -> samePrinter.printWithSyncMethod("WORLD"), "T2");
         t1.start(); t2.start();
         t1.join(); t2.join();
         System.out.println();
 
-        // DIFFERENT objects → threads run simultaneously (different locks!)
-        System.out.println("  [Different objects — threads run in parallel (different locks!)]:");
-        Printer printer1 = new Printer();
-        Printer printer2 = new Printer();
-        Thread t3 = new Thread(() -> printer1.printInstance("AAAA"), "T3");
-        Thread t4 = new Thread(() -> printer2.printInstance("BBBB"), "T4");
+        // DIFFERENT objects → threads run in parallel (different `this` locks!)
+        System.out.println("  [A] synchronized method — Different objects (parallel — different locks!):");
+        Printer printerA1 = new Printer();
+        Printer printerA2 = new Printer();
+        Thread t3 = new Thread(() -> printerA1.printWithSyncMethod("AAAA"), "T3");
+        Thread t4 = new Thread(() -> printerA2.printWithSyncMethod("BBBB"), "T4");
         t3.start(); t4.start();
         t3.join(); t4.join();
-        System.out.println("  → Notice: Characters of AAAA and BBBB are INTERLEAVED above");
-        System.out.println("    because they lock on DIFFERENT objects.\n");
+        System.out.println("  → INTERLEAVED! Different objects = different locks.\n");
+
+        // --- PART B: synchronized(this) block — behaves exactly like synchronized method ---
+        System.out.println("  [B] synchronized(this) block — Same object (serialized):");
+        Thread t5 = new Thread(() -> samePrinter.printWithSyncThis("HELLO"), "T5");
+        Thread t6 = new Thread(() -> samePrinter.printWithSyncThis("WORLD"), "T6");
+        t5.start(); t6.start();
+        t5.join(); t6.join();
+        System.out.println("  → Same behavior as synchronized method. Both lock on `this`.\n");
+
+        // --- PART C: synchronized(ClassName.class) — class-level lock ---
+        // Even DIFFERENT objects are serialized — because there's only ONE Printer.class
+        System.out.println("  [C] synchronized(Printer.class) — Different objects (STILL serialized!):");
+        Printer printerC1 = new Printer();
+        Printer printerC2 = new Printer();
+        Thread t7 = new Thread(() -> printerC1.printWithClassLock("XXXX"), "T7");
+        Thread t8 = new Thread(() -> printerC2.printWithClassLock("YYYY"), "T8");
+        t7.start(); t8.start();
+        t7.join(); t8.join();
+        System.out.println("  → NOT interleaved! Class lock = one lock for ALL instances.\n");
     }
 
     // ========================================================================
