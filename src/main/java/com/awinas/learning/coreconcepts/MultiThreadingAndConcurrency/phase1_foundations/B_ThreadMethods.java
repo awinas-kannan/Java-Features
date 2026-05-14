@@ -257,7 +257,7 @@ public class B_ThreadMethods {
             int count = 0;
             while (true) {
                 count++;
-                if (count <= 3) {
+                if (count <= 5) {
                     System.out.println("    [Daemon] Background heartbeat #" + count);
                 }
                 try { Thread.sleep(300); } catch (InterruptedException e) { return; }
