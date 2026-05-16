@@ -13,7 +13,7 @@ public class RunnableTask implements Runnable {
 		System.out.println();
 		System.out.println("Task " + num + " running");
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
