@@ -59,7 +59,7 @@ public class C_CallableFuture {
 
         Callable<Integer> sumTask = () -> {
             System.out.println("  [Worker] Calculating sum...");
-            Thread.sleep(1000);
+            Thread.sleep(5000);
             int sum = 0;
             for (int i = 1; i <= 100; i++) sum += i;
             return sum;
@@ -168,8 +168,8 @@ public class C_CallableFuture {
 
         List<Callable<String>> tasks = List.of(
                 () -> { Thread.sleep(1000); return "Task-A done (1s)"; },
-                () -> { Thread.sleep(500);  return "Task-B done (0.5s)"; },
-                () -> { Thread.sleep(1500); return "Task-C done (1.5s)"; }
+                () -> { Thread.sleep(2000);  return "Task-B done (2.0s)"; },
+                () -> { Thread.sleep(4500); return "Task-C done (4.5s)"; }
         );
 
         long start = System.currentTimeMillis();
@@ -185,7 +185,7 @@ public class C_CallableFuture {
         }
 
         pool.shutdown();
-        System.out.println("  → Total time ~1.5s (slowest task), not 3s (sum of all)\n");
+        System.out.println("  → Total time ~4.5s (slowest task), not 7.5s (sum of all)\n");
     }
 
     // ========================================================================
