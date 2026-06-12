@@ -1,0 +1,213 @@
+https://www.youtube.com/watch?v=tDxnyop48mY&list=PLsyeobzWxl7r2ZX1fl-7CKnayxHJA_1ol
+Principle of object orienter design patters
+
+1:Prefer Compostion over inheritence
+2:Code for interface not for implementation
+
+DP types:
+1:Creation Dp - How the object should be created
+2:Structural DP - Compose ( mix )  objects. Utilize one obj in other.
+3:Behavioural DP - Communication between two object without composing them together.
+
+~~~~~~~~~~~~~~~~~~~Creational Dp
+
+@@@@@@@@@@Factory Design Pattern: (Journal dev) 
+##Interacting with interface (Computer Interface here ) 
+*Providing object to client based on the input.
+Factory Pattern is one of the Creational Design pattern and
+it’s widely used in JDK as well as frameworks like Spring and Struts.
+
+
+It promotes the loose-coupling by eliminating the need to bind application-specific classes into the code. 
+That means the code interacts solely with the resultant interface or abstract class, 
+so that it will work with any classes that implement that interface or that extends that abstract class.
+
+https://www.journaldev.com/1392/factory-design-pattern-in-java
+https://www.javatpoint.com/factory-method-design-pattern
+
+@@@@@@@@@@Singleton Pattern:(Journal dev)
+https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples
+https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/
+
+*Singleton pattern restricts the instantiation of a class and ensures 
+that only one instance of the class exists in the java virtual machine.
+*The singleton class must provide a global access point to get the instance of the class.
+*Singleton pattern is used for logging, drivers objects, caching and thread pool.
+*Singleton design pattern is also used in other design patterns like Abstract Factory, Builder, Prototype, Facade etc.
+*Singleton design pattern is used in core java classes also, for example
+
+1. Eager initialization:
+In eager initialization, the instance of Singleton Class is created at the time of class loading, 
+this is the easiest method to create a singleton class 
+but it has a drawback that instance is created even though client application might not be using it.
+
+
+2. Static block initialization
+Static block initialization implementation is similar to eager initialization, 
+except that instance of class is created in the static block that provides option for exception handling.
+
+3. Lazy Initialization
+4. Thread Safe Singleton
+5. Lazy Initialization with Double locking
+6. Bill Pugh Singleton Implementation ( Widely Used)
+ 
+ 
+@@@@@@@@@@Abstract Factory Design Pattern:https://www.javatpoint.com/abstract-factory-pattern
+https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm // GOOD
+**Catagorize shapes / banks .....
+Abstract Factory pattern is almost similar to Factory Pattern except 
+the fact that its more like factory of factories. 
+
+
+@@@@@@@@@@Prototype Design Pattern  https://www.journaldev.com/1440/prototype-design-pattern-in-java
+Can be used , when Multiple Modification has to be done seperately by the object retrieved from DB..
+
+Prototype design pattern is used when the Object creation is a costly affair and requires a lot of time 
+and resources and you have a similar object already existing.
+
+Prototype pattern provides a mechanism to copy the original object to a new object and then modify it according to our needs. 
+Prototype design pattern uses java cloning to copy the object.
+
+Shallow vs deep copy ????????????????????????
+
+@@@@@@@@@@Builder Pattern https://www.journaldev.com/1425/builder-design-pattern-in-java
+Builder pattern builds a complex object using simple objects and using a step by step approach
+
+
+~~~~~~~~~~~~~~~~~~~Structural DP
+
+$$$$$$$$$$$Adapter design pattern
+https://www.geeksforgeeks.org/adapter-pattern/
+Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can work together. 
+The object that joins these unrelated interface is called an Adapter.
+EX: Mobile charger(Adapter) Between Wall socket and Mobile Socket
+It delivers required volt to mobile
+Check two types of Adapter design pattern.
+
+To use an adapter:
+
+The client makes a request to the adapter by calling a method(squeak()) on it using the target interface(ToyDuck).
+The adapter translates that request on the adaptee using the adaptee interface.
+Client receive the results of the call and is unaware of adapter’s presence
+
+
+$$$$$$$$$$$Bridge Design Pattern 
+https://www.geeksforgeeks.org/bridge-design-pattern/
+https://www.journaldev.com/1491/bridge-design-pattern-java
+According to GoF bridge design pattern is:
+Decouple an abstraction from its implementation so that the two can vary independently.
+
+$$$$$$$$$$$Composite Design Pattern || EASY
+https://www.geeksforgeeks.org/composite-design-pattern/
+javatpoint.com/composite-pattern
+https://www.journaldev.com/1535/composite-design-pattern-in-java
+
+The intent of a composite is to “compose” objects into tree structures to represent part-whole hierarchies. 
+It allows you to have a tree structure and ask each node in the tree structure to perform a task.
+
+1) Composite – Composite means it can have other objects below it.
+2) leaf – leaf means it has no objects below it.
+
+$$$$$$$$$$$Decorator design pattern
+https://www.journaldev.com/1540/decorator-design-pattern-in-java-example
+**Object creation at run time 
+Decorator design pattern is used to modify the functionality of an object at runtime. 
+At the same time other instances of the same class will not be affected by this, 
+so individual object gets the modified behavior
+
+$$$$$$$$$$$Facade Design Pattern
+https://www.journaldev.com/1557/facade-design-pattern-in-java
+Facade design pattern is used to help client applications to easily interact with the system.
+It hides the complexities of the system and provides an interface to the client from where the client can access the system.
+
+$$$$$$$$$$$Flyweight Design Pattern
+https://www.geeksforgeeks.org/flyweight-design-pattern/
+https://www.journaldev.com/1562/flyweight-design-pattern-java
+
+Flyweight design pattern is used when we need to create a lot of Objects of a class. 
+Since every object consumes memory space that can be crucial for low memory devices, such as mobile devices or embedded systems, 
+flyweight design pattern can be applied to reduce the load on memory by sharing objects.
+
+Contains two types of props. Intrinsic(Assigned by developer) & Extrinsic(Assigned by Client)
+  
+$$$$$$$$$$$Proxy design pattern
+https://www.journaldev.com/1572/proxy-design-pattern
+https://www.geeksforgeeks.org/proxy-design-pattern/
+
+Provide a surrogate or placeholder for another object to control access to it.
+
+Proxy pattern is used when we need to create a wrapper to cover the main object’s complexity from the client.
+
+~~~~~~~~~~~~~~~~~~~Behavioural DP
+
+****************Chain of responsibility design pattern
+https://www.journaldev.com/1617/chain-of-responsibility-design-pattern-in-java
+Chain of responsibility pattern is used to achieve loose coupling in software design 
+where a request from client is passed to a chain of objects to process them. 
+Then the object in the chain will decide themselves who will be processing the request and 
+whether the request is required to be sent to the next object in the chain or not.
+
+****************Command Pattern 
+In command pattern, the request is send to the invoker and 
+invoker pass it to the encapsulated command object.
+
+Command object passes the request to the appropriate method of Receiver 
+to perform the specific action.
+
+The client program create the receiver object and then attach it to the Command. 
+Then it creates the invoker object and attach the command object to perform an action.
+
+
+Now when client program executes the action, it’s processed based on the command and receiver object.
+
+****************Interpreter design patternhttps://www.journaldev.com/1635/interpreter-design-pattern-java
+https://www.geeksforgeeks.org/interpreter-design-pattern/
+Interpreter pattern is used to defines a grammatical representation for a language and 
+provides an interpreter to deal with this grammar.
+
+****************Iterator design pattern
+ Iterator pattern is used to provide a standard way to traverse through a group of Objects. 
+ Iterator pattern is widely used in Java Collection Framework. 
+ Iterator interface provides methods for traversing through a collection.
+
+****************Mediator design pattern https://www.journaldev.com/1730/mediator-design-pattern-java                           
+Mediator design pattern is one of the behavioral design pattern, so it deals with the behaviors of objects. 
+Mediator design pattern is used to provide a centralized communication medium between different objects in a system.
+
+According to GoF, mediator pattern intent is:
+
+Allows loose coupling by encapsulating the way disparate sets of objects interact and communicate with each other. 
+Allows for the actions of each object set to vary independently of one another.
+
+****************Memento design Pattern
+https://www.journaldev.com/1734/memento-design-pattern-java
+https://www.javatpoint.com/memento-pattern
+Memento design pattern is one of the behavioral design pattern. 
+Memento design pattern is used when we want to save the state of an object so that we can restore later on. 
+Memento pattern is used to implement this in such a way that the saved state data of the object is not accessible outside of the object, 
+this protects the integrity of saved state data.
+
+****************Observer design pattern.
+Observer Pattern is one of the behavioral design pattern. 
+Observer design pattern is useful when you are interested in the state of an object 
+and want to get notified whenever there is any change. 
+In observer pattern, the object that watch on the state of another object are called Observer 
+and the object that is being watched is called Subject.
+
+According to GoF, observer design pattern intent is;
+Define a one-to-many dependency between objects so that when one object changes state, 
+all its dependents are notified and updated automatically. 
+
+****************State design pattern
+State design pattern is one of the behavioral design pattern. 
+State design pattern is used when an Object change its behavior based on its internal state.
+
+
+
+
+
+
+
+
+
+
