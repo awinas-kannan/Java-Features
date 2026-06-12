@@ -35,7 +35,7 @@ public class SerializationAnddeselialization {
 		ObjectInputStream ois1 = new ObjectInputStream(fis1);
 
 		com.awinas.learning.coreconcepts.SerializationAndDeserialization.Employee output1 = (Employee) ois1.readObject();
-		// com.awinas.learning.Employee output1 = (com.awinas.learning.Employee)
+		// com.awinas.learning.aa_tests.Employee output1 = (com.awinas.learning.aa_tests.Employee)
 		// ois1.readObject();
 
 		System.out.println("i = " + output1);

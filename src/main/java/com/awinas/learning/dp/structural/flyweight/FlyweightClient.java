@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.concepts.dp.structural.flyweight.ShapeFactory.ShapeType;
+import com.awinas.learning.dp.structural.flyweight.ShapeFactory.ShapeType;
 
 public class FlyweightClient extends JFrame {
 
