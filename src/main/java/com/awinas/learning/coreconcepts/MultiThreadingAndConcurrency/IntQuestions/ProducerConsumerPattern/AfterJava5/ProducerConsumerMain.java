@@ -3,6 +3,9 @@ package com.awinas.learning.coreconcepts.MultiThreadingAndConcurrency.IntQuestio
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/*
+ * Update the Thread Sleep to See Consumer Waiting (500) / Producer Waiting
+ */
 public class ProducerConsumerMain {
 
     public static void main(String[] args) {
