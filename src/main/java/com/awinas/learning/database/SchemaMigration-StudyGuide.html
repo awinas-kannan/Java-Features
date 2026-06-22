@@ -1,0 +1,355 @@
+<html>
+<head>
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 11px; line-height: 1.4; margin: 15px; color: #222; }
+h1 { color: #003366; font-size: 16px; font-weight: bold; margin: 8px 0 4px 0; }
+h2 { color: #006600; font-size: 14px; font-weight: bold; margin: 8px 0 4px 0; }
+h3 { color: #6600AA; font-size: 12px; font-weight: bold; margin: 6px 0 3px 0; }
+h4 { color: #CC0000; font-size: 10px; font-weight: bold; margin: 5px 0 2px 0; }
+p { margin: 2px 0; }
+ul, ol { margin: 2px 0 2px 20px; padding: 0; }
+li { margin: 1px 0; }
+pre { background: #f4f4f4; border: 1px solid #ddd; padding: 6px; font-family: Consolas, monospace; font-size: 10px; margin: 3px 0; white-space: pre-wrap; }
+code { font-family: Consolas, monospace; font-size: 10px; background: #f0f0f0; padding: 1px 3px; }
+table { border-collapse: collapse; margin: 4px 0; font-size: 10px; }
+th, td { border: 1px solid #999; padding: 3px 6px; text-align: left; }
+th { background: #e8e8e8; font-weight: bold; }
+blockquote { margin: 3px 0 3px 10px; padding: 4px 8px; border-left: 3px solid #006600; background: #f9f9f9; font-style: italic; }
+hr { border: none; border-top: 1px solid #ccc; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>Schema Migration - Study Guide</h1>
+<hr>
+
+<h2>1. What is Schema Migration?</h2>
+<p><b>Schema migration</b> is the process of changing the database structure in a controlled, versioned, and repeatable manner as application requirements evolve.</p>
+<p>A schema includes:</p>
+<ul>
+<li>Tables</li>
+<li>Columns</li>
+<li>Indexes</li>
+<li>Constraints</li>
+<li>Views</li>
+<li>Stored Procedures</li>
+<li>Triggers</li>
+</ul>
+
+<h3>Examples</h3>
+<pre>-- Create a table
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100)
+);
+
+-- Add a column
+ALTER TABLE Customer
+ADD email VARCHAR(255);
+
+-- Modify a column
+ALTER TABLE Customer
+ALTER COLUMN customer_name VARCHAR(200);
+
+-- Drop a column
+ALTER TABLE Customer
+DROP COLUMN email;
+
+-- Create an index
+CREATE INDEX idx_customer_name
+ON Customer(customer_name);</pre>
+<hr>
+
+<h2>2. Why do we need Schema Migration?</h2>
+<ul>
+<li>Version control for DB changes.</li>
+<li>Keep Dev, QA, Stage, and Prod schemas in sync.</li>
+<li>Automate deployments.</li>
+<li>Support rollbacks.</li>
+<li>Ensure repeatable deployments.</li>
+</ul>
+<p><b>Common tools:</b></p>
+<ul>
+<li>Flyway</li>
+<li>Liquibase</li>
+</ul>
+<hr>
+
+<h2>Senior-Level Schema Migration Questions</h2>
+
+<h3>Q1. How do you perform schema changes in production without downtime?</h3>
+<p>Use <b>Backward Compatible Migrations</b>.</p>
+<p><b>Typical approach:</b></p>
+<ol>
+<li>Add new schema objects (nullable column/new table).</li>
+<li>Deploy application changes.</li>
+<li>Backfill old data.</li>
+<li>Switch application to new schema.</li>
+<li>Remove old schema later.</li>
+</ol>
+<p><b>Patterns used:</b></p>
+<ul>
+<li>Expand and Contract Pattern</li>
+<li>Blue-Green Deployment</li>
+<li>Rolling Deployment</li>
+<li>Feature Flags</li>
+</ul>
+<hr>
+
+<h3>Q2. How do you add a new column to a production table containing 500M rows?</h3>
+<p><b>Scenario:</b> You have:</p>
+<ul>
+<li>Spring Boot Microservice</li>
+<li>JPA/Hibernate</li>
+<li>Table already contains 500M records</li>
+</ul>
+<p><b>Example:</b> Need to add: <code>customer_segment VARCHAR(50)</code></p>
+
+<h4>User Question: Adding a new column affects the app? Will the app break?</h4>
+
+<h4>Case 1: Add Nullable Column</h4>
+<pre>ALTER TABLE orders
+ADD customer_segment VARCHAR(50) NULL;</pre>
+<p><b>Application will NOT break.</b></p>
+<p><b>Reason:</b> JPA ignores columns not present in Entity.</p>
+<pre>@Entity
+class Order {
+    @Id
+    private Long id;
+    private String status;
+}</pre>
+<p>Extra DB column is ignored.</p>
+
+<h4>Case 2: Add NOT NULL Column</h4>
+<pre>ALTER TABLE orders
+ADD customer_segment VARCHAR(50) NOT NULL;</pre>
+<p><b>This is dangerous.</b></p>
+<p>Old application code:</p>
+<pre>Order order = new Order();
+order.setStatus("NEW");
+repository.save(order);</pre>
+<p>Generated SQL:</p>
+<pre>INSERT INTO orders(id, status)
+VALUES(1, 'NEW');</pre>
+<p>Database throws: <code>Cannot insert NULL into customer_segment</code></p>
+<p><b>Application starts failing.</b></p>
+
+<h4>Safe Production Approach (Zero Downtime)</h4>
+
+<p><b>Step 1: Add column as NULLABLE</b></p>
+<pre>ALTER TABLE orders
+ADD customer_segment VARCHAR(50) NULL;</pre>
+<p>Safe. Existing app continues to work.</p>
+
+<p><b>Step 2: Deploy application changes</b></p>
+<p>Update entity:</p>
+<pre>@Entity
+class Order {
+    @Id
+    private Long id;
+    private String status;
+    private String customerSegment;
+}</pre>
+<p>New application version writes values.</p>
+<pre>order.setCustomerSegment("PREMIUM");</pre>
+
+<p><b>Step 3: Backfill old records</b></p>
+<p>Never do:</p>
+<pre>UPDATE orders
+SET customer_segment = 'STANDARD';</pre>
+<p>on 500M rows. Instead:</p>
+<pre>UPDATE orders
+SET customer_segment = 'STANDARD'
+WHERE id BETWEEN 1 AND 10000;</pre>
+<p>Run repeatedly in batches.</p>
+<p><b>Possible approaches:</b></p>
+<ul>
+<li>Spring Batch</li>
+<li>Background Job</li>
+<li>Scheduler</li>
+<li>DB Job</li>
+</ul>
+<p><b>Monitor:</b></p>
+<ul>
+<li>Locks</li>
+<li>CPU</li>
+<li>Transaction Log</li>
+<li>Replication Lag</li>
+</ul>
+
+<p><b>Step 4: Verify all rows updated</b></p>
+<pre>SELECT COUNT(*)
+FROM orders
+WHERE customer_segment IS NULL;</pre>
+<p>Result: 0</p>
+
+<p><b>Step 5: Add NOT NULL constraint</b></p>
+<pre>ALTER TABLE orders
+ALTER COLUMN customer_segment VARCHAR(50) NOT NULL;</pre>
+<p>Now all application instances already populate values.</p>
+
+<h4>Deployment Timeline</h4>
+<table>
+<tr><th>Release</th><th>Action</th></tr>
+<tr><td>Release 1</td><td>DB Migration: Add nullable column</td></tr>
+<tr><td>Release 2</td><td>Deploy application changes</td></tr>
+<tr><td>Release 3</td><td>Backfill historical data</td></tr>
+<tr><td>Release 4</td><td>Validate data</td></tr>
+<tr><td>Release 5</td><td>Make column NOT NULL</td></tr>
+</table>
+
+<h4>Important Production Considerations</h4>
+<p><b>Never use:</b></p>
+<pre>spring.jpa.hibernate.ddl-auto=update</pre>
+<p>in Production.</p>
+<p><b>Prefer:</b> Flyway, Liquibase</p>
+
+<p><b>Rolling Deployments:</b> During deployment:</p>
+<pre>Pod A -> Old Version
+Pod B -> New Version
+Pod C -> Old Version</pre>
+<p>Multiple versions coexist. Therefore: <b>Schema changes must be backward compatible.</b> Nullable columns are safe.</p>
+
+<p><b>Large ALTER statements:</b> For huge tables:</p>
+<ul>
+<li>Test migration in lower environments.</li>
+<li>Check lock duration.</li>
+<li>Perform during low traffic.</li>
+<li>Verify if DB supports online DDL.</li>
+</ul>
+<hr>
+
+<h3>Q3. How do you rename a column with zero downtime?</h3>
+<p><b>Bad:</b></p>
+<pre>EXEC sp_rename 'orders.old_column',
+               'new_column',
+               'COLUMN';</pre>
+<p>Old application immediately breaks.</p>
+<p><b>Safe approach:</b></p>
+<table>
+<tr><th>Release</th><th>Action</th></tr>
+<tr><td>Release 1</td><td>Add new column</td></tr>
+<tr><td>Release 2</td><td>Application writes to both columns</td></tr>
+<tr><td>Release 3</td><td>Backfill historical data</td></tr>
+<tr><td>Release 4</td><td>Switch reads to new column</td></tr>
+<tr><td>Release 5</td><td>Remove old column</td></tr>
+</table>
+<p><b>Release 1:</b></p>
+<pre>ALTER TABLE orders
+ADD new_column VARCHAR(50) NULL;</pre>
+<p><b>Release 2:</b></p>
+<pre>entity.setOldColumn(value);
+entity.setNewColumn(value);</pre>
+<p><b>Release 5:</b></p>
+<pre>ALTER TABLE orders
+DROP COLUMN old_column;</pre>
+<hr>
+
+<h3>Q4. How do you migrate billions of rows?</h3>
+<p><b>Approach:</b></p>
+<ul>
+<li>Batch updates.</li>
+<li>Chunk by primary key.</li>
+<li>Parallel workers if safe.</li>
+<li>Background jobs.</li>
+<li>Avoid full table updates.</li>
+</ul>
+<p><b>Example:</b></p>
+<pre>UPDATE orders
+SET status = 'ACTIVE'
+WHERE id BETWEEN 1 AND 10000;</pre>
+<p>Repeat.</p>
+<hr>
+
+<h3>Q5. How do you create indexes on huge tables in Production?</h3>
+<p><b>Example (SQL Server):</b></p>
+<pre>CREATE INDEX idx_customer
+ON customer(last_name)
+WITH (ONLINE = ON);</pre>
+<p><b>Prefer:</b></p>
+<ul>
+<li>Online index creation.</li>
+<li>Low traffic windows.</li>
+<li>Performance monitoring.</li>
+</ul>
+<hr>
+
+<h3>Q6. How do you handle migration rollback?</h3>
+<p><b>Preferred approach:</b> Forward-only migrations.</p>
+<table>
+<tr><th>Release</th><th>Action</th></tr>
+<tr><td>Release 1</td><td>Add new column</td></tr>
+<tr><td>Release 2</td><td>Application uses new column</td></tr>
+<tr><td>Release 3</td><td>Remove old column</td></tr>
+</table>
+<p>Avoid destructive changes immediately.</p>
+<p><b>Keep:</b></p>
+<ul>
+<li>Backups</li>
+<li>Rollback scripts</li>
+<li>Feature flags</li>
+</ul>
+<hr>
+
+<h3>Q7. What happens if Flyway migration V5 fails after V1-V4 succeeded?</h3>
+<ul>
+<li>V1-V4 remain successful.</li>
+<li>Fix migration.</li>
+<li>Create new migration or repair metadata.</li>
+<li><b>Never modify already executed production scripts.</b></li>
+</ul>
+<hr>
+
+<h3>Q8. Is Index Rebuild a Schema Migration?</h3>
+<p><b>Generally: No.</b> Because it does not change schema.</p>
+<pre>ALTER INDEX IX_Orders_CustomerId
+ON Orders
+REBUILD;</pre>
+<p>Only the physical structure is recreated. Schema remains unchanged.</p>
+
+<h4>What is Index Rebuilding?</h4>
+<p>Over time, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> operations fragment indexes.</p>
+<p><b>Fragmented index:</b> Page1 -> Page8 -> Page3 -> Page15</p>
+<p>Database reads become slower.</p>
+<p><b>Index rebuild:</b></p>
+<ul>
+<li>Recreates entire index.</li>
+<li>Removes fragmentation.</li>
+<li>Improves performance.</li>
+</ul>
+<pre>ALTER INDEX IX_Orders_CustomerId
+ON Orders
+REBUILD;</pre>
+<p><b>Rebuild all indexes:</b></p>
+<pre>ALTER INDEX ALL
+ON Orders
+REBUILD;</pre>
+
+<h4>Rebuild vs Reorganize</h4>
+<table>
+<tr><th>Feature</th><th>Rebuild</th><th>Reorganize</th></tr>
+<tr><td>Recreates entire index</td><td>Yes</td><td>No</td></tr>
+<tr><td>Removes fragmentation completely</td><td>Yes</td><td>Partially</td></tr>
+<tr><td>CPU/Disk Usage</td><td>High</td><td>Low</td></tr>
+<tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+<tr><td>Suitable For</td><td>&gt;30% fragmentation</td><td>5%-30% fragmentation</td></tr>
+</table>
+
+<h4>When is an Index operation considered Schema Migration?</h4>
+<p><b>Maintenance (NOT Schema Migration):</b></p>
+<pre>ALTER INDEX IX_Customer
+ON Customer
+REBUILD;</pre>
+<p><b>Schema Migration:</b></p>
+<pre>DROP INDEX IX_Customer ON Customer;
+
+CREATE INDEX IX_Customer
+ON Customer(CustomerId, OrderDate);</pre>
+<p>Index definition changed. Therefore, this <b>is</b> a schema migration.</p>
+<hr>
+
+<h3>Strong Senior Interview Answer</h3>
+<blockquote>Schema migrations in production should always be backward compatible. For large tables, I avoid destructive changes and prefer an <b>expand-contract approach</b>. I first introduce additive changes such as nullable columns, deploy application changes, backfill data asynchronously in batches, validate the data, and only then enforce constraints or remove obsolete schema objects. This ensures <b>zero downtime</b>, supports <b>rolling deployments</b>, and minimizes <b>production risk</b>.</blockquote>
+
+</body>
+</html>

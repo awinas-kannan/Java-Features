@@ -1,0 +1,225 @@
+<html>
+<head>
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 11px; line-height: 1.4; margin: 15px; color: #222; }
+h1 { color: #003366; font-size: 16px; font-weight: bold; margin: 8px 0 4px 0; }
+h2 { color: #006600; font-size: 14px; font-weight: bold; margin: 8px 0 4px 0; }
+h3 { color: #6600AA; font-size: 12px; font-weight: bold; margin: 6px 0 3px 0; }
+h4 { color: #CC0000; font-size: 10px; font-weight: bold; margin: 5px 0 2px 0; }
+p { margin: 2px 0; }
+ul, ol { margin: 2px 0 2px 20px; padding: 0; }
+li { margin: 1px 0; }
+pre { background: #f4f4f4; border: 1px solid #ddd; padding: 6px; font-family: Consolas, monospace; font-size: 10px; margin: 3px 0; white-space: pre-wrap; }
+code { font-family: Consolas, monospace; font-size: 10px; background: #f0f0f0; padding: 1px 3px; }
+table { border-collapse: collapse; margin: 4px 0; font-size: 10px; }
+th, td { border: 1px solid #999; padding: 3px 6px; text-align: left; }
+th { background: #e8e8e8; font-weight: bold; }
+blockquote { margin: 3px 0 3px 10px; padding: 4px 8px; border-left: 3px solid #006600; background: #f9f9f9; font-style: italic; }
+hr { border: none; border-top: 1px solid #ccc; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>Database Normalization - Study Guide</h1>
+<h1>Explained Using a Returns System</h1>
+<hr>
+
+<h2>What is Normalization?</h2>
+<p><b>Normalization</b> is the process of organizing data in a database to:</p>
+<ol>
+<li><b>Eliminate duplicate data</b> (redundancy).</li>
+<li><b>Ensure data consistency</b>.</li>
+<li><b>Avoid anomalies</b> during INSERT, UPDATE, and DELETE operations.</li>
+</ol>
+<p>In real-world applications, databases are typically normalized up to <b>Third Normal Form (3NF)</b>.</p>
+
+<h2>Example: Returns System</h2>
+<p>Suppose we are building a <b>retail returns application</b>. A customer can create a return request for multiple items.</p>
+<hr>
+
+<h2>Step 1: Unnormalized Table (UNF)</h2>
+<p>A beginner might design the table like this:</p>
+<table>
+<tr><th>ReturnId</th><th>CustomerName</th><th>CustomerEmail</th><th>Product1</th><th>Qty1</th><th>Product2</th><th>Qty2</th><th>ReturnReason</th></tr>
+<tr><td>R1001</td><td>John</td><td>john@gmail.com</td><td>Shirt</td><td>1</td><td>Jeans</td><td>2</td><td>Damaged</td></tr>
+</table>
+
+<h3>Problems</h3>
+<p><b>1. Repeating Groups</b> — The columns <code>Product1</code>, <code>Qty1</code>, <code>Product2</code>, <code>Qty2</code> are repeating. What if the customer returns 10 products? You would need <code>Product3, Qty3... Product10, Qty10</code>. This is <b>not scalable</b>.</p>
+<p><b>2. Wasted Space</b> — If only one product is returned:</p>
+<table>
+<tr><th>ReturnId</th><th>Product1</th><th>Qty1</th><th>Product2</th><th>Qty2</th></tr>
+<tr><td>R1002</td><td>Shoes</td><td>1</td><td>NULL</td><td>NULL</td></tr>
+</table>
+<p>Lots of NULL values.</p>
+<p><b>3. Difficult Queries</b> — Finding total quantity returned for a product becomes difficult.</p>
+<pre>SELECT SUM(Qty1 + Qty2 + Qty3 ...)
+FROM Returns;</pre>
+<p>Not practical.</p>
+<hr>
+
+<h2>First Normal Form (1NF)</h2>
+<h3>Rule</h3>
+<p>Each column should contain only a <b>single (atomic) value</b>. No repeating groups.</p>
+
+<h3>Solution — Convert the table:</h3>
+<table>
+<tr><th>ReturnId</th><th>CustomerName</th><th>CustomerEmail</th><th>Product</th><th>Qty</th><th>ReturnReason</th></tr>
+<tr><td>R1001</td><td>John</td><td>john@gmail.com</td><td>Shirt</td><td>1</td><td>Damaged</td></tr>
+<tr><td>R1001</td><td>John</td><td>john@gmail.com</td><td>Jeans</td><td>2</td><td>Damaged</td></tr>
+</table>
+<p><b>Now:</b></p>
+<ul>
+<li>One row = One returned product.</li>
+<li>No repeating columns.</li>
+<li>This table is in <b>1NF</b>.</li>
+</ul>
+
+<h3>Problem Still Exists</h3>
+<p>Customer information is <b>repeated</b>. If John changes his email, you must update every row. If you miss one row, data becomes <b>inconsistent</b>.</p>
+<hr>
+
+<h2>Second Normal Form (2NF)</h2>
+<h3>Rule</h3>
+<ol>
+<li>Table must already be in <b>1NF</b>.</li>
+<li><b>No partial dependency</b>.</li>
+</ol>
+
+<h3>Understanding Partial Dependency</h3>
+<p>Assume the primary key is <b>(ReturnId, Product)</b>. A row is uniquely identified by <code>ReturnId + Product</code>.</p>
+<p><b>Dependency Analysis:</b></p>
+<table>
+<tr><th>Column</th><th>Depends On</th><th>Full Key?</th></tr>
+<tr><td>Qty</td><td>ReturnId + Product</td><td>Yes</td></tr>
+<tr><td>CustomerName</td><td>ReturnId only</td><td>No (Partial)</td></tr>
+<tr><td>CustomerEmail</td><td>ReturnId only</td><td>No (Partial)</td></tr>
+<tr><td>ReturnReason</td><td>ReturnId only</td><td>No (Partial)</td></tr>
+</table>
+<p>Customer details do not depend on the <b>entire key</b>. This is called <b>Partial Dependency</b>.</p>
+
+<h3>Solution — Split the table:</h3>
+<p><b>Returns Table:</b></p>
+<table>
+<tr><th>ReturnId (PK)</th><th>CustomerId</th><th>ReturnReason</th></tr>
+<tr><td>R1001</td><td>C101</td><td>Damaged</td></tr>
+</table>
+<p><b>Customers Table:</b></p>
+<table>
+<tr><th>CustomerId (PK)</th><th>CustomerName</th><th>Email</th></tr>
+<tr><td>C101</td><td>John</td><td>john@gmail.com</td></tr>
+</table>
+<p><b>ReturnItems Table:</b></p>
+<table>
+<tr><th>ReturnId (FK)</th><th>ProductId</th><th>Qty</th></tr>
+<tr><td>R1001</td><td>P100</td><td>1</td></tr>
+<tr><td>R1001</td><td>P200</td><td>2</td></tr>
+</table>
+<p><b>Now:</b> Customer information stored <b>once</b>. No duplicate customer data. This is <b>2NF</b>.</p>
+<hr>
+
+<h2>Third Normal Form (3NF)</h2>
+<h3>Rule</h3>
+<ol>
+<li>Must already be in <b>2NF</b>.</li>
+<li><b>Remove transitive dependencies</b>.</li>
+</ol>
+
+<h3>Understanding Transitive Dependency</h3>
+<p>Suppose Customer table has: <code>CustomerId</code>, <code>CustomerName</code>, <code>City</code>, <code>ZipCode</code></p>
+<p>Assume: <code>CustomerId → City → ZipCode</code></p>
+<p><code>ZipCode</code> does <b>not</b> directly depend on <code>CustomerId</code>. It depends on <code>City</code>. This is called a <b>Transitive Dependency</b>.</p>
+
+<h3>Problem</h3>
+<p>If Chennai zip code changes, you must update <b>all</b> customers in Chennai. Possible inconsistency:</p>
+<table>
+<tr><th>CustomerId</th><th>City</th><th>ZipCode</th></tr>
+<tr><td>C101</td><td>Chennai</td><td>600001</td></tr>
+<tr><td>C102</td><td>Chennai</td><td>600002</td></tr>
+</table>
+<p>Incorrect.</p>
+
+<h3>Solution — Create separate City table:</h3>
+<p><b>Customers:</b></p>
+<table>
+<tr><th>CustomerId</th><th>CustomerName</th><th>CityId</th></tr>
+<tr><td>C101</td><td>John</td><td>CT01</td></tr>
+</table>
+<p><b>Cities:</b></p>
+<table>
+<tr><th>CityId</th><th>CityName</th><th>ZipCode</th></tr>
+<tr><td>CT01</td><td>Chennai</td><td>600001</td></tr>
+</table>
+<p><b>Now:</b> <code>CustomerId → CityId</code>, <code>CityId → ZipCode</code>. No transitive dependency. This is <b>3NF</b>.</p>
+<hr>
+
+<h2>Final Database Design (3NF)</h2>
+<pre>CREATE TABLE Customers (
+    customer_id VARCHAR(20) PRIMARY KEY,
+    customer_name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Returns (
+    return_id VARCHAR(20) PRIMARY KEY,
+    customer_id VARCHAR(20),
+    return_date DATE,
+    return_reason VARCHAR(100),
+    FOREIGN KEY (customer_id)
+        REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Products (
+    product_id VARCHAR(20) PRIMARY KEY,
+    product_name VARCHAR(100)
+);
+
+CREATE TABLE Return_Items (
+    return_id VARCHAR(20),
+    product_id VARCHAR(20),
+    quantity INT,
+    refund_amount DECIMAL(10,2),
+
+    PRIMARY KEY(return_id, product_id),
+
+    FOREIGN KEY(return_id)
+        REFERENCES Returns(return_id),
+
+    FOREIGN KEY(product_id)
+        REFERENCES Products(product_id)
+);</pre>
+<hr>
+
+<h2>Interview Answer (2 Minutes)</h2>
+<blockquote>"Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. In a returns system, initially we may store customer, return, and product details in a single table, leading to duplicate customer and product information. In 1NF, we remove repeating groups and ensure atomic values. In 2NF, we remove partial dependencies by separating entities like Customers and ReturnItems. In 3NF, we remove transitive dependencies such as storing city information separately. Most OLTP systems normalize up to 3NF, although selective denormalization may be done for performance optimization."</blockquote>
+<hr>
+
+<h2>Common Interview Follow-up Questions</h2>
+
+<h3>Why do we normalize?</h3>
+<ul>
+<li>Reduce redundancy.</li>
+<li>Improve consistency.</li>
+<li>Prevent anomalies.</li>
+<li>Improve maintainability.</li>
+</ul>
+
+<h3>What are anomalies?</h3>
+<table>
+<tr><th>#</th><th>Anomaly Type</th><th>Description</th></tr>
+<tr><td>1</td><td><b>Insert Anomaly</b></td><td>Cannot insert customer without creating a return.</td></tr>
+<tr><td>2</td><td><b>Update Anomaly</b></td><td>Need to update customer email in multiple rows.</td></tr>
+<tr><td>3</td><td><b>Delete Anomaly</b></td><td>Deleting the last return may delete customer information.</td></tr>
+</table>
+<hr>
+
+<h3>Quick Reference</h3>
+<table>
+<tr><th>Normal Form</th><th>Rule</th><th>What it removes</th></tr>
+<tr><td><b>1NF</b></td><td>Atomic values, no repeating groups</td><td>Repeating columns</td></tr>
+<tr><td><b>2NF</b></td><td>No partial dependency</td><td>Partial dependencies</td></tr>
+<tr><td><b>3NF</b></td><td>No transitive dependency</td><td>Transitive dependencies</td></tr>
+</table>
+
+</body>
+</html>
