@@ -93,13 +93,22 @@ Depth First Search
 
 Breadth First Search
 102. Binary Tree Level Order Traversal (DONE)
-994. Rotting Oranges
-127. Word Ladder
+994. Rotting Oranges (DONE)
+127. Word Ladder (DONE)
 
 Matrix Traversal
-733. Flood Fill
-200. Number of Islands
-130. Surrounded Regions
+733. Flood Fill (DONE)
+200. Number of Islands (DONE)
+130. Surrounded Regions (DONE)
+
+✅ Flood Fill
+✅ Number of Islands
+✅ Max Area of Island
+✅ Rotting Oranges
+✅ Surrounded Regions
+✅ Pacific Atlantic Water Flow
+✅ Word Search
+✅ Closed Islands
 
 Backtracking
 46. Permutations
