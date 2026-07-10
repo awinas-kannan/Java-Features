@@ -73,7 +73,7 @@ public class StreamIntermediateOperation extends MyList {
 			System.out.println("List size " + size + " list " + e);
 		});
 
-		list.stream().mapToLong(e -> e.longValue()).forEach(System.out::println);
+		list.stream().mapToLong(Integer::longValue).forEach(System.out::println);
 
 		System.out.println("***** Flat Map *****");
 
