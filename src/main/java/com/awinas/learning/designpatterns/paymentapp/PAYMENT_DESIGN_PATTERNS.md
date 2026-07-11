@@ -27,29 +27,30 @@
              RazorpayFactory                                       StripeFactory
            (Abstract Factory)                                    (Abstract Factory)
                       |                                                     |
-           ┌──────────┴───────────┐                         ┌──────────────┴───────────┐
-           |                      |                         |                          |
-  RazorpayPayment         RazorpayRefund           StripePayment               StripeRefund
-    Adapter                  Adapter                 Adapter                     Adapter
-   (Adapter)                (Adapter)               (Adapter)                  (Adapter)
-           |                      |                         |                          |
-           ▼                      ▼                         ▼                          ▼
-      RazorpaySDK            RazorpaySDK               StripeSDK                  StripeSDK
-    razorpayPay()        razorpayRefund()           stripeCharge()             stripeRefund()
+                      |                                                     |
+               RazorpayAdapter                                      StripeAdapter
+     implements PaymentService                              implements PaymentService
+             + RefundService                                      + RefundService
+                (Adapter)                                            (Adapter)
+                      |                                                     |
+                      ▼                                                     ▼
+                 RazorpaySDK                                           StripeSDK
+               razorpayPay()                                       stripeCharge()
+             razorpayRefund()                                       stripeRefund()
     - - - - - - - - - - - - - Third-party SDKs  ·  Cannot Modify - - - - - - - - - - - -
 
-           |                                               |
-           └────────────────────┬──────────────────────────┘
-                                |
-                                | uses
-                                |
-                     PaymentStrategy (Strategy Pattern)
-                                |
-                ┌───────────────┼───────────────┐
-                |               |               |
-           UpiStrategy     CardStrategy    NetBankingStrategy
-            method=UPI     method=CARD    method=NETBANKING
-            upiId=...      cardNumber=... bankName=...
+                      |                                                     |
+                      └──────────────────────┬──────────────────────────────┘
+                                             |
+                                             | uses
+                                             |
+                                  PaymentStrategy (Strategy Pattern)
+                                             |
+                          ┌──────────────────┼──────────────────┐
+                          |                  |                  |
+                     UpiStrategy        CardStrategy      NetBankingStrategy
+                      method=UPI        method=CARD       method=NETBANKING
+                      upiId=...         cardNumber=...    bankName=...
 ```
 
 ---
@@ -72,10 +73,8 @@ paymentapp/
 ├── adapter/
 │   ├── PaymentService.java              ← Target interface (payment)
 │   ├── RefundService.java               ← Target interface (refund)
-│   ├── RazorpayPaymentAdapter.java      ← Adapts RazorpaySDK for payment
-│   ├── RazorpayRefundAdapter.java       ← Adapts RazorpaySDK for refund
-│   ├── StripePaymentAdapter.java        ← Adapts StripeSDK for payment
-│   └── StripeRefundAdapter.java         ← Adapts StripeSDK for refund
+│   ├── RazorpayAdapter.java             ← Adapts RazorpaySDK (pay + refund)
+│   └── StripeAdapter.java               ← Adapts StripeSDK   (pay + refund)
 │
 ├── strategy/
 │   ├── PaymentStrategy.java             ← Strategy interface
