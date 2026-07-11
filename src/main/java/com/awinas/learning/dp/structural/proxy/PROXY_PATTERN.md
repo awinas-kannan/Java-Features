@@ -16,6 +16,34 @@ The caller never knows it is talking to a proxy.
 
 ---
 
+## Simple Mental Model — Validation Layer
+
+A Protection Proxy is essentially a **validation and interception layer** in front of the real object.
+
+```
+Caller
+  |
+  ▼
+Proxy  ← Validation Layer
+  |
+  ├── Is amount within single txn limit?
+  ├── Is daily cap exceeded?
+  ├── Is user authenticated?
+  ├── Log the request
+  |
+  | all checks pass
+  ▼
+Real Object  ← actual work happens here
+```
+
+The real object only does its one job (process payment).
+All the "before" and "after" concerns live in the proxy.
+
+> **Interview one-liner:**
+> *"A Protection Proxy is a validation and interception layer — same interface as the real object, but controls what gets through and logs everything."*
+
+---
+
 ## Why it is a Structural Pattern
 
 Structural patterns deal with **how objects are composed and connected**.
