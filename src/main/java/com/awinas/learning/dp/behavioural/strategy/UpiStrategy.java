@@ -17,4 +17,14 @@ public class UpiStrategy implements PaymentStrategy {
         System.out.println("  Ref ID  : " + refId);
         System.out.println("  Status  : Payment SUCCESS");
     }
+
+    @Override
+    public String getMethod() {
+        return "UPI";
+    }
+
+    @Override
+    public String getDetails() {
+        return "UPI ID: " + upiId;
+    }
 }

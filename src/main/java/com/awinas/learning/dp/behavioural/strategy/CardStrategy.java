@@ -21,4 +21,15 @@ public class CardStrategy implements PaymentStrategy {
         System.out.println("  Auth    : " + authCode);
         System.out.println("  Status  : Payment SUCCESS");
     }
+
+    @Override
+    public String getMethod() {
+        return "CARD";
+    }
+
+    @Override
+    public String getDetails() {
+        String last4 = cardNumber.substring(cardNumber.length() - 4);
+        return "Card: ****-****-****-" + last4 + " | Expiry: " + expiry;
+    }
 }

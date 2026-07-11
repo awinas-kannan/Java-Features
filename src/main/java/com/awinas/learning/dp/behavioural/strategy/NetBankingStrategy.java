@@ -17,4 +17,14 @@ public class NetBankingStrategy implements PaymentStrategy {
         System.out.println("  Txn ID  : " + txnId);
         System.out.println("  Status  : Payment SUCCESS");
     }
+
+    @Override
+    public String getMethod() {
+        return "NETBANKING";
+    }
+
+    @Override
+    public String getDetails() {
+        return "Bank: " + bankName;
+    }
 }

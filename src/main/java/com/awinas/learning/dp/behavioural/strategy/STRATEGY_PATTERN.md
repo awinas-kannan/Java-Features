@@ -100,9 +100,15 @@ Runtime swap:
 
 ```java
 public interface PaymentStrategy {
-    void pay(double amount);   // behaviour, not just data
+    void pay(double amount);    // behaviour — executes the payment algorithm
+    String getMethod();         // metadata — used for logging / SDK integration
+    String getDetails();        // metadata — method-specific info
 }
 ```
+
+> `pay()` is the core Strategy behaviour.
+> `getMethod()` and `getDetails()` are useful when the strategy data needs to be passed
+> to an external SDK or written to an audit log — they don't replace `pay()`, they complement it.
 
 **Step 2: Create concrete strategies — each owns its own logic**
 
@@ -116,6 +122,9 @@ public class UpiStrategy implements PaymentStrategy {
         System.out.println("Sending UPI payment | ID: " + upiId + " | Rs." + amount);
         // all UPI-specific logic lives HERE
     }
+
+    @Override public String getMethod()  { return "UPI"; }
+    @Override public String getDetails() { return "UPI ID: " + upiId; }
 }
 
 public class CardStrategy implements PaymentStrategy {
@@ -125,8 +134,10 @@ public class CardStrategy implements PaymentStrategy {
     public void pay(double amount) {
         String last4 = cardNumber.substring(cardNumber.length() - 4);
         System.out.println("Charging card ****" + last4 + " | Rs." + amount);
-        // all card-specific logic lives HERE
     }
+
+    @Override public String getMethod()  { return "CARD"; }
+    @Override public String getDetails() { return "Card: ****-" + last4 + " | Expiry: " + expiry; }
 }
 ```
 
