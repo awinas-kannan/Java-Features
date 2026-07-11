@@ -52,9 +52,10 @@ You cannot modify these SDKs. They are third-party libraries.
 ## Block Diagram
 
 ```
-          Checkout / OrderService
+            CheckoutService
                     |
-                    | calls pay() and refund()
+                    | depends on interface only
+                    | (never imports any SDK)
                     |
              PaymentService
               (interface)
@@ -177,7 +178,7 @@ The adapter:
 | Principle | How Adapter follows it |
 |-----------|------------------------|
 | Open/Closed | Add new provider = new Adapter class only. Zero changes to existing code. |
-| Dependency Inversion | Checkout code depends on `PaymentService` interface, not on `RazorpaySDK` directly. |
+| Dependency Inversion | `CheckoutService` depends on `PaymentService` interface, never on `RazorpaySDK` / `StripeSDK` directly. |
 | Single Responsibility | Adapter's only job is translation. Business logic stays in the service layer. |
 
 ---

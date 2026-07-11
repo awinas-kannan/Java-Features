@@ -8,25 +8,27 @@ public class AdapterPatternDemo {
 
     public static void main(String[] args) {
 
-        // Our code always talks to PaymentService — never to SDK directly
-        // Just swap the adapter to switch provider
+        // CheckoutService never knows which SDK is underneath.
+        // Swap the adapter = swap the provider. CheckoutService unchanged.
 
         // ---- Razorpay ----
         System.out.println("=== Razorpay ===");
-        PaymentService razorpay = new RazorpayAdapter(new RazorpaySDK());
-        String rzpTxn = razorpay.pay(499.0, "UPI");
-        razorpay.refund(rzpTxn, 499.0);
+        CheckoutService checkout1 = new CheckoutService(new RazorpayAdapter(new RazorpaySDK()));
+        checkout1.placeOrder("ORD-001", 499.0, "UPI");
 
         // ---- Stripe ----
         System.out.println("\n=== Stripe ===");
-        PaymentService stripe = new StripeAdapter(new StripeSDK());
-        String strTxn = stripe.pay(1299.0, "CARD");
-        stripe.refund(strTxn, 1299.0);
+        CheckoutService checkout2 = new CheckoutService(new StripeAdapter(new StripeSDK()));
+        checkout2.placeOrder("ORD-002", 1299.0, "CARD");
 
         // ---- PayPal ----
         System.out.println("\n=== PayPal ===");
-        PaymentService paypal = new PaypalAdapter(new PaypalSDK());
-        String pplTxn = paypal.pay(850.0, "NETBANKING");
-        paypal.refund(pplTxn, 850.0);
+        CheckoutService checkout3 = new CheckoutService(new PaypalAdapter(new PaypalSDK()));
+        checkout3.placeOrder("ORD-003", 850.0, "NETBANKING");
+
+        // ---- Refund via Razorpay ----
+        System.out.println("\n=== Refund ===");
+        CheckoutService checkout4 = new CheckoutService(new RazorpayAdapter(new RazorpaySDK()));
+        checkout4.cancelOrder("ORD-001", "RZP-999", 499.0);
     }
 }
