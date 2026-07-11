@@ -37,7 +37,8 @@ public class FactoryMethods {
 		Map emptyImmutableMap = Map.of();
 		Map<Integer,String> nonemptyImmutableMap = Map.of(1, "one", 2, "two", 3, "three");
 		System.out.println(nonemptyImmutableMap);
-		
+
+		s.add("A");
 
 	}
 }
