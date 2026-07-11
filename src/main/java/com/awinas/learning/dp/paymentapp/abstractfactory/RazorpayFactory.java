@@ -1,9 +1,9 @@
-package com.awinas.learning.designpatterns.paymentapp.abstractfactory;
+package com.awinas.learning.dp.paymentapp.abstractfactory;
 
-import com.awinas.learning.designpatterns.paymentapp.adapter.PaymentService;
-import com.awinas.learning.designpatterns.paymentapp.adapter.RazorpayAdapter;
-import com.awinas.learning.designpatterns.paymentapp.adapter.RefundService;
-import com.awinas.learning.designpatterns.paymentapp.sdk.RazorpaySDK;
+import com.awinas.learning.dp.paymentapp.adapter.PaymentService;
+import com.awinas.learning.dp.paymentapp.adapter.RazorpayAdapter;
+import com.awinas.learning.dp.paymentapp.adapter.RefundService;
+import com.awinas.learning.dp.paymentapp.sdk.RazorpaySDK;
 
 /**
  * ABSTRACT FACTORY PATTERN - Razorpay Concrete Factory

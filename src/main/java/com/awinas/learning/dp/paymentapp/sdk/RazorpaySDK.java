@@ -1,4 +1,4 @@
-package com.awinas.learning.designpatterns.paymentapp.sdk;
+package com.awinas.learning.dp.paymentapp.sdk;
 
 /**
  * Third-party Razorpay SDK - we CANNOT modify this.

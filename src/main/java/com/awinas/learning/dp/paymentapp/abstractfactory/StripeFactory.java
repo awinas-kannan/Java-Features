@@ -1,9 +1,9 @@
-package com.awinas.learning.designpatterns.paymentapp.abstractfactory;
+package com.awinas.learning.dp.paymentapp.abstractfactory;
 
-import com.awinas.learning.designpatterns.paymentapp.adapter.PaymentService;
-import com.awinas.learning.designpatterns.paymentapp.adapter.RefundService;
-import com.awinas.learning.designpatterns.paymentapp.adapter.StripeAdapter;
-import com.awinas.learning.designpatterns.paymentapp.sdk.StripeSDK;
+import com.awinas.learning.dp.paymentapp.adapter.PaymentService;
+import com.awinas.learning.dp.paymentapp.adapter.RefundService;
+import com.awinas.learning.dp.paymentapp.adapter.StripeAdapter;
+import com.awinas.learning.dp.paymentapp.sdk.StripeSDK;
 
 /**
  * ABSTRACT FACTORY PATTERN - Stripe Concrete Factory

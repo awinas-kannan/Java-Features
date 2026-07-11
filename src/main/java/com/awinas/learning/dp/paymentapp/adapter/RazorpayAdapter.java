@@ -1,7 +1,7 @@
-package com.awinas.learning.designpatterns.paymentapp.adapter;
+package com.awinas.learning.dp.paymentapp.adapter;
 
-import com.awinas.learning.designpatterns.paymentapp.sdk.RazorpaySDK;
-import com.awinas.learning.designpatterns.paymentapp.strategy.PaymentStrategy;
+import com.awinas.learning.dp.paymentapp.sdk.RazorpaySDK;
+import com.awinas.learning.dp.paymentapp.strategy.PaymentStrategy;
 
 /**
  * ADAPTER PATTERN - Razorpay Adapter

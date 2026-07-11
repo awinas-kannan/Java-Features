@@ -1,7 +1,7 @@
-package com.awinas.learning.designpatterns.paymentapp.abstractfactory;
+package com.awinas.learning.dp.paymentapp.abstractfactory;
 
-import com.awinas.learning.designpatterns.paymentapp.adapter.PaymentService;
-import com.awinas.learning.designpatterns.paymentapp.adapter.RefundService;
+import com.awinas.learning.dp.paymentapp.adapter.PaymentService;
+import com.awinas.learning.dp.paymentapp.adapter.RefundService;
 
 /**
  * ABSTRACT FACTORY PATTERN - Abstract Factory Interface

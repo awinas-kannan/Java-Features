@@ -1,9 +1,9 @@
-package com.awinas.learning.designpatterns.paymentapp;
+package com.awinas.learning.dp.paymentapp;
 
-import com.awinas.learning.designpatterns.paymentapp.service.OrderService;
-import com.awinas.learning.designpatterns.paymentapp.strategy.CardStrategy;
-import com.awinas.learning.designpatterns.paymentapp.strategy.NetBankingStrategy;
-import com.awinas.learning.designpatterns.paymentapp.strategy.UpiStrategy;
+import com.awinas.learning.dp.paymentapp.service.OrderService;
+import com.awinas.learning.dp.paymentapp.strategy.CardStrategy;
+import com.awinas.learning.dp.paymentapp.strategy.NetBankingStrategy;
+import com.awinas.learning.dp.paymentapp.strategy.UpiStrategy;
 
 /**
  * ================================================================

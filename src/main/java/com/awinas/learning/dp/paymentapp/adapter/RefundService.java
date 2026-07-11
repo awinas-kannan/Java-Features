@@ -1,4 +1,4 @@
-package com.awinas.learning.designpatterns.paymentapp.adapter;
+package com.awinas.learning.dp.paymentapp.adapter;
 
 /**
  * ADAPTER PATTERN - Target Interface (Refund)

@@ -1,10 +1,10 @@
-package com.awinas.learning.designpatterns.paymentapp.service;
+package com.awinas.learning.dp.paymentapp.service;
 
-import com.awinas.learning.designpatterns.paymentapp.abstractfactory.PaymentProviderFactory;
-import com.awinas.learning.designpatterns.paymentapp.adapter.PaymentService;
-import com.awinas.learning.designpatterns.paymentapp.adapter.RefundService;
-import com.awinas.learning.designpatterns.paymentapp.factory.PaymentFactory;
-import com.awinas.learning.designpatterns.paymentapp.strategy.PaymentStrategy;
+import com.awinas.learning.dp.paymentapp.abstractfactory.PaymentProviderFactory;
+import com.awinas.learning.dp.paymentapp.adapter.PaymentService;
+import com.awinas.learning.dp.paymentapp.adapter.RefundService;
+import com.awinas.learning.dp.paymentapp.factory.PaymentFactory;
+import com.awinas.learning.dp.paymentapp.strategy.PaymentStrategy;
 
 /**
  * OrderService - The Business Layer

@@ -1,4 +1,4 @@
-package com.awinas.learning.designpatterns.paymentapp.strategy;
+package com.awinas.learning.dp.paymentapp.strategy;
 
 /**
  * STRATEGY PATTERN - Net Banking Payment Strategy

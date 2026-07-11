@@ -1,8 +1,8 @@
-package com.awinas.learning.designpatterns.paymentapp.factory;
+package com.awinas.learning.dp.paymentapp.factory;
 
-import com.awinas.learning.designpatterns.paymentapp.abstractfactory.PaymentProviderFactory;
-import com.awinas.learning.designpatterns.paymentapp.abstractfactory.RazorpayFactory;
-import com.awinas.learning.designpatterns.paymentapp.abstractfactory.StripeFactory;
+import com.awinas.learning.dp.paymentapp.abstractfactory.PaymentProviderFactory;
+import com.awinas.learning.dp.paymentapp.abstractfactory.RazorpayFactory;
+import com.awinas.learning.dp.paymentapp.abstractfactory.StripeFactory;
 
 /**
  * FACTORY PATTERN - Payment Factory
