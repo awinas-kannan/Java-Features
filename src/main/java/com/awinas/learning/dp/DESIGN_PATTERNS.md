@@ -58,7 +58,7 @@ Design Patterns
 | 6 | **Adapter** | Makes two incompatible interfaces work together without modifying either side. Wraps a third-party class to match your interface. Think: power socket adapter. | `RazorpayAdapter`, `StripeAdapter`, `PaypalAdapter` — each wraps its SDK behind the common `PaymentService` interface. `CheckoutService` calls `pay()` on all three the same way. | `CheckoutService` → `PaymentService` → `RazorpayAdapter` → `razorpaySDK.razorpayPay()` |
 | 7 | **Decorator** | Adds new behaviour to an existing object at runtime by wrapping it. Same interface, infinitely stackable. Does NOT change the original class. | `SimpleCoffee` wrapped with `MilkDecorator` → `SugarDecorator` → `WhipDecorator`. Each layer adds to description and cost. | `new Whip(new Sugar(new Milk(new SimpleCoffee())))` → Rs.90 |
 | 8 | **Proxy** | Provides a surrogate that controls access to the real object. Same interface — caller never knows a proxy is involved. Acts as a validation, logging, or caching layer. | `PaymentGatewayProxy` — enforces Rs.5,000 single-txn limit and Rs.10,000 daily limit. Logs every request. Only delegates to `RealPaymentGateway` if all checks pass. | `Caller` → `PaymentGatewayProxy` (limit check + log) → `RealPaymentGateway` |
-| 9 | **Facade** | Provides a simplified interface over a complex subsystem. Hides internal complexity behind one clean entry point. | — | — |
+| 9 | **Facade** | Provides a simplified interface over a complex subsystem. Hides internal complexity behind one clean entry point. | `OrderFacade` — `placeOrder()` internally coordinates `InventoryService` → `PaymentService` → `ShippingService` → `NotificationService`. Client calls one method. | `client.placeOrder()` → Facade → checkStock + processPayment + createShipment + sendEmail |
 | 10 | **Bridge** | Decouples abstraction from implementation so both can vary independently. Avoids class explosion when you have multiple dimensions. | — | — |
 | 11 | **Composite** | Composes objects into tree structures. Treats individual objects and groups of objects uniformly. | — | — |
 | 12 | **Flyweight** | Shares common state among many objects to save memory. Objects split into intrinsic (shared) and extrinsic (unique) state. | — | — |
@@ -224,6 +224,26 @@ PaymentGatewayProxy  ←── same PaymentGateway interface
   │ all checks pass
   ▼
 RealPaymentGateway  ←── actual payment processing
+```
+
+---
+
+### 9. Facade
+
+```
+Client
+  │
+  │ placeOrder() / cancelOrder()   ← one simple call
+  │
+OrderFacade
+  │
+  ├── InventoryService   → checkStock() → reserveStock()
+  ├── PaymentService     → processPayment() → returns txnId
+  ├── ShippingService    → createShipment() → returns trackingId
+  └── NotificationService → sendOrderConfirmation()
+
+Client never imports or calls any subsystem directly.
+Add LoyaltyService later? Update Facade only — client untouched.
 ```
 
 ---
