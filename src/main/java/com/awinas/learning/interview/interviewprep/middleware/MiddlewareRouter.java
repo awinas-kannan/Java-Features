@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.middleware;
+package com.awinas.learning.interview.interviewprep.middleware;
 
 import java.util.HashMap;
 import java.util.Map;

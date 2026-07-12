@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.complanyhierarchy;
+package com.awinas.learning.interview.interviewprep.complanyhierarchy;
 
 import java.util.Arrays;
 import java.util.Collections;

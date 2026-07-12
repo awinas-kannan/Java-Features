@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.filecollection;
+package com.awinas.learning.interview.interviewprep.filecollection;
 
 import java.util.HashSet;
 import java.util.Set;

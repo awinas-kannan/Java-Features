@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.commodityPrice;
+package com.awinas.learning.interview.interviewprep.commodityPrice;
 
 import java.util.*;
 

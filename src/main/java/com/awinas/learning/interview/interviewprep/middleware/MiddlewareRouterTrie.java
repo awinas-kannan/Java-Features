@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.middleware;
+package com.awinas.learning.interview.interviewprep.middleware;
 
 class MiddlewareRouterTrie implements Router {
 	

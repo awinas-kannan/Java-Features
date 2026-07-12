@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.popularcontent;
+package com.awinas.learning.interview.interviewprep.popularcontent;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;

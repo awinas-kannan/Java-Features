@@ -1,5 +1,7 @@
 package com.awinas.learning.interviewprep.filecollection;
 
+import com.awinas.learning.interview.interviewprep.filecollection.CollectionData;
+import com.awinas.learning.interview.interviewprep.filecollection.FileSystemProcessor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

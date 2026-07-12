@@ -1,4 +1,4 @@
-package com.awinas.learning.interviewprep.ratelimiter;
+package com.awinas.learning.interview.interviewprep.ratelimiter;
 
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;

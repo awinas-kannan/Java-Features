@@ -1,5 +1,6 @@
 package com.awinas.learning.interviewprep.popularcontent;
 
+import com.awinas.learning.interview.interviewprep.popularcontent.ContentPopularity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
