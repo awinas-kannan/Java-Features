@@ -266,6 +266,42 @@ Order never imports EmailService, SMSService, or any observer
 
 ---
 
+### 21. Template Method
+
+```
+OrderProcessor  (Abstract Class)
+  │
+  └── processOrder()  ← FINAL — skeleton cannot change
+            │
+            ├── 1. validateOrder()     ← concrete  (same for all, defined in base)
+            │
+            ├── 2. calculatePrice()    ← abstract  (MUST override)
+            │
+            ├── 3. applyDiscount()     ← hook      (CAN override, default = no discount)
+            │
+            ├── 4. processPayment()    ← abstract  (MUST override)
+            │
+            └── 5. sendConfirmation()  ← concrete  (same for all, defined in base)
+
+            │
+            ├── StandardOrderProcessor
+            │       calculatePrice()  → base + Rs.49 delivery
+            │       processPayment()  → standard gateway
+            │       applyDiscount()   → (not overridden — no discount)
+            │
+            ├── PremiumOrderProcessor
+            │       calculatePrice()  → base, free delivery
+            │       applyDiscount()   → 10% loyalty discount   ← overrides hook
+            │       processPayment()  → priority queue
+            │
+            └── InternationalOrderProcessor
+                    calculatePrice()  → base + Rs.499 shipping + 18% customs
+                    processPayment()  → forex gateway
+                    applyDiscount()   → (not overridden — no domestic discounts)
+```
+
+---
+
 ## Quick Interview Cheat Sheet
 
 | Question | Answer |
@@ -278,3 +314,5 @@ Order never imports EmailService, SMSService, or any observer
 | When to use Builder? | When object has many optional fields. Avoids telescoping constructors. |
 | When to use Singleton? | When exactly one shared instance is needed — DB connection, logger, config. |
 | When to use Proxy? | When you need to add validation, logging, or access control in front of a real object without the caller knowing. |
+| Template Method vs Strategy | Template Method uses inheritance — subclass overrides steps. Strategy uses composition — swap the whole algorithm at runtime. |
+| When to use Template Method? | When multiple classes share the same algorithm flow but differ in specific steps. Avoids duplicate flow code across subclasses. |
