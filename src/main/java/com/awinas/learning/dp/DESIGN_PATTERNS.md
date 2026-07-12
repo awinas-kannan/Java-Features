@@ -336,3 +336,17 @@ OrderProcessor  (Abstract Class)
 | When to use Proxy? | When you need to add validation, logging, or access control in front of a real object without the caller knowing. |
 | Template Method vs Strategy | Template Method uses inheritance — subclass overrides steps. Strategy uses composition — swap the whole algorithm at runtime. |
 | When to use Template Method? | When multiple classes share the same algorithm flow but differ in specific steps. Avoids duplicate flow code across subclasses. |
+
+---
+
+## Memory Tricks
+
+```
+Facade          →  Many classes    →  ONE simple entry point
+Template Method →  ONE algorithm   →  Many customizable steps
+```
+
+Although both may look like a sequence of operations, they solve different problems:
+
+- **Facade** hides complexity **across multiple collaborators** (Inventory + Payment + Shipping + Notification → one `placeOrder()`)
+- **Template Method** promotes reuse of a **fixed algorithm** while allowing variation in selected steps (validate → calculatePrice → applyDiscount → processPayment → confirm)
