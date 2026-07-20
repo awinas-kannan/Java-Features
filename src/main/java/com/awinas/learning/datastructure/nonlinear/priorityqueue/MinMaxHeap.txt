@@ -88,7 +88,7 @@ In a heap represented as an array:
 - The root element is at index 0.
 - The left child of a node at index \( i \) is at index \( 2i + 1 \).
 - The right child of a node at index \( i \) is at index \( 2i + 2 \).
-- The parent of a node at index \( i \) is at index \( \frac{i-1}{2} \).
+- The parent of a node at index \( i \) is at index \( \{i-1}{2} \).
 
 ### Code Implementation of Min Heap and Max Heap in Java
 

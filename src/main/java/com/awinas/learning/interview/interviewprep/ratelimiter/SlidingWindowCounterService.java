@@ -8,6 +8,16 @@ import java.time.Instant;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/*
+Receive a request for a specific user.
+Determine the current time bucket (e.g., if the window is 60 seconds and there are 10 buckets, each bucket represents 6 seconds).
+Maintain a request count for the current bucket for that user.
+Increment the count for the current bucket.
+Calculate the total requests made by that user across all buckets that fall within the last 60 seconds.
+Remove old buckets that are outside the 60-second window to free memory.
+Compare the total request count with the configured limit (500 per user).
+Allow the request if the total is within the limit; otherwise, reject the request.
+ */
 @Service
 @Slf4j
 public class SlidingWindowCounterService {
